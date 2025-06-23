@@ -41,4 +41,9 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
                         .decimalNumberSymbolsForLocale(null)
         );
     }
+
+    @Override
+    default String typeNameSuffix() {
+        return LocaleContext.class.getSimpleName();
+    }
 }
