@@ -22,6 +22,13 @@ import walkingkooka.reflect.PublicStaticHelper;
 public final class LocaleContexts implements PublicStaticHelper {
 
     /**
+     * {@see FakeLocaleContext}
+     */
+    public static LocaleContext fake() {
+        return new FakeLocaleContext();
+    }
+
+    /**
      * Stop creation
      */
     private LocaleContexts() {
