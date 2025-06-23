@@ -17,28 +17,25 @@
 
 package walkingkooka.locale;
 
-import walkingkooka.reflect.PublicStaticHelper;
+import org.junit.jupiter.api.Test;
 
-public final class LocaleContexts implements PublicStaticHelper {
+public final class JreLocaleContextTest implements LocaleContextTesting2<JreLocaleContext> {
 
-    /**
-     * {@see FakeLocaleContext}
-     */
-    public static LocaleContext fake() {
-        return new FakeLocaleContext();
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+                JreLocaleContext.INSTANCE,
+                "JRE"
+        );
     }
 
-    /**
-     * {@see JreLocaleContext}
-     */
-    public static LocaleContext jre() {
+    @Override
+    public JreLocaleContext createContext() {
         return JreLocaleContext.INSTANCE;
     }
 
-    /**
-     * Stop creation
-     */
-    private LocaleContexts() {
-        throw new UnsupportedOperationException();
+    @Override
+    public Class<JreLocaleContext> type() {
+        return JreLocaleContext.class;
     }
 }
