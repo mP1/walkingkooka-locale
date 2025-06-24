@@ -19,19 +19,33 @@ package walkingkooka.locale;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Locale;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public final class JreLocaleContextTest implements LocaleContextTesting2<JreLocaleContext> {
+
+    private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
+
+    @Test
+    public void testWithNullLocaleFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> JreLocaleContext.with(null)
+        );
+    }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                JreLocaleContext.INSTANCE,
-                "JRE"
+                JreLocaleContext.with(LOCALE),
+                "JRE en-AU"
         );
     }
 
     @Override
     public JreLocaleContext createContext() {
-        return JreLocaleContext.INSTANCE;
+        return JreLocaleContext.with(LOCALE);
     }
 
     @Override

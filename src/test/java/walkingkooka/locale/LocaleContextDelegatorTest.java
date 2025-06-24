@@ -19,6 +19,8 @@ package walkingkooka.locale;
 
 import walkingkooka.locale.LocaleContextDelegatorTest.TestLocaleContext;
 
+import java.util.Locale;
+
 public final class LocaleContextDelegatorTest implements LocaleContextTesting2<TestLocaleContext> {
 
     @Override
@@ -34,7 +36,9 @@ public final class LocaleContextDelegatorTest implements LocaleContextTesting2<T
     static class TestLocaleContext implements LocaleContextDelegator {
         @Override
         public LocaleContext localeContext() {
-            return LocaleContexts.jre();
+            return LocaleContexts.jre(
+                    Locale.forLanguageTag("EN-AU")
+            );
         }
 
         @Override
