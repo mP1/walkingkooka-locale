@@ -17,6 +17,7 @@
 
 package walkingkooka.locale;
 
+import walkingkooka.collect.set.Sets;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
 
@@ -42,7 +43,7 @@ final class JreLocaleContext implements LocaleContext {
 
     @Override
     public Set<Locale> availableLocales() {
-        return Set.of(
+        return Sets.of(
                 Locale.getAvailableLocales()
         );
     }
