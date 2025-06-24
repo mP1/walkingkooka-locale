@@ -24,6 +24,7 @@ import walkingkooka.math.DecimalNumberSymbols;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -33,12 +34,17 @@ import java.util.Set;
 final class JreLocaleContext implements LocaleContext {
 
     /**
-     * Singleton
+     * Factory that creates a {@link JreLocaleContext}.
      */
-    final static JreLocaleContext INSTANCE = new JreLocaleContext();
+    static JreLocaleContext with(final Locale locale) {
+        return new JreLocaleContext(
+                Objects.requireNonNull(locale, "locale")
+        );
+    }
 
-    private JreLocaleContext() {
+    private JreLocaleContext(final Locale locale) {
         super();
+        this.locale = locale;
     }
 
     @Override
@@ -69,11 +75,13 @@ final class JreLocaleContext implements LocaleContext {
 
     @Override
     public Locale locale() {
-        return Locale.getDefault();
+        return this.locale;
     }
+
+    private final Locale locale;
 
     @Override
     public String toString() {
-        return "JRE";
+        return "JRE " + this.locale.toLanguageTag();
     }
 }

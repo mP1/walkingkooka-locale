@@ -19,6 +19,8 @@ package walkingkooka.locale;
 
 import walkingkooka.reflect.PublicStaticHelper;
 
+import java.util.Locale;
+
 public final class LocaleContexts implements PublicStaticHelper {
 
     /**
@@ -31,8 +33,8 @@ public final class LocaleContexts implements PublicStaticHelper {
     /**
      * {@see JreLocaleContext}
      */
-    public static LocaleContext jre() {
-        return JreLocaleContext.INSTANCE;
+    public static LocaleContext jre(final Locale locale) {
+        return JreLocaleContext.with(locale);
     }
 
     /**
