@@ -18,6 +18,7 @@
 package walkingkooka.locale;
 
 import walkingkooka.collect.list.Lists;
+import walkingkooka.collect.set.ImmutableSortedSet;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -62,7 +63,7 @@ final class JreLocaleContext implements LocaleContext {
                             Locale.getAvailableLocales()
                     )
             );
-            this.availableLocales = locales;
+            this.availableLocales = SortedSets.immutable(locales);
         }
 
         return this.availableLocales;
