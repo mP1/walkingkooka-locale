@@ -18,6 +18,7 @@
 package walkingkooka.locale;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.collect.set.Sets;
 
 import java.util.Locale;
 
@@ -32,6 +33,15 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
         assertThrows(
                 NullPointerException.class,
                 () -> JreLocaleContext.with(null)
+        );
+    }
+
+    @Test
+    public void testAvailableLocales() {
+        this.checkNotEquals(
+                Sets.empty(),
+                this.createContext()
+                        .availableLocales()
         );
     }
 

@@ -17,16 +17,20 @@
 
 package walkingkooka.locale;
 
+import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.collect.set.SortedSets;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
 
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.SortedSet;
 
 /**
  * A {@link LocaleContext} that sources its data from the running JRE querying various {@link Locale} methods.
@@ -49,10 +53,22 @@ final class JreLocaleContext implements LocaleContext {
 
     @Override
     public Set<Locale> availableLocales() {
-        return Sets.of(
-                Locale.getAvailableLocales()
-        );
+        if(null == this.availableLocales) {
+            final SortedSet<Locale> locales = SortedSets.tree(
+                    (l, r) -> l.toLanguageTag().compareTo(r.toLanguageTag())
+            );
+            locales.addAll(
+                    Arrays.asList(
+                            Locale.getAvailableLocales()
+                    )
+            );
+            this.availableLocales = locales;
+        }
+
+        return this.availableLocales;
     }
+
+    private Set<Locale> availableLocales;
 
     @Override
     public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(Locale locale) {
