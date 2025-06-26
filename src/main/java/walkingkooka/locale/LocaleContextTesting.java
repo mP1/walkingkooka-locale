@@ -20,6 +20,7 @@ package walkingkooka.locale;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Locale;
 import java.util.Optional;
