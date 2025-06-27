@@ -2,6 +2,6 @@
 <module>
   <inherits name="walkingkooka.j2cl.java.util.locale.Locale"/>
   <inherits name="walkingkooka.datetime.DateTime"/>
-  <inherits name="walkingkooka.tree.Tree"/>
+  <inherits name="walkingkooka.math.Math"/>
   <source path=""/>
 </module>
