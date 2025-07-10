@@ -102,4 +102,33 @@ public interface LocaleContextTesting extends HasLocaleTesting {
                 () -> "decimalNumberSymbolsForLocale " + locale
         );
     }
+
+    default void localeTextAndCheck(final LocaleContext context,
+                                    final Locale locale) {
+        this.localeTextAndCheck(
+                context,
+                locale,
+                Optional.empty()
+        );
+    }
+
+    default void localeTextAndCheck(final LocaleContext context,
+                                    final Locale locale,
+                                    final String expected) {
+        this.localeTextAndCheck(
+                context,
+                locale,
+                Optional.of(expected)
+        );
+    }
+
+    default void localeTextAndCheck(final LocaleContext context,
+                                    final Locale locale,
+                                    final Optional<String> expected) {
+        this.checkEquals(
+                expected,
+                context.localeText(locale),
+                () -> "localeText " + locale
+        );
+    }
 }

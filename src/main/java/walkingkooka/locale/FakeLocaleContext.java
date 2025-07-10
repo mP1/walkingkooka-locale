@@ -46,6 +46,11 @@ public class FakeLocaleContext implements LocaleContext {
     }
 
     @Override
+    public Optional<String> localeText(final Locale locale) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public Locale locale() {
         throw new UnsupportedOperationException();
     }
