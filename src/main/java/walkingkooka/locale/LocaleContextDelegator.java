@@ -50,5 +50,11 @@ public interface LocaleContextDelegator extends LocaleContext {
                 .locale();
     }
 
+    @Override
+    default Optional<String> localeText(final Locale locale) {
+        return this.localeContext()
+                .localeText(locale);
+    }
+
     LocaleContext localeContext();
 }

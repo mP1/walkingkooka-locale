@@ -46,4 +46,9 @@ public interface LocaleContext extends Context,
      * Returns the {@link DecimalNumberSymbols} if available for the given {@link Locale}.
      */
     Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale);
+
+    /**
+     * Returns text to display for the given {@link Locale} if it exists.
+     */
+    Optional<String> localeText(final Locale locale);
 }

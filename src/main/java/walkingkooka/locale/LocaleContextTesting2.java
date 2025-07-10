@@ -42,6 +42,15 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
         );
     }
 
+    @Test
+    default void testLocaleTextWithNullFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> this.createContext()
+                        .localeText(null)
+        );
+    }
+
     @Override
     default String typeNameSuffix() {
         return LocaleContext.class.getSimpleName();
