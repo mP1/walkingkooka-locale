@@ -28,6 +28,7 @@ import java.util.Set;
 
 /**
  * A {@link Context} with a focus on {@link java.util.Locale} and related locale aware data.
+ * This abstraction decouples Locale and locale related values from the JRE.
  */
 public interface LocaleContext extends Context,
         HasLocale {
@@ -49,6 +50,7 @@ public interface LocaleContext extends Context,
 
     /**
      * Returns text to display for the given {@link Locale} if it exists.
+     * This is necessary because {@link Locale#getDisplayName()} is not implemented in GWT.
      */
     Optional<String> localeText(final Locale locale);
 }
