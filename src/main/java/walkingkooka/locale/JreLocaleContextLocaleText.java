@@ -18,6 +18,7 @@
 package walkingkooka.locale;
 
 import javaemul.internal.annotations.GwtIncompatible;
+import walkingkooka.text.CharSequences;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -26,8 +27,12 @@ class JreLocaleContextLocaleText extends JreLocaleContextLocaleTextGwt {
 
     @GwtIncompatible
     static Optional<String> localeText(final Locale locale) {
-        return Optional.of(
-                locale.getDisplayName()
+        final String displayName = locale.getDisplayName();
+
+        return Optional.ofNullable(
+                CharSequences.isNullOrEmpty(displayName) ?
+                        null :
+                        displayName
         );
     }
 }

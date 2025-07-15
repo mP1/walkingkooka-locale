@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.Sets;
 
 import java.util.Locale;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -43,6 +44,18 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
                 this.createContext()
                         .availableLocales()
         );
+    }
+
+    @Test
+    public void testLocaleText() {
+        for(final Locale locale : Locale.getAvailableLocales()) {
+            final JreLocaleContext context = JreLocaleContext.with(locale);
+            this.checkNotEquals(
+                    Optional.of(""),
+                    context.localeText(locale),
+                    locale::toLanguageTag
+            );
+        }
     }
 
     @Test
