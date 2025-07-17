@@ -38,6 +38,8 @@ import java.util.SortedSet;
  */
 final class JreLocaleContext implements LocaleContext {
 
+
+
     /**
      * Factory that creates a {@link JreLocaleContext}.
      */
@@ -55,9 +57,7 @@ final class JreLocaleContext implements LocaleContext {
     @Override
     public Set<Locale> availableLocales() {
         if(null == this.availableLocales) {
-            final SortedSet<Locale> locales = SortedSets.tree(
-                    (l, r) -> l.toLanguageTag().compareTo(r.toLanguageTag())
-            );
+            final SortedSet<Locale> locales = SortedSets.tree(LocaleContexts.LANGUAGE_TAG_COMPARATOR);
             locales.addAll(
                     Arrays.asList(
                             Locale.getAvailableLocales()
