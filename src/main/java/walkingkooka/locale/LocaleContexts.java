@@ -18,10 +18,21 @@
 package walkingkooka.locale;
 
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.text.CaseSensitivity;
 
+import java.util.Comparator;
 import java.util.Locale;
 
 public final class LocaleContexts implements PublicStaticHelper {
+
+    /**
+     * Helper {@link Comparator} that may be used to sort {@link Locale} by language tag.
+     */
+    public final static Comparator<Locale> LANGUAGE_TAG_COMPARATOR = (l, r) -> CaseSensitivity.INSENSITIVE.comparator()
+            .compare(
+                    l.toLanguageTag(),
+                    r.toLanguageTag()
+            );
 
     /**
      * {@see FakeLocaleContext}

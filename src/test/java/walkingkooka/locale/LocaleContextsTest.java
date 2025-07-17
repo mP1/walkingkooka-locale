@@ -17,12 +17,49 @@
 
 package walkingkooka.locale;
 
+import org.junit.jupiter.api.Test;
+import walkingkooka.collect.list.Lists;
+import walkingkooka.collect.set.Sets;
+import walkingkooka.collect.set.SortedSets;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
+import java.util.Locale;
+import java.util.Set;
 
 public final class LocaleContextsTest implements PublicStaticHelperTesting<LocaleContexts> {
+
+    // LANGUAGE_TAG_COMPARATOR..........................................................................................
+
+    @Test
+    public void testLanguageTagComparatorSort() {
+        final Locale en = Locale.ENGLISH;
+        final Locale enAu = Locale.forLanguageTag("en-AU");
+        final Locale enCA = Locale.forLanguageTag("en-CA");
+        final Locale enNZ = Locale.forLanguageTag("en-NZ");
+
+        final Set<Locale> sortedByLanguageTag = SortedSets.tree(LocaleContexts.LANGUAGE_TAG_COMPARATOR);
+        sortedByLanguageTag.add(en);
+        sortedByLanguageTag.add(enNZ);
+        sortedByLanguageTag.add(enAu);
+        sortedByLanguageTag.add(enCA);
+
+        this.checkEquals(
+                Lists.of(
+                        en,
+                        enAu,
+                        enCA,
+                        enNZ
+                ),
+                Lists.of(
+                        sortedByLanguageTag.toArray()
+                )
+        );
+    }
+
+    // class............................................................................................................
+
     @Override
     public boolean canHavePublicTypes(final Method method) {
         return false;
