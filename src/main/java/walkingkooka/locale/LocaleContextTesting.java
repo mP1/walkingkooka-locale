@@ -20,13 +20,15 @@ package walkingkooka.locale;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
-public interface LocaleContextTesting extends HasLocaleTesting {
+public interface LocaleContextTesting extends HasLocaleTesting,
+        TreePrintableTesting {
 
     default void availableLocalesAndCheck(final LocaleContext context,
                                           final Locale... expected) {
