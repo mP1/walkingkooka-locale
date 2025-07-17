@@ -25,6 +25,8 @@ import java.util.Locale;
 
 public final class LocaleContexts implements PublicStaticHelper {
 
+    public final static CaseSensitivity CASE_SENSITIVITY = CaseSensitivity.INSENSITIVE;
+
     /**
      * Helper {@link Comparator} that may be used to sort {@link Locale} by language tag.
      */

@@ -73,6 +73,19 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     }
 
     @Test
+    public void testFindByLocaleTextDifferentCase() {
+        this.findByLocaleTextAndCheck(
+                this.createContext(),
+                "GERman",
+                1,
+                3,
+                Locale.forLanguageTag("de-AT"),
+                Locale.forLanguageTag("de-BE"),
+                Locale.forLanguageTag("de-CH")
+        );
+    }
+
+    @Test
     public void testLocaleText() {
         for (final Locale locale : Locale.getAvailableLocales()) {
             final JreLocaleContext context = JreLocaleContext.with(locale);
