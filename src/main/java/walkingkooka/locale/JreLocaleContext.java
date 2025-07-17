@@ -21,11 +21,13 @@ import walkingkooka.collect.set.ImmutableSortedSet;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.CharSequences;
 
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -36,7 +38,6 @@ import java.util.SortedSet;
  * A {@link LocaleContext} that sources its data from the running JRE querying various {@link Locale} methods.
  */
 final class JreLocaleContext implements LocaleContext {
-
 
     /**
      * Factory that creates a {@link JreLocaleContext}.
@@ -106,7 +107,8 @@ final class JreLocaleContext implements LocaleContext {
                     final String localeText = this.localeText(locale)
                             .orElse(null);
                     return false == CharSequences.isNullOrEmpty(localeText) &&
-                            (localeText.startsWith(text) || localeText.equals(text));
+                            (LocaleContexts.CASE_SENSITIVITY.startsWith(localeText, text) ||
+                                    LocaleContexts.CASE_SENSITIVITY.equals(localeText, text));
                 })
                 .skip(offset)
                 .limit(count)
