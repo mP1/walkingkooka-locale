@@ -20,6 +20,7 @@ package walkingkooka.locale;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.util.HasLocaleTesting;
 
@@ -104,6 +105,40 @@ public interface LocaleContextTesting extends HasLocaleTesting,
                 () -> "decimalNumberSymbolsForLocale " + locale
         );
     }
+
+    // findByLocaleTextAndCheck.........................................................................................
+
+    default void findByLocaleTextAndCheck(final LocaleContext context,
+                                          final String text,
+                                          final int offset,
+                                          final int count,
+                                          final Locale... expected) {
+        this.findByLocaleTextAndCheck(
+                context,
+                text,
+                offset,
+                count,
+                Sets.of(expected)
+        );
+    }
+
+    default void findByLocaleTextAndCheck(final LocaleContext context,
+                                          final String text,
+                                          final int offset,
+                                          final int count,
+                                          final Set<Locale> expected) {
+        this.checkEquals(
+                expected,
+                context.findByLocaleText(
+                        text,
+                        offset,
+                        count
+                ),
+                () -> "findByLocaleText " + CharSequences.quoteAndEscape(text) + " offset=" + offset + " count=" + count
+        );
+    }
+
+    // localeText.......................................................................................................
 
     default void localeTextAndCheck(final LocaleContext context,
                                     final Locale locale) {
