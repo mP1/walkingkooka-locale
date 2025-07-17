@@ -17,12 +17,11 @@
 
 package walkingkooka.locale;
 
-import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.set.ImmutableSortedSet;
-import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.text.CharSequences;
 
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
@@ -37,7 +36,6 @@ import java.util.SortedSet;
  * A {@link LocaleContext} that sources its data from the running JRE querying various {@link Locale} methods.
  */
 final class JreLocaleContext implements LocaleContext {
-
 
 
     /**
@@ -56,7 +54,7 @@ final class JreLocaleContext implements LocaleContext {
 
     @Override
     public Set<Locale> availableLocales() {
-        if(null == this.availableLocales) {
+        if (null == this.availableLocales) {
             final SortedSet<Locale> locales = SortedSets.tree(LocaleContexts.LANGUAGE_TAG_COMPARATOR);
             locales.addAll(
                     Arrays.asList(
@@ -88,6 +86,33 @@ final class JreLocaleContext implements LocaleContext {
                         new DecimalFormatSymbols(locale)
                 )
         );
+    }
+
+    @Override
+    public Set<Locale> findByLocaleText(final String text,
+                                        final int offset,
+                                        final int count) {
+        Objects.requireNonNull(text, "text");
+        if (offset < 0) {
+            throw new IllegalArgumentException("Invalid offset < 0");
+        }
+        if (count < 0) {
+            throw new IllegalArgumentException("Invalid count < 0");
+        }
+
+        return this.availableLocales()
+                .stream()
+                .filter(locale -> {
+                    final String localeText = this.localeText(locale)
+                            .orElse(null);
+                    return false == CharSequences.isNullOrEmpty(localeText) &&
+                            (localeText.startsWith(text) || localeText.equals(text));
+                })
+                .skip(offset)
+                .limit(count)
+                .collect(
+                        ImmutableSortedSet.collector(LocaleContexts.LANGUAGE_TAG_COMPARATOR)
+                );
     }
 
     @Override

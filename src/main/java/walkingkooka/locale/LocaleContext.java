@@ -49,6 +49,13 @@ public interface LocaleContext extends Context,
     Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale);
 
     /**
+     * Returns all {@link Locale} that have display or local text beginning with the given search text.
+     */
+    Set<Locale> findByLocaleText(final String text,
+                                 final int offset,
+                                 final int count);
+
+    /**
      * Returns text to display for the given {@link Locale} if it exists.
      * This is necessary because {@link Locale#getDisplayName()} is not implemented in GWT.
      */
