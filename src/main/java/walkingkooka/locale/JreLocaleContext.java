@@ -107,8 +107,10 @@ final class JreLocaleContext implements LocaleContext {
                     final String localeText = this.localeText(locale)
                             .orElse(null);
                     return false == CharSequences.isNullOrEmpty(localeText) &&
-                            (LocaleContexts.CASE_SENSITIVITY.startsWith(localeText, text) ||
-                                    LocaleContexts.CASE_SENSITIVITY.equals(localeText, text));
+                            LocaleContexts.CASE_SENSITIVITY.startsWith(
+                                    localeText,
+                                    text
+                            );
                 })
                 .skip(offset)
                 .limit(count)
