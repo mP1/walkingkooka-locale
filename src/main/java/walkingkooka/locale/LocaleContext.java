@@ -60,4 +60,12 @@ public interface LocaleContext extends Context,
      * This is necessary because {@link Locale#getDisplayName()} is not implemented in GWT.
      */
     Optional<String> localeText(final Locale locale);
+
+    /**
+     * Helper that throws a {@link IllegalArgumentException} if locale text was not found.
+     */
+    default String localeTextOrFail(final Locale locale) {
+        return this.localeText(locale)
+                .orElseThrow(() -> new IllegalArgumentException("Locale " + locale + ": missing locale text"));
+    }
 }
