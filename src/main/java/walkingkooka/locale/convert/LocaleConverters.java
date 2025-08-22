@@ -33,6 +33,13 @@ public final class LocaleConverters implements PublicStaticHelper {
     }
 
     /**
+     * {@see LocaleConverterDecimalNumberSymbols}
+     */
+    public static <C extends LocaleConverterContext> Converter<C> decimalNumberSymbols() {
+        return LocaleConverterDecimalNumberSymbols.instance();
+    }
+
+    /**
      * {@see LocaleConverterLocale}
      */
     public static <C extends LocaleConverterContext> Converter<C> locale() {
