@@ -31,7 +31,7 @@ import java.util.Set;
  * This abstraction decouples Locale and locale related values from the JRE.
  */
 public interface LocaleContext extends Context,
-        HasLocale {
+    HasLocale {
 
     /**
      * Returns all available {@link Locale}.
@@ -66,6 +66,6 @@ public interface LocaleContext extends Context,
      */
     default String localeTextOrFail(final Locale locale) {
         return this.localeText(locale)
-                .orElseThrow(() -> new IllegalArgumentException("Locale " + locale + ": missing locale text"));
+            .orElseThrow(() -> new IllegalArgumentException("Locale " + locale + ": missing locale text"));
     }
 }

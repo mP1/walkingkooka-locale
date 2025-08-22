@@ -30,9 +30,9 @@ class JreLocaleContextLocaleText extends JreLocaleContextLocaleTextGwt {
         final String displayName = locale.getDisplayName();
 
         return Optional.ofNullable(
-                CharSequences.isNullOrEmpty(displayName) ?
-                        null :
-                        displayName
+            CharSequences.isNullOrEmpty(displayName) ?
+                null :
+                displayName
         );
     }
 }

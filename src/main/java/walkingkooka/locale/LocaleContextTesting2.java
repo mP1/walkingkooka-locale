@@ -27,66 +27,66 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
     @Test
     default void testDateTimeSymbolsForLocaleWithNullFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> this.createContext()
-                        .dateTimeSymbolsForLocale(null)
+            NullPointerException.class,
+            () -> this.createContext()
+                .dateTimeSymbolsForLocale(null)
         );
     }
 
     @Test
     default void testDecimalNumberSymbolsForLocaleWithNullFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> this.createContext()
-                        .decimalNumberSymbolsForLocale(null)
+            NullPointerException.class,
+            () -> this.createContext()
+                .decimalNumberSymbolsForLocale(null)
         );
     }
 
     @Test
     default void testFindByLocaleTextWithNegativeOffsetFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.createContext()
-                        .findByLocaleText(
-                                "text",
-                                -1,
-                                1
-                        )
+            IllegalArgumentException.class,
+            () -> this.createContext()
+                .findByLocaleText(
+                    "text",
+                    -1,
+                    1
+                )
         );
     }
 
     @Test
     default void testFindByLocaleTextWithInvalidCountFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.createContext()
-                        .findByLocaleText(
-                                "text",
-                                0,
-                                -1
-                        )
+            IllegalArgumentException.class,
+            () -> this.createContext()
+                .findByLocaleText(
+                    "text",
+                    0,
+                    -1
+                )
         );
     }
 
     @Test
     default void testFindByLocaleTextWithNullTextFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> this.createContext()
-                        .findByLocaleText(
-                                null,
-                                0,
-                                1
-                        )
+            NullPointerException.class,
+            () -> this.createContext()
+                .findByLocaleText(
+                    null,
+                    0,
+                    1
+                )
         );
     }
 
     @Test
     default void testLocaleTextWithNullFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> this.createContext()
-                        .localeText(null)
+            NullPointerException.class,
+            () -> this.createContext()
+                .localeText(null)
         );
     }
 

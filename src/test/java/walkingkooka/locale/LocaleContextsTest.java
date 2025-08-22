@@ -19,7 +19,6 @@ package walkingkooka.locale;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
@@ -46,15 +45,15 @@ public final class LocaleContextsTest implements PublicStaticHelperTesting<Local
         sortedByLanguageTag.add(enCA);
 
         this.checkEquals(
-                Lists.of(
-                        en,
-                        enAu,
-                        enCA,
-                        enNZ
-                ),
-                Lists.of(
-                        sortedByLanguageTag.toArray()
-                )
+            Lists.of(
+                en,
+                enAu,
+                enCA,
+                enNZ
+            ),
+            Lists.of(
+                sortedByLanguageTag.toArray()
+            )
         );
     }
 

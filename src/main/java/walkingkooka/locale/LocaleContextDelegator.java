@@ -29,19 +29,19 @@ public interface LocaleContextDelegator extends LocaleContext {
     @Override
     default Set<Locale> availableLocales() {
         return this.localeContext()
-                .availableLocales();
+            .availableLocales();
     }
 
     @Override
     default Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
         return this.localeContext()
-                .dateTimeSymbolsForLocale(locale);
+            .dateTimeSymbolsForLocale(locale);
     }
 
     @Override
     default Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
         return this.localeContext()
-                .decimalNumberSymbolsForLocale(locale);
+            .decimalNumberSymbolsForLocale(locale);
     }
 
     @Override
@@ -49,23 +49,23 @@ public interface LocaleContextDelegator extends LocaleContext {
                                          final int offset,
                                          final int count) {
         return this.localeContext()
-                .findByLocaleText(
-                        text,
-                        offset,
-                        count
-                );
+            .findByLocaleText(
+                text,
+                offset,
+                count
+            );
     }
 
     @Override
     default Locale locale() {
         return this.localeContext()
-                .locale();
+            .locale();
     }
 
     @Override
     default Optional<String> localeText(final Locale locale) {
         return this.localeContext()
-                .localeText(locale);
+            .localeText(locale);
     }
 
 
