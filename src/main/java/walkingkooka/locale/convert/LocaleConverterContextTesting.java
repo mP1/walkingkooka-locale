@@ -17,21 +17,7 @@
 
 package walkingkooka.locale.convert;
 
-import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.convert.ConverterContextTesting;
 
-/**
- * A collection of {@link LocaleConverterContext}
- */
-public final class LocaleConverterContexts implements PublicStaticHelper {
-
-    /**
-     * {@see FakeLocaleConverterContext}
-     */
-    public static LocaleConverterContext fake() {
-        return new FakeLocaleConverterContext();
-    }
-
-    private LocaleConverterContexts() {
-        throw new UnsupportedOperationException();
-    }
+public interface LocaleConverterContextTesting<C extends LocaleConverterContext> extends ConverterContextTesting<C> {
 }

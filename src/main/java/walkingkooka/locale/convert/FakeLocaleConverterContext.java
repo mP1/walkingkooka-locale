@@ -17,21 +17,11 @@
 
 package walkingkooka.locale.convert;
 
-import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.convert.FakeConverterContext;
 
-/**
- * A collection of {@link LocaleConverterContext}
- */
-public final class LocaleConverterContexts implements PublicStaticHelper {
+public class FakeLocaleConverterContext extends FakeConverterContext implements LocaleConverterContext {
 
-    /**
-     * {@see FakeLocaleConverterContext}
-     */
-    public static LocaleConverterContext fake() {
-        return new FakeLocaleConverterContext();
-    }
-
-    private LocaleConverterContexts() {
-        throw new UnsupportedOperationException();
+    public FakeLocaleConverterContext() {
+        super();
     }
 }
