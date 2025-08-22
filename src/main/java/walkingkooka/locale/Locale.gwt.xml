@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
   <inherits name="walkingkooka.j2cl.java.util.locale.Locale"/>
+  <inherits name="walkingkooka.convert.Convert"/>
   <inherits name="walkingkooka.datetime.DateTime"/>
   <inherits name="walkingkooka.math.Math"/>
   <source path=""/>
