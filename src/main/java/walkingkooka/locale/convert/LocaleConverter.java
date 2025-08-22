@@ -18,22 +18,11 @@
 package walkingkooka.locale.convert;
 
 import walkingkooka.convert.Converter;
-import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.convert.TryingShortCircuitingConverter;
 
-/**
- * A collection of {@link Converter}
- */
-public final class LocaleConverters implements PublicStaticHelper {
+abstract class LocaleConverter<C extends LocaleConverterContext> implements TryingShortCircuitingConverter<C> {
 
-    /**
-     * {@see LocaleConverterDateTimeSymbols}
-     */
-    public static <C extends LocaleConverterContext> Converter<C> dateTimeSymbols() {
-        return LocaleConverterDateTimeSymbols.instance();
-    }
-
-
-    private LocaleConverters() {
-        throw new UnsupportedOperationException();
+    LocaleConverter() {
+        super();
     }
 }
