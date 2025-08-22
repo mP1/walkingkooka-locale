@@ -25,8 +25,10 @@ import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.util.HasLocale;
+import walkingkooka.util.HasOptionalLocale;
 
 import java.util.Locale;
+import java.util.Optional;
 
 public final class LocaleConverterLocaleTest extends LocaleConverterTestCase<LocaleConverterLocale<LocaleConverterContext>, Locale>{
 
@@ -47,6 +49,33 @@ public final class LocaleConverterLocaleTest extends LocaleConverterTestCase<Loc
                 }
             },
             LOCALE
+        );
+    }
+
+    @Test
+    public void testConvertHasOptionalLocale() {
+        this.convertAndCheck(
+            new HasOptionalLocale() {
+                @Override
+                public Optional<Locale> locale() {
+                    return Optional.of(LOCALE);
+                }
+            },
+            LOCALE
+        );
+    }
+
+    @Test
+    public void testConvertHasOptionalLocaleMissing() {
+        this.convertAndCheck(
+            new HasOptionalLocale() {
+                @Override
+                public Optional<Locale> locale() {
+                    return Optional.empty();
+                }
+            },
+            Locale.class,
+            null
         );
     }
 
