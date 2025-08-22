@@ -17,7 +17,6 @@
 
 package walkingkooka.locale.convert;
 
-import walkingkooka.convert.Converter;
 import walkingkooka.convert.TryingShortCircuitingConverter;
 
 abstract class LocaleConverter<C extends LocaleConverterContext> implements TryingShortCircuitingConverter<C> {
