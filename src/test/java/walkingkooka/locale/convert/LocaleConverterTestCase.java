@@ -17,16 +17,20 @@
 
 package walkingkooka.locale.convert;
 
+import walkingkooka.ToStringTesting;
 import walkingkooka.convert.ConverterTesting2;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
-public abstract class LocaleConverterTestCase<C extends LocaleConverter<LocaleConverterContext>> implements ConverterTesting2<C, LocaleConverterContext>,
+public abstract class LocaleConverterTestCase<C extends LocaleConverter<T, LocaleConverterContext>, T> implements ConverterTesting2<C, LocaleConverterContext>,
+    ToStringTesting<C>,
     ClassTesting<C> {
 
     LocaleConverterTestCase() {
         super();
     }
+
+    public abstract void testToString();
 
     // class............................................................................................................
 
