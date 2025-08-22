@@ -23,6 +23,8 @@ import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.locale.LocaleContext;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 
 import java.math.MathContext;
@@ -36,7 +38,7 @@ public final class BasicLocaleConverterContextTest implements LocaleConverterCon
 
     private final static Locale LOCALE = Locale.ENGLISH;
 
-    private final static ConverterContext CONTEXT = ConverterContexts.basic(
+    private final static ConverterContext CONVERTER_CONTEXT = ConverterContexts.basic(
         Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
         Converters.simple(),
         DateTimeContexts.basic(
@@ -51,82 +53,101 @@ public final class BasicLocaleConverterContextTest implements LocaleConverterCon
         DecimalNumberContexts.american(MathContext.DECIMAL32)
     );
 
+    private final static LocaleContext LOCALE_CONTEXT = LocaleContexts.jre(LOCALE);
+
     @Test
-    public void testWithNullContextFails() {
+    public void testWithNullConverterContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicLocaleConverterContext.with(null)
+            () -> BasicLocaleConverterContext.with(
+                null,
+                LOCALE_CONTEXT
+            )
+        );
+    }
+
+    @Test
+    public void testWithNullLocaleContextFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> BasicLocaleConverterContext.with(
+                CONVERTER_CONTEXT,
+                null
+            )
         );
     }
 
     @Override
     public BasicLocaleConverterContext createContext() {
-        return BasicLocaleConverterContext.with(CONTEXT);
+        return BasicLocaleConverterContext.with(
+            CONVERTER_CONTEXT,
+            LOCALE_CONTEXT
+        );
     }
 
     @Override
     public MathContext mathContext() {
-        return CONTEXT.mathContext();
+        return CONVERTER_CONTEXT.mathContext();
     }
 
     @Override
     public String currencySymbol() {
-        return CONTEXT.currencySymbol();
+        return CONVERTER_CONTEXT.currencySymbol();
     }
 
     @Override
     public char decimalSeparator() {
-        return CONTEXT.decimalSeparator();
+        return CONVERTER_CONTEXT.decimalSeparator();
     }
 
     @Override
     public String exponentSymbol() {
-        return CONTEXT.exponentSymbol();
+        return CONVERTER_CONTEXT.exponentSymbol();
     }
 
     @Override
     public char groupSeparator() {
-        return CONTEXT.groupSeparator();
+        return CONVERTER_CONTEXT.groupSeparator();
     }
 
     @Override
     public String infinitySymbol() {
-        return CONTEXT.infinitySymbol();
+        return CONVERTER_CONTEXT.infinitySymbol();
     }
 
     @Override
     public char monetaryDecimalSeparator() {
-        return CONTEXT.monetaryDecimalSeparator();
+        return CONVERTER_CONTEXT.monetaryDecimalSeparator();
     }
 
     @Override
     public String nanSymbol() {
-        return CONTEXT.nanSymbol();
+        return CONVERTER_CONTEXT.nanSymbol();
     }
 
     @Override
     public char percentSymbol() {
-        return CONTEXT.percentSymbol();
+        return CONVERTER_CONTEXT.percentSymbol();
     }
 
     @Override
     public char permillSymbol() {
-        return CONTEXT.permillSymbol();
+        return CONVERTER_CONTEXT.permillSymbol();
     }
 
     @Override
     public char negativeSign() {
-        return CONTEXT.negativeSign();
+        return CONVERTER_CONTEXT.negativeSign();
     }
 
     @Override
     public char positiveSign() {
-        return CONTEXT.positiveSign();
+        return CONVERTER_CONTEXT.positiveSign();
     }
 
     @Override
     public char zeroDigit() {
-        return CONTEXT.zeroDigit();
+        return CONVERTER_CONTEXT.zeroDigit();
     }
 
     // class............................................................................................................
