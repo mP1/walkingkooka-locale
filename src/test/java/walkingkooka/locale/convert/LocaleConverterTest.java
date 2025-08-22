@@ -17,23 +17,19 @@
 
 package walkingkooka.locale.convert;
 
-import walkingkooka.convert.Converter;
-import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.Cast;
+import walkingkooka.reflect.ClassTesting;
+import walkingkooka.reflect.JavaVisibility;
 
-/**
- * A collection of {@link Converter}
- */
-public final class LocaleConverters implements PublicStaticHelper {
+public final class LocaleConverterTest implements ClassTesting<LocaleConverter<?>> {
 
-    /**
-     * {@see LocaleConverterDateTimeSymbols}
-     */
-    public static <C extends LocaleConverterContext> Converter<C> dateTimeSymbols() {
-        return LocaleConverterDateTimeSymbols.instance();
+    @Override
+    public Class<LocaleConverter<?>> type() {
+        return Cast.to(LocaleConverter.class);
     }
 
-
-    private LocaleConverters() {
-        throw new UnsupportedOperationException();
+    @Override
+    public JavaVisibility typeVisibility() {
+        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }
