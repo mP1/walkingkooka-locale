@@ -19,6 +19,7 @@ package walkingkooka.locale.convert;
 
 import walkingkooka.convert.Converter;
 import walkingkooka.util.HasLocale;
+import walkingkooka.util.HasOptionalLocale;
 
 import java.util.Locale;
 
@@ -54,7 +55,8 @@ final class LocaleConverterLocale<C extends LocaleConverterContext> extends Loca
     boolean canConvertNotString(final Object value,
                                 final C context) {
         return value instanceof Locale ||
-            value instanceof HasLocale;
+            value instanceof HasLocale ||
+            value instanceof HasOptionalLocale;
     }
 
     @Override
@@ -71,12 +73,17 @@ final class LocaleConverterLocale<C extends LocaleConverterContext> extends Loca
         if (value instanceof HasLocale) {
             locale = ((HasLocale) value).locale();
         } else {
-            locale = Locale.forLanguageTag(
-                context.convertOrFail(
-                    value,
-                    String.class
-                )
-            );
+            if (value instanceof HasOptionalLocale) {
+                locale = ((HasOptionalLocale) value).locale()
+                    .orElse(null);
+            } else {
+                locale = Locale.forLanguageTag(
+                    context.convertOrFail(
+                        value,
+                        String.class
+                    )
+                );
+            }
         }
 
         return locale;
