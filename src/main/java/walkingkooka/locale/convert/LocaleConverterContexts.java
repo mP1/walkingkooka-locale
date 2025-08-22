@@ -17,12 +17,20 @@
 
 package walkingkooka.locale.convert;
 
+import walkingkooka.convert.ConverterContext;
 import walkingkooka.reflect.PublicStaticHelper;
 
 /**
  * A collection of {@link LocaleConverterContext}
  */
 public final class LocaleConverterContexts implements PublicStaticHelper {
+
+    /**
+     * {@see BasicLocaleConverterContext}
+     */
+    public static LocaleConverterContext basic(final ConverterContext context) {
+        return BasicLocaleConverterContext.with(context);
+    }
 
     /**
      * {@see FakeLocaleConverterContext}
