@@ -18,6 +18,13 @@
 package walkingkooka.locale.convert;
 
 import walkingkooka.convert.ConverterContextTesting;
+import walkingkooka.locale.LocaleContextTesting2;
 
-public interface LocaleConverterContextTesting<C extends LocaleConverterContext> extends ConverterContextTesting<C> {
+public interface LocaleConverterContextTesting<C extends LocaleConverterContext> extends ConverterContextTesting<C>,
+        LocaleContextTesting2<C> {
+
+    @Override
+    default String typeNameSuffix() {
+        return LocaleConverterContext.class.getSimpleName();
+    }
 }

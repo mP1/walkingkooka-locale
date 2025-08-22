@@ -18,6 +18,7 @@
 package walkingkooka.locale.convert;
 
 import walkingkooka.convert.ConverterContext;
+import walkingkooka.locale.LocaleContext;
 import walkingkooka.reflect.PublicStaticHelper;
 
 /**
@@ -28,8 +29,12 @@ public final class LocaleConverterContexts implements PublicStaticHelper {
     /**
      * {@see BasicLocaleConverterContext}
      */
-    public static LocaleConverterContext basic(final ConverterContext context) {
-        return BasicLocaleConverterContext.with(context);
+    public static LocaleConverterContext basic(final ConverterContext converterContext,
+                                               final LocaleContext localeContext) {
+        return BasicLocaleConverterContext.with(
+            converterContext,
+            localeContext
+        );
     }
 
     /**

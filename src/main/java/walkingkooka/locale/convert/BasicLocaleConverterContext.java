@@ -20,32 +20,57 @@ package walkingkooka.locale.convert;
 import walkingkooka.convert.ConverterContext;
 import walkingkooka.convert.ConverterContextDelegator;
 import walkingkooka.convert.ConverterContextTesting;
+import walkingkooka.locale.LocaleContext;
+import walkingkooka.locale.LocaleContextDelegator;
 
+import java.util.Locale;
 import java.util.Objects;
 
-final class BasicLocaleConverterContext implements LocaleConverterContext, ConverterContextDelegator {
+final class BasicLocaleConverterContext implements LocaleConverterContext,
+    ConverterContextDelegator,
+    LocaleContextDelegator {
 
-    static BasicLocaleConverterContext with(final ConverterContext context) {
+    static BasicLocaleConverterContext with(final ConverterContext converterContext,
+                                            final LocaleContext localeContext) {
         return new BasicLocaleConverterContext(
-                Objects.requireNonNull(context, "context")
+                Objects.requireNonNull(converterContext, "converterContext"),
+            Objects.requireNonNull(localeContext, "localeContext")
         );
     }
 
-    private BasicLocaleConverterContext(final ConverterContext context) {
-        this.context = context;
+    private BasicLocaleConverterContext(final ConverterContext converterContext,
+                                        final LocaleContext localeContext) {
+        this.converterContext = converterContext;
+        this.localeContext = localeContext;
     }
 
     // ConverterContextDelegator........................................................................................
 
     @Override
     public ConverterContext converterContext() {
-        return this.context;
+        return this.converterContext;
     }
 
-    private final ConverterContext context;
+    private final ConverterContext converterContext;
+
+    // LocaleContextDelegator...........................................................................................
+
+    @Override
+    public Locale locale() {
+        return this.localeContext.locale();
+    }
+
+    @Override
+    public LocaleContext localeContext() {
+        return this.localeContext;
+    }
+
+    private final LocaleContext localeContext;
+
+    // Object...........................................................................................................
 
     @Override
     public String toString() {
-        return this.context.toString();
+        return this.converterContext.toString();
     }
 }

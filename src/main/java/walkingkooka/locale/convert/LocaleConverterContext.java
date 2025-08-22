@@ -18,6 +18,8 @@
 package walkingkooka.locale.convert;
 
 import walkingkooka.convert.ConverterContext;
+import walkingkooka.locale.LocaleContext;
 
-public interface LocaleConverterContext extends ConverterContext {
+public interface LocaleConverterContext extends ConverterContext,
+    LocaleContext {
 }
