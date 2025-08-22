@@ -32,56 +32,56 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     @Test
     public void testWithNullLocaleFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> JreLocaleContext.with(null)
+            NullPointerException.class,
+            () -> JreLocaleContext.with(null)
         );
     }
 
     @Test
     public void testAvailableLocales() {
         this.checkNotEquals(
-                Sets.empty(),
-                this.createContext()
-                        .availableLocales()
+            Sets.empty(),
+            this.createContext()
+                .availableLocales()
         );
     }
 
     @Test
     public void testFindByLocaleText() {
         this.findByLocaleTextAndCheck(
-                this.createContext(),
-                "German",
-                0,
-                3,
-                Locale.forLanguageTag("de"),
-                Locale.forLanguageTag("de-AT"),
-                Locale.forLanguageTag("de-BE")
+            this.createContext(),
+            "German",
+            0,
+            3,
+            Locale.forLanguageTag("de"),
+            Locale.forLanguageTag("de-AT"),
+            Locale.forLanguageTag("de-BE")
         );
     }
 
     @Test
     public void testFindByLocaleText2() {
         this.findByLocaleTextAndCheck(
-                this.createContext(),
-                "German",
-                1,
-                3,
-                Locale.forLanguageTag("de-AT"),
-                Locale.forLanguageTag("de-BE"),
-                Locale.forLanguageTag("de-CH")
+            this.createContext(),
+            "German",
+            1,
+            3,
+            Locale.forLanguageTag("de-AT"),
+            Locale.forLanguageTag("de-BE"),
+            Locale.forLanguageTag("de-CH")
         );
     }
 
     @Test
     public void testFindByLocaleTextDifferentCase() {
         this.findByLocaleTextAndCheck(
-                this.createContext(),
-                "GERman",
-                1,
-                3,
-                Locale.forLanguageTag("de-AT"),
-                Locale.forLanguageTag("de-BE"),
-                Locale.forLanguageTag("de-CH")
+            this.createContext(),
+            "GERman",
+            1,
+            3,
+            Locale.forLanguageTag("de-AT"),
+            Locale.forLanguageTag("de-BE"),
+            Locale.forLanguageTag("de-CH")
         );
     }
 
@@ -90,9 +90,9 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
         for (final Locale locale : Locale.getAvailableLocales()) {
             final JreLocaleContext context = JreLocaleContext.with(locale);
             this.checkNotEquals(
-                    Optional.of(""),
-                    context.localeText(locale),
-                    locale::toLanguageTag
+                Optional.of(""),
+                context.localeText(locale),
+                locale::toLanguageTag
             );
         }
     }
@@ -100,8 +100,8 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                JreLocaleContext.with(LOCALE),
-                "JRE en-AU"
+            JreLocaleContext.with(LOCALE),
+            "JRE en-AU"
         );
     }
 

@@ -21,13 +21,11 @@ import walkingkooka.collect.set.ImmutableSortedSet;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
-import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.CharSequences;
 
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,7 +42,7 @@ final class JreLocaleContext implements LocaleContext {
      */
     static JreLocaleContext with(final Locale locale) {
         return new JreLocaleContext(
-                Objects.requireNonNull(locale, "locale")
+            Objects.requireNonNull(locale, "locale")
         );
     }
 
@@ -58,9 +56,9 @@ final class JreLocaleContext implements LocaleContext {
         if (null == this.availableLocales) {
             final SortedSet<Locale> locales = SortedSets.tree(LocaleContexts.LANGUAGE_TAG_COMPARATOR);
             locales.addAll(
-                    Arrays.asList(
-                            Locale.getAvailableLocales()
-                    )
+                Arrays.asList(
+                    Locale.getAvailableLocales()
+                )
             );
             this.availableLocales = SortedSets.immutable(locales);
         }
@@ -73,19 +71,19 @@ final class JreLocaleContext implements LocaleContext {
     @Override
     public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(Locale locale) {
         return Optional.of(
-                DateTimeSymbols.fromDateFormatSymbols(
-                        new DateFormatSymbols(locale)
-                )
+            DateTimeSymbols.fromDateFormatSymbols(
+                new DateFormatSymbols(locale)
+            )
         );
     }
 
     @Override
     public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
         return Optional.of(
-                DecimalNumberSymbols.fromDecimalFormatSymbols(
-                        '+',
-                        new DecimalFormatSymbols(locale)
-                )
+            DecimalNumberSymbols.fromDecimalFormatSymbols(
+                '+',
+                new DecimalFormatSymbols(locale)
+            )
         );
     }
 
@@ -102,21 +100,21 @@ final class JreLocaleContext implements LocaleContext {
         }
 
         return this.availableLocales()
-                .stream()
-                .filter(locale -> {
-                    final String localeText = this.localeText(locale)
-                            .orElse(null);
-                    return false == CharSequences.isNullOrEmpty(localeText) &&
-                            LocaleContexts.CASE_SENSITIVITY.startsWith(
-                                    localeText,
-                                    text
-                            );
-                })
-                .skip(offset)
-                .limit(count)
-                .collect(
-                        ImmutableSortedSet.collector(LocaleContexts.LANGUAGE_TAG_COMPARATOR)
-                );
+            .stream()
+            .filter(locale -> {
+                final String localeText = this.localeText(locale)
+                    .orElse(null);
+                return false == CharSequences.isNullOrEmpty(localeText) &&
+                    LocaleContexts.CASE_SENSITIVITY.startsWith(
+                        localeText,
+                        text
+                    );
+            })
+            .skip(offset)
+            .limit(count)
+            .collect(
+                ImmutableSortedSet.collector(LocaleContexts.LANGUAGE_TAG_COMPARATOR)
+            );
     }
 
     @Override

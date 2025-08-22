@@ -17,8 +17,6 @@
 
 package walkingkooka.locale;
 
-import javaemul.internal.annotations.GwtIncompatible;
-
 import java.util.Locale;
 import java.util.Optional;
 
