@@ -16,3 +16,4 @@ or [DecimalNumberSymbols](https://github.com/mP1/walkingkooka-math/blob/master/s
 with the later two often providing a source such as a `Locale`
 
 - [dateTimeSymbols](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterDateTimeSymbols.java)
+- [locale](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterLocale.java)

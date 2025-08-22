@@ -32,6 +32,12 @@ public final class LocaleConverters implements PublicStaticHelper {
         return LocaleConverterDateTimeSymbols.instance();
     }
 
+    /**
+     * {@see LocaleConverterLocale}
+     */
+    public static <C extends LocaleConverterContext> Converter<C> locale() {
+        return LocaleConverterLocale.instance();
+    }
 
     private LocaleConverters() {
         throw new UnsupportedOperationException();

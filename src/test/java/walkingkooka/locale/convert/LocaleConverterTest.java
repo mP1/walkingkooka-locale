@@ -21,10 +21,10 @@ import walkingkooka.Cast;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
-public final class LocaleConverterTest implements ClassTesting<LocaleConverter<?>> {
+public final class LocaleConverterTest implements ClassTesting<LocaleConverter<?, ?>> {
 
     @Override
-    public Class<LocaleConverter<?>> type() {
+    public Class<LocaleConverter<?, ?>> type() {
         return Cast.to(LocaleConverter.class);
     }
 

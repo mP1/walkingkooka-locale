@@ -22,10 +22,12 @@ import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.datetime.HasDateTimeSymbols;
 import walkingkooka.datetime.HasOptionalDateTimeSymbols;
 
+import java.util.Locale;
+
 /**
  * A {@link Converter} that supports several different source types to return a {@link DateTimeSymbols}.
  */
-final class LocaleConverterDateTimeSymbols<C extends LocaleConverterContext> extends LocaleConverter<C> {
+final class LocaleConverterDateTimeSymbols<C extends LocaleConverterContext> extends LocaleConverter<DateTimeSymbols, C> {
 
     /**
      * Type safe getter.
@@ -43,26 +45,35 @@ final class LocaleConverterDateTimeSymbols<C extends LocaleConverterContext> ext
         super();
     }
 
-    // TryingShortCircuitingConverter...................................................................................
+    // LocaleConverter..................................................................................................
 
     @Override
-    public boolean canConvert(final Object value,
-                              final Class<?> type,
-                              final C c) {
-        return (value instanceof DateTimeSymbols ||
-            value instanceof HasDateTimeSymbols ||
-            value instanceof HasOptionalDateTimeSymbols) &&
-            DateTimeSymbols.class == type;
+    Class<DateTimeSymbols> targetType() {
+        return DateTimeSymbols.class;
     }
 
     @Override
-    public Object tryConvertOrFail(final Object value,
-                                   final Class<?> type,
-                                   final C context) {
-        Object result;
+    boolean canConvertNotString(final Object value,
+                                final C context) {
+        return (value instanceof DateTimeSymbols ||
+            value instanceof HasDateTimeSymbols ||
+            value instanceof HasOptionalDateTimeSymbols);
+    }
+
+    @Override
+    DateTimeSymbols tryConvertLocale(final Locale locale,
+                                     final C context) {
+        return context.dateTimeSymbolsForLocale(locale)
+            .orElse(null);
+    }
+
+    @Override
+    DateTimeSymbols tryConvertNonLocale(final Object value,
+                                        final C context) {
+        DateTimeSymbols result;
 
         if (value instanceof DateTimeSymbols) {
-            result = value;
+            result = (DateTimeSymbols)value;
         } else {
             if (value instanceof HasDateTimeSymbols) {
                 result = ((HasDateTimeSymbols) value).dateTimeSymbols();
@@ -71,18 +82,17 @@ final class LocaleConverterDateTimeSymbols<C extends LocaleConverterContext> ext
                     result = ((HasOptionalDateTimeSymbols) value).dateTimeSymbols()
                         .orElse(null);
                 } else {
-                    throw new IllegalArgumentException("Unknown value " + value);
+                    result = this.tryConvertLocale(
+                        context.convertOrFail(
+                            value,
+                            Locale.class
+                        ),
+                        context
+                    );
                 }
             }
         }
 
         return result;
-    }
-
-    // Object...........................................................................................................
-
-    @Override
-    public String toString() {
-        return DateTimeSymbols.class.getSimpleName();
     }
 }

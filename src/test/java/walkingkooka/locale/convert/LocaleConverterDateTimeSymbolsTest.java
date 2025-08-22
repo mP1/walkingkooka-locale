@@ -19,6 +19,10 @@ package walkingkooka.locale.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.Either;
+import walkingkooka.collect.list.Lists;
+import walkingkooka.convert.Converter;
+import walkingkooka.convert.Converters;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.datetime.HasDateTimeSymbols;
 import walkingkooka.datetime.HasOptionalDateTimeSymbols;
@@ -27,7 +31,7 @@ import java.text.DateFormatSymbols;
 import java.util.Locale;
 import java.util.Optional;
 
-public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTestCase<LocaleConverterDateTimeSymbols<LocaleConverterContext>>{
+public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTestCase<LocaleConverterDateTimeSymbols<LocaleConverterContext>, DateTimeSymbols> {
 
     private final static DateTimeSymbols DATE_TIME_SYMBOLS = DateTimeSymbols.fromDateFormatSymbols(
         new DateFormatSymbols(Locale.ENGLISH)
@@ -78,6 +82,53 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
         );
     }
 
+    @Test
+    public void testConvertStringToDateSymbolsWithLocaleLanguageTag() {
+        final Locale locale = Locale.ENGLISH;
+
+        this.convertAndCheck(
+            locale.toLanguageTag(),
+            DateTimeSymbols.class,
+            new FakeLocaleConverterContext() {
+
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return this.converter.canConvert(
+                        value,
+                        type,
+                        this
+                    );
+                }
+
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    return this.converter.convert(
+                        value,
+                        target,
+                        this
+                    );
+                }
+
+                private final Converter<LocaleConverterContext> converter = Converters.collection(
+                    Lists.of(
+                        Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
+                        LocaleConverters.locale()
+                    )
+                );
+
+                @Override
+                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DATE_TIME_SYMBOLS);
+                }
+            },
+            DateTimeSymbols.fromDateFormatSymbols(
+                new DateFormatSymbols(locale)
+            )
+        );
+    }
+
     @Override
     public LocaleConverterDateTimeSymbols<LocaleConverterContext> createConverter() {
         return LocaleConverterDateTimeSymbols.instance();
@@ -87,6 +138,18 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
     public LocaleConverterContext createContext() {
         return LocaleConverterContexts.fake();
     }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+            LocaleConverterDateTimeSymbols.instance(),
+            DateTimeSymbols.class.getSimpleName()
+        );
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<LocaleConverterDateTimeSymbols<LocaleConverterContext>> type() {

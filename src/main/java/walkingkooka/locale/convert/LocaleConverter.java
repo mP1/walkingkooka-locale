@@ -18,10 +18,57 @@
 package walkingkooka.locale.convert;
 
 import walkingkooka.convert.TryingShortCircuitingConverter;
+import walkingkooka.datetime.DateTimeSymbols;
 
-abstract class LocaleConverter<C extends LocaleConverterContext> implements TryingShortCircuitingConverter<C> {
+import java.util.Locale;
+
+abstract class LocaleConverter<T, C extends LocaleConverterContext> implements TryingShortCircuitingConverter<C> {
 
     LocaleConverter() {
         super();
+    }
+
+    @Override
+    public final boolean canConvert(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
+        return this.targetType() == type &&
+            (
+                this.canConvertNotString(
+                    value,
+                    context
+                ) ||
+                    context.canConvert(value, String.class) // value might be String holding a Locale.
+            );
+    }
+
+    /**
+     * The target type, eg {@link DateTimeSymbols}.
+     */
+    abstract Class<T> targetType();
+
+    abstract boolean canConvertNotString(final Object value,
+                                         final C context);
+
+    @Override
+    public final T tryConvertOrFail(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
+        return value instanceof Locale ?
+            this.tryConvertLocale((Locale) value, context) :
+            this.tryConvertNonLocale(value, context);
+    }
+
+    abstract T tryConvertLocale(final Locale locale,
+                                final C context);
+
+    abstract T tryConvertNonLocale(final Object value,
+                                   final C context);
+
+    // Object...........................................................................................................
+
+    @Override
+    public final String toString() {
+        return this.targetType().getSimpleName();
     }
 }
