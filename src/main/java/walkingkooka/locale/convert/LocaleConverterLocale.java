@@ -70,19 +70,25 @@ final class LocaleConverterLocale<C extends LocaleConverterContext> extends Loca
                                final C context) {
         Locale locale;
 
-        if (value instanceof HasLocale) {
-            locale = ((HasLocale) value).locale();
+        if (value instanceof Locale) {
+            locale = (Locale) value;
         } else {
-            if (value instanceof HasOptionalLocale) {
-                locale = ((HasOptionalLocale) value).locale()
-                    .orElse(null);
+            if (value instanceof HasLocale) {
+                locale = ((HasLocale) value)
+                    .locale();
             } else {
-                locale = Locale.forLanguageTag(
-                    context.convertOrFail(
-                        value,
-                        String.class
-                    )
-                );
+                if (value instanceof HasOptionalLocale) {
+                    locale = ((HasOptionalLocale) value)
+                        .locale()
+                        .orElse(null);
+                } else {
+                    locale = Locale.forLanguageTag(
+                        context.convertOrFail(
+                            value,
+                            String.class
+                        )
+                    );
+                }
             }
         }
 

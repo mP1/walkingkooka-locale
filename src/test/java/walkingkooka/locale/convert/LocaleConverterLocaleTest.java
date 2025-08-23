@@ -30,7 +30,7 @@ import walkingkooka.util.HasOptionalLocale;
 import java.util.Locale;
 import java.util.Optional;
 
-public final class LocaleConverterLocaleTest extends LocaleConverterTestCase<LocaleConverterLocale<LocaleConverterContext>, Locale>{
+public final class LocaleConverterLocaleTest extends LocaleConverterTestCase<LocaleConverterLocale<LocaleConverterContext>, Locale> {
 
     private final static Locale LOCALE = Locale.ENGLISH;
 
