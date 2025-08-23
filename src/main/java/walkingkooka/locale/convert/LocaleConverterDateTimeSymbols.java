@@ -73,7 +73,7 @@ final class LocaleConverterDateTimeSymbols<C extends LocaleConverterContext> ext
         DateTimeSymbols result;
 
         if (value instanceof DateTimeSymbols) {
-            result = (DateTimeSymbols)value;
+            result = (DateTimeSymbols) value;
         } else {
             if (value instanceof HasDateTimeSymbols) {
                 result = ((HasDateTimeSymbols) value).dateTimeSymbols();
@@ -82,13 +82,19 @@ final class LocaleConverterDateTimeSymbols<C extends LocaleConverterContext> ext
                     result = ((HasOptionalDateTimeSymbols) value).dateTimeSymbols()
                         .orElse(null);
                 } else {
-                    result = this.tryConvertLocale(
-                        context.convertOrFail(
-                            value,
-                            Locale.class
-                        ),
-                        context
+                    final Locale locale = context.convertOrFail(
+                        value,
+                        Locale.class
                     );
+
+                    if(null != locale) {
+                        result = this.tryConvertLocale(
+                            locale,
+                            context
+                        );
+                    } else {
+                        result = null;
+                    }
                 }
             }
         }

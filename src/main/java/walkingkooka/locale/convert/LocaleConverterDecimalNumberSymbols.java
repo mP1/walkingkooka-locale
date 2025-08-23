@@ -82,13 +82,19 @@ final class LocaleConverterDecimalNumberSymbols<C extends LocaleConverterContext
                     result = ((HasOptionalDecimalNumberSymbols) value).decimalNumberSymbols()
                         .orElse(null);
                 } else {
-                    result = this.tryConvertLocale(
-                        context.convertOrFail(
+                    final Locale locale = context.convertOrFail(
                             value,
                             Locale.class
-                        ),
-                        context
                     );
+
+                    if(null != locale) {
+                        result = this.tryConvertLocale(
+                            locale,
+                            context
+                        );
+                    } else {
+                        result = null;
+                    }
                 }
             }
         }

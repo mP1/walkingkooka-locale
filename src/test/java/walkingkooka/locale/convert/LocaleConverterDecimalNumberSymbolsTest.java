@@ -26,6 +26,8 @@ import walkingkooka.convert.Converters;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.math.HasDecimalNumberSymbols;
 import walkingkooka.math.HasOptionalDecimalNumberSymbols;
+import walkingkooka.util.HasLocale;
+import walkingkooka.util.HasOptionalLocale;
 
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -82,6 +84,172 @@ public final class LocaleConverterDecimalNumberSymbolsTest extends LocaleConvert
             },
             DecimalNumberSymbols.class,
             null // expected null
+        );
+    }
+
+    @Test
+    public void testConvertHasLocaleToDecimalNumberSymbols() {
+        this.convertAndCheck(
+            new HasLocale() {
+
+                @Override
+                public Locale locale() {
+                    return LOCALE;
+                }
+            },
+            DecimalNumberSymbols.class,
+            new FakeLocaleConverterContext() {
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return this.converter.canConvert(
+                        value,
+                        type,
+                        this
+                    );
+                }
+
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    return this.converter.convert(
+                        value,
+                        target,
+                        this
+                    );
+                }
+
+                private final Converter<LocaleConverterContext> converter = LocaleConverters.locale();
+
+                @Override
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
+                }
+            },
+            DECIMAL_NUMBER_SYMBOLS
+        );
+    }
+
+    @Test
+    public void testConvertHasOptionalLocaleToDecimalNumberSymbols() {
+        this.convertAndCheck(
+            new HasOptionalLocale() {
+
+                @Override
+                public Optional<Locale> locale() {
+                    return Optional.of(LOCALE);
+                }
+            },
+            DecimalNumberSymbols.class,
+            new FakeLocaleConverterContext() {
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return this.converter.canConvert(
+                        value,
+                        type,
+                        this
+                    );
+                }
+
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    return this.converter.convert(
+                        value,
+                        target,
+                        this
+                    );
+                }
+
+                private final Converter<LocaleConverterContext> converter = LocaleConverters.locale();
+
+                @Override
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
+                }
+            },
+            DECIMAL_NUMBER_SYMBOLS
+        );
+    }
+
+    @Test
+    public void testConvertHasOptionalLocaleToDecimalNumberSymbolsWhenEmpty() {
+        this.convertAndCheck(
+            new HasOptionalLocale() {
+
+                @Override
+                public Optional<Locale> locale() {
+                    return Optional.empty();
+                }
+            },
+            DecimalNumberSymbols.class,
+            new FakeLocaleConverterContext() {
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return this.converter.canConvert(
+                        value,
+                        type,
+                        this
+                    );
+                }
+
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    return this.converter.convert(
+                        value,
+                        target,
+                        this
+                    );
+                }
+
+                private final Converter<LocaleConverterContext> converter = LocaleConverters.locale();
+
+                @Override
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
+                }
+            },
+            null
+        );
+    }
+
+    @Test
+    public void testConvertLocaleToDecimalNumberSymbols() {
+        this.convertAndCheck(
+            LOCALE,
+            DecimalNumberSymbols.class,
+            new FakeLocaleConverterContext() {
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return this.converter.canConvert(
+                        value,
+                        type,
+                        this
+                    );
+                }
+
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    return this.converter.convert(
+                        value,
+                        target,
+                        this
+                    );
+                }
+
+                private final Converter<LocaleConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+
+                @Override
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
+                }
+            },
+            DECIMAL_NUMBER_SYMBOLS
         );
     }
 
