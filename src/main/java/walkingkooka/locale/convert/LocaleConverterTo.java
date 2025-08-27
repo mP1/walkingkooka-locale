@@ -28,7 +28,8 @@ import java.util.Locale;
  * A templated {@link walkingkooka.convert.Converter} that handles {@link Locale} and other value types dispatching to
  * one of two abstract methods.
  */
-abstract class LocaleConverterTo<T, C extends LocaleConverterContext> implements TryingShortCircuitingConverter<C> {
+abstract class LocaleConverterTo<T, C extends LocaleConverterContext> extends LocaleConverter<C>
+    implements TryingShortCircuitingConverter<C> {
 
     LocaleConverterTo() {
         super();
