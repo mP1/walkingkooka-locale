@@ -26,24 +26,24 @@ import walkingkooka.reflect.PublicStaticHelper;
 public final class LocaleConverters implements PublicStaticHelper {
 
     /**
-     * {@see LocaleConverterDateTimeSymbols}
+     * {@see LocaleConverterToDateTimeSymbols}
      */
     public static <C extends LocaleConverterContext> Converter<C> dateTimeSymbols() {
-        return LocaleConverterDateTimeSymbols.instance();
+        return LocaleConverterToDateTimeSymbols.instance();
     }
 
     /**
-     * {@see LocaleConverterDecimalNumberSymbols}
+     * {@see LocaleConverterToDecimalNumberSymbols}
      */
     public static <C extends LocaleConverterContext> Converter<C> decimalNumberSymbols() {
-        return LocaleConverterDecimalNumberSymbols.instance();
+        return LocaleConverterToDecimalNumberSymbols.instance();
     }
 
     /**
-     * {@see LocaleConverterLocale}
+     * {@see LocaleConverterToLocale}
      */
     public static <C extends LocaleConverterContext> Converter<C> locale() {
-        return LocaleConverterLocale.instance();
+        return LocaleConverterToLocale.instance();
     }
 
     private LocaleConverters() {

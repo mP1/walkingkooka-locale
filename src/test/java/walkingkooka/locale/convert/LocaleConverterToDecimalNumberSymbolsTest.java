@@ -23,31 +23,72 @@ import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
-import walkingkooka.datetime.DateTimeSymbols;
-import walkingkooka.datetime.HasDateTimeSymbols;
-import walkingkooka.datetime.HasOptionalDateTimeSymbols;
+import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.math.HasDecimalNumberSymbols;
+import walkingkooka.math.HasOptionalDecimalNumberSymbols;
 import walkingkooka.util.HasLocale;
 import walkingkooka.util.HasOptionalLocale;
 
-import java.text.DateFormatSymbols;
+import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Optional;
 
-public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTestCase<LocaleConverterDateTimeSymbols<LocaleConverterContext>, DateTimeSymbols> {
+public final class LocaleConverterToDecimalNumberSymbolsTest extends LocaleConverterToTestCase<LocaleConverterToDecimalNumberSymbols<LocaleConverterContext>, DecimalNumberSymbols> {
 
     private final static Locale LOCALE = Locale.ENGLISH;
 
-    private final static DateTimeSymbols DATE_TIME_SYMBOLS = DateTimeSymbols.fromDateFormatSymbols(
-        new DateFormatSymbols(LOCALE)
+    private final static DecimalNumberSymbols DECIMAL_NUMBER_SYMBOLS = DecimalNumberSymbols.fromDecimalFormatSymbols(
+        '+',
+        new DecimalFormatSymbols(LOCALE)
     );
 
     @Test
-    public void testConvertDateTimeSymbols() {
-        this.convertAndCheck(DATE_TIME_SYMBOLS);
+    public void testConvertDecimalNumberSymbols() {
+        this.convertAndCheck(DECIMAL_NUMBER_SYMBOLS);
     }
 
     @Test
-    public void testConvertHasLocaleToDateTimeSymbols() {
+    public void testConvertHasDecimalNumberSymbols() {
+        this.convertAndCheck(
+            new HasDecimalNumberSymbols() {
+                @Override
+                public DecimalNumberSymbols decimalNumberSymbols() {
+                    return DECIMAL_NUMBER_SYMBOLS;
+                }
+            },
+            DECIMAL_NUMBER_SYMBOLS
+        );
+    }
+
+    @Test
+    public void testConvertHasOptionalDecimalNumberSymbols() {
+        this.convertAndCheck(
+            new HasOptionalDecimalNumberSymbols() {
+                @Override
+                public Optional<DecimalNumberSymbols> decimalNumberSymbols() {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
+                }
+            },
+            DECIMAL_NUMBER_SYMBOLS
+        );
+    }
+
+    @Test
+    public void testConvertHasOptionalDecimalNumberSymbolsWhenEmpty() {
+        this.convertAndCheck(
+            new HasOptionalDecimalNumberSymbols() {
+                @Override
+                public Optional<DecimalNumberSymbols> decimalNumberSymbols() {
+                    return Optional.empty();
+                }
+            },
+            DecimalNumberSymbols.class,
+            null // expected null
+        );
+    }
+
+    @Test
+    public void testConvertHasLocaleToDecimalNumberSymbols() {
         this.convertAndCheck(
             new HasLocale() {
 
@@ -56,7 +97,7 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
                     return LOCALE;
                 }
             },
-            DateTimeSymbols.class,
+            DecimalNumberSymbols.class,
             new FakeLocaleConverterContext() {
                 @Override
                 public boolean canConvert(final Object value,
@@ -81,16 +122,16 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
                 private final Converter<LocaleConverterContext> converter = LocaleConverters.locale();
 
                 @Override
-                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-                    return Optional.of(DATE_TIME_SYMBOLS);
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
                 }
             },
-            DATE_TIME_SYMBOLS
+            DECIMAL_NUMBER_SYMBOLS
         );
     }
 
     @Test
-    public void testConvertHasOptionalLocaleToDateTimeSymbols() {
+    public void testConvertHasOptionalLocaleToDecimalNumberSymbols() {
         this.convertAndCheck(
             new HasOptionalLocale() {
 
@@ -99,7 +140,7 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
                     return Optional.of(LOCALE);
                 }
             },
-            DateTimeSymbols.class,
+            DecimalNumberSymbols.class,
             new FakeLocaleConverterContext() {
                 @Override
                 public boolean canConvert(final Object value,
@@ -124,16 +165,16 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
                 private final Converter<LocaleConverterContext> converter = LocaleConverters.locale();
 
                 @Override
-                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-                    return Optional.of(DATE_TIME_SYMBOLS);
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
                 }
             },
-            DATE_TIME_SYMBOLS
+            DECIMAL_NUMBER_SYMBOLS
         );
     }
 
     @Test
-    public void testConvertHasOptionalLocaleToDateTimeSymbolsWhenEmptyHasOptionalLocale() {
+    public void testConvertHasOptionalLocaleToDecimalNumberSymbolsWhenEmpty() {
         this.convertAndCheck(
             new HasOptionalLocale() {
 
@@ -142,7 +183,7 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
                     return Optional.empty();
                 }
             },
-            DateTimeSymbols.class,
+            DecimalNumberSymbols.class,
             new FakeLocaleConverterContext() {
                 @Override
                 public boolean canConvert(final Object value,
@@ -165,16 +206,21 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
                 }
 
                 private final Converter<LocaleConverterContext> converter = LocaleConverters.locale();
+
+                @Override
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
+                }
             },
             null
         );
     }
 
     @Test
-    public void testConvertLocaleToDateTimeSymbols() {
+    public void testConvertLocaleToDecimalNumberSymbols() {
         this.convertAndCheck(
             LOCALE,
-            DateTimeSymbols.class,
+            DecimalNumberSymbols.class,
             new FakeLocaleConverterContext() {
                 @Override
                 public boolean canConvert(final Object value,
@@ -199,61 +245,19 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
                 private final Converter<LocaleConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
 
                 @Override
-                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-                    return Optional.of(DATE_TIME_SYMBOLS);
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
                 }
             },
-            DATE_TIME_SYMBOLS
-        );
-    }
-
-    @Test
-    public void testConvertHasDateTimeSymbols() {
-        this.convertAndCheck(
-            new HasDateTimeSymbols() {
-                @Override
-                public DateTimeSymbols dateTimeSymbols() {
-                    return DATE_TIME_SYMBOLS;
-                }
-            },
-            DATE_TIME_SYMBOLS
-        );
-    }
-
-    @Test
-    public void testConvertHasOptionalDateTimeSymbols() {
-        this.convertAndCheck(
-            new HasOptionalDateTimeSymbols() {
-                @Override
-                public Optional<DateTimeSymbols> dateTimeSymbols() {
-                    return Optional.of(DATE_TIME_SYMBOLS);
-                }
-            },
-            DATE_TIME_SYMBOLS
-        );
-    }
-
-    @Test
-    public void testConvertHasOptionalDateTimeSymbolsWhenEmpty() {
-        this.convertAndCheck(
-            new HasOptionalDateTimeSymbols() {
-                @Override
-                public Optional<DateTimeSymbols> dateTimeSymbols() {
-                    return Optional.empty();
-                }
-            },
-            DateTimeSymbols.class,
-            null // expected null
+            DECIMAL_NUMBER_SYMBOLS
         );
     }
 
     @Test
     public void testConvertStringToDateSymbolsWithLocaleLanguageTag() {
-        final Locale locale = Locale.ENGLISH;
-
         this.convertAndCheck(
-            locale.toLanguageTag(),
-            DateTimeSymbols.class,
+            LOCALE.toLanguageTag(),
+            DecimalNumberSymbols.class,
             new FakeLocaleConverterContext() {
 
                 @Override
@@ -284,19 +288,17 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
                 );
 
                 @Override
-                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-                    return Optional.of(DATE_TIME_SYMBOLS);
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
                 }
             },
-            DateTimeSymbols.fromDateFormatSymbols(
-                new DateFormatSymbols(locale)
-            )
+            DECIMAL_NUMBER_SYMBOLS
         );
     }
 
     @Override
-    public LocaleConverterDateTimeSymbols<LocaleConverterContext> createConverter() {
-        return LocaleConverterDateTimeSymbols.instance();
+    public LocaleConverterToDecimalNumberSymbols<LocaleConverterContext> createConverter() {
+        return LocaleConverterToDecimalNumberSymbols.instance();
     }
 
     @Override
@@ -307,17 +309,18 @@ public final class LocaleConverterDateTimeSymbolsTest extends LocaleConverterTes
     // toString.........................................................................................................
 
     @Test
+    @Override
     public void testToString() {
         this.toStringAndCheck(
-            LocaleConverterDateTimeSymbols.instance(),
-            DateTimeSymbols.class.getSimpleName()
+            LocaleConverterToDecimalNumberSymbols.instance(),
+            DecimalNumberSymbols.class.getSimpleName()
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<LocaleConverterDateTimeSymbols<LocaleConverterContext>> type() {
-        return Cast.to(LocaleConverterDateTimeSymbols.class);
+    public Class<LocaleConverterToDecimalNumberSymbols<LocaleConverterContext>> type() {
+        return Cast.to(LocaleConverterToDecimalNumberSymbols.class);
     }
 }

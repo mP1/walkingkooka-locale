@@ -27,25 +27,25 @@ import java.util.Locale;
 /**
  * A {@link Converter} that supports several different source types to return a {@link DateTimeSymbols}.
  */
-final class LocaleConverterDateTimeSymbols<C extends LocaleConverterContext> extends LocaleConverter<DateTimeSymbols, C> {
+final class LocaleConverterToDateTimeSymbols<C extends LocaleConverterContext> extends LocaleConverterTo<DateTimeSymbols, C> {
 
     /**
      * Type safe getter.
      */
-    static <C extends LocaleConverterContext> LocaleConverterDateTimeSymbols<C> instance() {
+    static <C extends LocaleConverterContext> LocaleConverterToDateTimeSymbols<C> instance() {
         return INSTANCE;
     }
 
     /**
      * Singleton
      */
-    private final static LocaleConverterDateTimeSymbols INSTANCE = new LocaleConverterDateTimeSymbols();
+    private final static LocaleConverterToDateTimeSymbols INSTANCE = new LocaleConverterToDateTimeSymbols();
 
-    private LocaleConverterDateTimeSymbols() {
+    private LocaleConverterToDateTimeSymbols() {
         super();
     }
 
-    // LocaleConverter..................................................................................................
+    // LocaleConverterTo..................................................................................................
 
     @Override
     Class<DateTimeSymbols> targetType() {

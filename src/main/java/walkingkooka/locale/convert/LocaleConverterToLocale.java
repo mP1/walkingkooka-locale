@@ -26,25 +26,25 @@ import java.util.Locale;
 /**
  * A {@link Converter} that supports converting {@link String text}, {@link HasLocale} or a {@link Locale} to a {@link Locale}.
  */
-final class LocaleConverterLocale<C extends LocaleConverterContext> extends LocaleConverter<Locale, C> {
+final class LocaleConverterToLocale<C extends LocaleConverterContext> extends LocaleConverterTo<Locale, C> {
 
     /**
      * Type safe getter.
      */
-    static <C extends LocaleConverterContext> LocaleConverterLocale<C> instance() {
+    static <C extends LocaleConverterContext> LocaleConverterToLocale<C> instance() {
         return INSTANCE;
     }
 
     /**
      * Singleton
      */
-    private final static LocaleConverterLocale INSTANCE = new LocaleConverterLocale();
+    private final static LocaleConverterToLocale INSTANCE = new LocaleConverterToLocale();
 
-    private LocaleConverterLocale() {
+    private LocaleConverterToLocale() {
         super();
     }
 
-    // LocaleConverter..................................................................................................
+    // LocaleConverterTo..................................................................................................
 
     @Override
     Class<Locale> targetType() {
