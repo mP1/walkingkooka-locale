@@ -22,11 +22,11 @@ import walkingkooka.convert.ConverterTesting2;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
-public abstract class LocaleConverterTestCase<C extends LocaleConverter<T, LocaleConverterContext>, T> implements ConverterTesting2<C, LocaleConverterContext>,
+public abstract class LocaleConverterToTestCase<C extends LocaleConverterTo<T, LocaleConverterContext>, T> implements ConverterTesting2<C, LocaleConverterContext>,
     ToStringTesting<C>,
     ClassTesting<C> {
 
-    LocaleConverterTestCase() {
+    LocaleConverterToTestCase() {
         super();
     }
 
@@ -36,7 +36,7 @@ public abstract class LocaleConverterTestCase<C extends LocaleConverter<T, Local
 
     @Override
     public final String typeNamePrefix() {
-        return LocaleConverter.class.getSimpleName();
+        return LocaleConverterTo.class.getSimpleName();
     }
 
     @Override

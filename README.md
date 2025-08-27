@@ -15,6 +15,6 @@ These `Converters` support converting values to a `Locale` or [DateTimeSymbols](
 or [DecimalNumberSymbols](https://github.com/mP1/walkingkooka-math/blob/master/src/main/java/walkingkooka/math/DecimalNumberSymbols.java)
 with the later two often providing a source such as a `Locale`
 
-- [dateTimeSymbols](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterDateTimeSymbols.java)
-- [decimalNumberSymbols](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterDecimalNumberSymbols.java)
-- [locale](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterLocale.java)
+- [dateTimeSymbols](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterToDateTimeSymbols.java)
+- [decimalNumberSymbols](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterToDecimalNumberSymbols.java)
+- [locale](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterToLocale.java)

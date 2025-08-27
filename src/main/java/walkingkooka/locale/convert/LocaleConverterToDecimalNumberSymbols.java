@@ -27,25 +27,25 @@ import java.util.Locale;
 /**
  * A {@link Converter} that supports several different source types to return a {@link DecimalNumberSymbols}.
  */
-final class LocaleConverterDecimalNumberSymbols<C extends LocaleConverterContext> extends LocaleConverter<DecimalNumberSymbols, C> {
+final class LocaleConverterToDecimalNumberSymbols<C extends LocaleConverterContext> extends LocaleConverterTo<DecimalNumberSymbols, C> {
 
     /**
      * Type safe getter.
      */
-    static <C extends LocaleConverterContext> LocaleConverterDecimalNumberSymbols<C> instance() {
+    static <C extends LocaleConverterContext> LocaleConverterToDecimalNumberSymbols<C> instance() {
         return INSTANCE;
     }
 
     /**
      * Singleton
      */
-    private final static LocaleConverterDecimalNumberSymbols INSTANCE = new LocaleConverterDecimalNumberSymbols();
+    private final static LocaleConverterToDecimalNumberSymbols INSTANCE = new LocaleConverterToDecimalNumberSymbols();
 
-    private LocaleConverterDecimalNumberSymbols() {
+    private LocaleConverterToDecimalNumberSymbols() {
         super();
     }
 
-    // LocaleConverter..................................................................................................
+    // LocaleConverterTo..................................................................................................
 
     @Override
     Class<DecimalNumberSymbols> targetType() {

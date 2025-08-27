@@ -30,7 +30,7 @@ import walkingkooka.util.HasOptionalLocale;
 import java.util.Locale;
 import java.util.Optional;
 
-public final class LocaleConverterLocaleTest extends LocaleConverterTestCase<LocaleConverterLocale<LocaleConverterContext>, Locale> {
+public final class LocaleConverterToLocaleTest extends LocaleConverterToTestCase<LocaleConverterToLocale<LocaleConverterContext>, Locale> {
 
     private final static Locale LOCALE = Locale.ENGLISH;
 
@@ -88,8 +88,8 @@ public final class LocaleConverterLocaleTest extends LocaleConverterTestCase<Loc
     }
 
     @Override
-    public LocaleConverterLocale<LocaleConverterContext> createConverter() {
-        return LocaleConverterLocale.instance();
+    public LocaleConverterToLocale<LocaleConverterContext> createConverter() {
+        return LocaleConverterToLocale.instance();
     }
 
     @Override
@@ -110,7 +110,7 @@ public final class LocaleConverterLocaleTest extends LocaleConverterTestCase<Loc
     @Test
     public void testToString() {
         this.toStringAndCheck(
-            LocaleConverterLocale.instance(),
+            LocaleConverterToLocale.instance(),
             Locale.class.getSimpleName()
         );
     }
@@ -119,7 +119,7 @@ public final class LocaleConverterLocaleTest extends LocaleConverterTestCase<Loc
 
 
     @Override
-    public Class<LocaleConverterLocale<LocaleConverterContext>> type() {
-        return Cast.to(LocaleConverterLocale.class);
+    public Class<LocaleConverterToLocale<LocaleConverterContext>> type() {
+        return Cast.to(LocaleConverterToLocale.class);
     }
 }
