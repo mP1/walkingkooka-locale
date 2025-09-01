@@ -19,7 +19,6 @@ package walkingkooka.locale.convert;
 
 import walkingkooka.convert.ConverterContext;
 import walkingkooka.convert.ConverterContextDelegator;
-import walkingkooka.convert.ConverterContextTesting;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 
@@ -58,6 +57,12 @@ final class BasicLocaleConverterContext implements LocaleConverterContext,
     @Override
     public Locale locale() {
         return this.localeContext.locale();
+    }
+
+    @Override
+    public LocaleContext setLocale(final Locale locale) {
+        this.localeContext.setLocale(locale);
+        return this;
     }
 
     @Override
