@@ -19,6 +19,7 @@ package walkingkooka.locale.convert;
 
 import walkingkooka.convert.FakeConverterContext;
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.locale.LocaleContext;
 import walkingkooka.math.DecimalNumberSymbols;
 
 import java.util.Locale;
@@ -62,6 +63,11 @@ public class FakeLocaleConverterContext extends FakeConverterContext implements 
 
     @Override
     public Locale locale() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public LocaleContext setLocale(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 }

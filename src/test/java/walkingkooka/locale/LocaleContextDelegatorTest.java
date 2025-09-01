@@ -20,6 +20,7 @@ package walkingkooka.locale;
 import walkingkooka.locale.LocaleContextDelegatorTest.TestLocaleContext;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public final class LocaleContextDelegatorTest implements LocaleContextTesting2<TestLocaleContext> {
 
@@ -34,6 +35,13 @@ public final class LocaleContextDelegatorTest implements LocaleContextTesting2<T
     }
 
     static class TestLocaleContext implements LocaleContextDelegator {
+
+        @Override
+        public LocaleContext setLocale(final Locale locale) {
+            Objects.requireNonNull(locale, "locale");
+            throw new UnsupportedOperationException();
+        }
+
         @Override
         public LocaleContext localeContext() {
             return LocaleContexts.jre(

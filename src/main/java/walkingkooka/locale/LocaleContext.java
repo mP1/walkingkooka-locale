@@ -34,6 +34,11 @@ public interface LocaleContext extends Context,
     HasLocale {
 
     /**
+     * Sets or replaces the current {@link Locale}
+     */
+    LocaleContext setLocale(final Locale locale);
+
+    /**
      * Returns all available {@link Locale}.
      */
     Set<Locale> availableLocales();
