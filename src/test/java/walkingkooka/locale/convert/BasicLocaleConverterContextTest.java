@@ -41,6 +41,7 @@ public final class BasicLocaleConverterContextTest implements LocaleConverterCon
     private final static ConverterContext CONVERTER_CONTEXT = ConverterContexts.basic(
         false, // canNumbersHaveGroupSeparator
         Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
+        ',', // valueSeparator
         Converters.simple(),
         DateTimeContexts.basic(
             DateTimeSymbols.fromDateFormatSymbols(
