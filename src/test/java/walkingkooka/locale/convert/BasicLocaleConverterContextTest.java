@@ -39,6 +39,7 @@ public final class BasicLocaleConverterContextTest implements LocaleConverterCon
     private final static Locale LOCALE = Locale.ENGLISH;
 
     private final static ConverterContext CONVERTER_CONTEXT = ConverterContexts.basic(
+        false, // canNumbersHaveGroupSeparator
         Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
         Converters.simple(),
         DateTimeContexts.basic(

@@ -96,6 +96,7 @@ public final class LocaleConverterToLocaleTest extends LocaleConverterToTestCase
     public LocaleConverterContext createContext() {
         return LocaleConverterContexts.basic(
             ConverterContexts.basic(
+                false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
                 Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
                 DateTimeContexts.fake(),
