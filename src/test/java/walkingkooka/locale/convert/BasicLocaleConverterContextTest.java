@@ -98,6 +98,11 @@ public final class BasicLocaleConverterContextTest implements LocaleConverterCon
     }
 
     @Override
+    public int decimalNumberDigitCount() {
+        return CONVERTER_CONTEXT.decimalNumberDigitCount();
+    }
+
+    @Override
     public char decimalSeparator() {
         return CONVERTER_CONTEXT.decimalSeparator();
     }
