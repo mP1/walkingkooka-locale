@@ -47,12 +47,24 @@ public final class ReadOnlyLocaleContextTest implements LocaleContextTesting2<Re
         );
     }
 
+    // setLocale........................................................................................................
+
     @Test
-    public void testSetLocaleFails() {
+    public void testSetLocaleWithDifferentFails() {
         assertThrows(
             UnsupportedOperationException.class,
             () -> this.createContext()
-                .setLocale(LOCALE)
+                .setLocale(
+                    Locale.FRANCE
+                )
+        );
+    }
+
+    @Test
+    public void testSetLocaleWithSame() {
+        this.setLocaleAndCheck(
+            this.createContext(),
+            LOCALE
         );
     }
 
