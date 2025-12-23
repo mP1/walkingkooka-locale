@@ -48,7 +48,12 @@ final class ReadOnlyLocaleContext implements LocaleContext,
     @Override
     public LocaleContext setLocale(final Locale locale) {
         Objects.requireNonNull(locale, "locale");
-        throw new UnsupportedOperationException();
+
+        if (false == this.locale().equals(locale)) {
+            throw new UnsupportedOperationException("Unable to change locale to " + locale);
+        }
+
+        return this;
     }
 
     // LocaleContextDelegator...........................................................................................
