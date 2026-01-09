@@ -24,6 +24,7 @@ import walkingkooka.convert.Converters;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.text.LineEnding;
 import walkingkooka.util.HasLocale;
 import walkingkooka.util.HasOptionalLocale;
 
@@ -98,6 +99,7 @@ public final class LocaleConverterToLocaleTest extends LocaleConverterToTestCase
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
+                LineEnding.NL,
                 ',', // valueSeparator
                 Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
                 DateTimeContexts.fake(),
