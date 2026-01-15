@@ -123,9 +123,8 @@ final class JreLocaleContext implements LocaleContext {
     }
 
     @Override
-    public LocaleContext setLocale(final Locale locale) {
+    public void setLocale(final Locale locale) {
         this.locale = Objects.requireNonNull(locale, "locale");
-        return this;
     }
 
     private Locale locale;

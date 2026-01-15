@@ -28,8 +28,6 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
-
 public interface LocaleContextTesting extends HasLocaleTesting,
     TreePrintableTesting {
 
@@ -144,10 +142,8 @@ public interface LocaleContextTesting extends HasLocaleTesting,
 
     default void setLocaleAndCheck(final LocaleContext context,
                                    final Locale locale) {
-        assertSame(
-            context,
-            context.setLocale(locale)
-        );
+        context.setLocale(locale);
+
         this.localeAndCheck(
             context,
             locale
