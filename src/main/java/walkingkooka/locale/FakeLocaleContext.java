@@ -63,7 +63,7 @@ public class FakeLocaleContext implements LocaleContext {
     }
 
     @Override
-    public LocaleContext setLocale(final Locale locale) {
+    public void setLocale(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 }

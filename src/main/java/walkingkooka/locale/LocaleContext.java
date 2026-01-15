@@ -36,7 +36,7 @@ public interface LocaleContext extends Context,
     /**
      * Sets or replaces the current {@link Locale}
      */
-    LocaleContext setLocale(final Locale locale);
+    void setLocale(final Locale locale);
 
     /**
      * Returns all available {@link Locale}.

@@ -37,7 +37,7 @@ public final class LocaleContextDelegatorTest implements LocaleContextTesting2<T
     static class TestLocaleContext implements LocaleContextDelegator {
 
         @Override
-        public LocaleContext setLocale(final Locale locale) {
+        public void setLocale(final Locale locale) {
             Objects.requireNonNull(locale, "locale");
             throw new UnsupportedOperationException();
         }

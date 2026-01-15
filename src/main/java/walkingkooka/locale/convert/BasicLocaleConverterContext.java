@@ -60,9 +60,8 @@ final class BasicLocaleConverterContext implements LocaleConverterContext,
     }
 
     @Override
-    public LocaleContext setLocale(final Locale locale) {
+    public void setLocale(final Locale locale) {
         this.localeContext.setLocale(locale);
-        return this;
     }
 
     @Override
