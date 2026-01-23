@@ -26,6 +26,7 @@ import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
@@ -42,6 +43,7 @@ public final class BasicLocaleConverterContextTest implements LocaleConverterCon
     private final static ConverterContext CONVERTER_CONTEXT = ConverterContexts.basic(
         false, // canNumbersHaveGroupSeparator
         Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
+        Indentation.SPACES2,
         LineEnding.NL,
         ',', // valueSeparator
         Converters.simple(),
