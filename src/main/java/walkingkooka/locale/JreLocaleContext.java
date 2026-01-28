@@ -136,6 +136,24 @@ final class JreLocaleContext implements LocaleContext {
         return JreLocaleContextLocaleText.localeText(locale);
     }
 
+    // Object...........................................................................................................
+
+    @Override
+    public int hashCode() {
+        return this.locale.hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        return this == other ||
+            (other instanceof JreLocaleContext &&
+                this.equals0((JreLocaleContext) other));
+    }
+
+    private boolean equals0(final JreLocaleContext other) {
+        return this.locale.equals(other.locale);
+    }
+
     @Override
     public String toString() {
         return "JRE " + this.locale.toLanguageTag();
