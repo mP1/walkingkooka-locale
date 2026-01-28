@@ -18,6 +18,7 @@
 package walkingkooka.locale;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.set.Sets;
 
 import java.util.Locale;
@@ -25,7 +26,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JreLocaleContextTest implements LocaleContextTesting2<JreLocaleContext> {
+public final class JreLocaleContextTest implements LocaleContextTesting2<JreLocaleContext>,
+    HashCodeEqualsDefinedTesting2<JreLocaleContext> {
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
 
@@ -96,6 +98,22 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
             );
         }
     }
+
+    // hashCode/equals..................................................................................................
+
+    @Test
+    public void testEqualsDifferentLocale() {
+        this.checkNotEquals(
+            JreLocaleContext.with(Locale.FRANCE)
+        );
+    }
+
+    @Override
+    public JreLocaleContext createObject() {
+        return this.createContext();
+    }
+
+    // toString.........................................................................................................
 
     @Test
     public void testToString() {
