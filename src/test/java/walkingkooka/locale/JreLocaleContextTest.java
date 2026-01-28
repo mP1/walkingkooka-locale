@@ -99,6 +99,11 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
         }
     }
 
+    @Override
+    public JreLocaleContext createContext() {
+        return JreLocaleContext.with(LOCALE);
+    }
+
     // hashCode/equals..................................................................................................
 
     @Test
@@ -123,10 +128,7 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
         );
     }
 
-    @Override
-    public JreLocaleContext createContext() {
-        return JreLocaleContext.with(LOCALE);
-    }
+    // class............................................................................................................
 
     @Override
     public Class<JreLocaleContext> type() {
