@@ -63,7 +63,23 @@ final class ReadOnlyLocaleContext implements LocaleContext,
 
     private final LocaleContext context;
 
-    // String...........................................................................................................
+    // Object...........................................................................................................
+
+    @Override
+    public int hashCode() {
+        return this.context.hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        return this == other ||
+            (other instanceof ReadOnlyLocaleContext &&
+                this.equals0((ReadOnlyLocaleContext) other));
+    }
+
+    private boolean equals0(final ReadOnlyLocaleContext other) {
+        return this.context.equals(other.context);
+    }
 
     @Override
     public String toString() {
