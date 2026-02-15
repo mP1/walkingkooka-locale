@@ -26,8 +26,9 @@ import java.util.Optional;
 class JreLocaleContextLocaleText extends JreLocaleContextLocaleTextGwt {
 
     @GwtIncompatible
-    static Optional<String> localeText(final Locale locale) {
-        final String displayName = locale.getDisplayName();
+    static Optional<String> localeText(final Locale locale,
+                                       final Locale requestedLocale) {
+        final String displayName = locale.getDisplayName(requestedLocale);
 
         return Optional.ofNullable(
             CharSequences.isNullOrEmpty(displayName) ?

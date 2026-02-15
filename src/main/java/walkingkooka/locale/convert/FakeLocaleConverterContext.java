@@ -56,7 +56,8 @@ public class FakeLocaleConverterContext extends FakeConverterContext implements 
     }
 
     @Override
-    public Optional<String> localeText(final Locale locale) {
+    public Optional<String> localeText(final Locale locale,
+                                       final Locale requestedLocale) {
         throw new UnsupportedOperationException();
     }
 
