@@ -102,8 +102,10 @@ final class JreLocaleContext implements LocaleContext {
         return this.availableLocales()
             .stream()
             .filter(locale -> {
-                final String localeText = this.localeText(locale)
-                    .orElse(null);
+                final String localeText = this.localeText(
+                        locale,
+                        this.locale // TODO https://github.com/mP1/walkingkooka-locale/issues/83
+                    ).orElse(null);
                 return false == CharSequences.isNullOrEmpty(localeText) &&
                     LocaleContexts.CASE_SENSITIVITY.startsWith(
                         localeText,
@@ -130,10 +132,15 @@ final class JreLocaleContext implements LocaleContext {
     private Locale locale;
 
     @Override
-    public Optional<String> localeText(final Locale locale) {
+    public Optional<String> localeText(final Locale locale,
+                                       final Locale requestedLocale) {
         Objects.requireNonNull(locale, "locale");
+        Objects.requireNonNull(requestedLocale, "requestedLocale");
 
-        return JreLocaleContextLocaleText.localeText(locale);
+        return JreLocaleContextLocaleText.localeText(
+            locale,
+            requestedLocale
+        );
     }
 
     // Object...........................................................................................................

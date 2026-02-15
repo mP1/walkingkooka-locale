@@ -20,6 +20,8 @@ package walkingkooka.locale;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ContextTesting;
 
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleContextTesting, ContextTesting<C> {
@@ -82,11 +84,26 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
     }
 
     @Test
-    default void testLocaleTextWithNullFails() {
+    default void testLocaleTextWithNullLocaleFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createContext()
-                .localeText(null)
+                .localeText(
+                    null,
+                    Locale.ENGLISH
+                )
+        );
+    }
+
+    @Test
+    default void testLocaleTextWithNullRequestedLocaleFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .localeText(
+                    Locale.ENGLISH,
+                    null
+                )
         );
     }
 
