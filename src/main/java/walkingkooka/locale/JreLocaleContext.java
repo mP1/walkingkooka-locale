@@ -69,7 +69,7 @@ final class JreLocaleContext implements LocaleContext {
     private Set<Locale> availableLocales;
 
     @Override
-    public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(Locale locale) {
+    public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
         return Optional.of(
             DateTimeSymbols.fromDateFormatSymbols(
                 new DateFormatSymbols(locale)
