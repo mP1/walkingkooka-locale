@@ -112,14 +112,12 @@ public interface LocaleContextTesting extends HasLocaleTesting,
                                           final String text,
                                           final int offset,
                                           final int count,
-                                          final Locale locale,
                                           final Locale... expected) {
         this.findByLocaleTextAndCheck(
             context,
             text,
             offset,
             count,
-            locale,
             Sets.of(expected)
         );
     }
@@ -128,15 +126,13 @@ public interface LocaleContextTesting extends HasLocaleTesting,
                                           final String text,
                                           final int offset,
                                           final int count,
-                                          final Locale locale,
                                           final Set<Locale> expected) {
         this.checkEquals(
             expected,
             context.findByLocaleText(
                 text,
                 offset,
-                count,
-                locale
+                count
             ),
             () -> "findByLocaleText " + CharSequences.quoteAndEscape(text) + " offset=" + offset + " count=" + count
         );

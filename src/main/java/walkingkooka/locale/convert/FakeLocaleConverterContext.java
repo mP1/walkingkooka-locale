@@ -51,8 +51,7 @@ public class FakeLocaleConverterContext extends FakeConverterContext implements 
     @Override
     public Set<Locale> findByLocaleText(final String text,
                                         final int offset,
-                                        final int count,
-                                        final Locale locale) {
+                                        final int count) {
         throw new UnsupportedOperationException();
     }
 
