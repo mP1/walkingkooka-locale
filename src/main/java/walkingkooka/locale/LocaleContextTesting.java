@@ -153,39 +153,31 @@ public interface LocaleContextTesting extends HasLocaleTesting,
     // localeText.......................................................................................................
 
     default void localeTextAndCheck(final LocaleContext context,
-                                    final Locale locale,
-                                    final Locale requestedLocale) {
+                                    final Locale locale) {
         this.localeTextAndCheck(
             context,
             locale,
-            requestedLocale,
             Optional.empty()
         );
     }
 
     default void localeTextAndCheck(final LocaleContext context,
                                     final Locale locale,
-                                    final Locale requestedLocale,
                                     final String expected) {
         this.localeTextAndCheck(
             context,
             locale,
-            requestedLocale,
             Optional.of(expected)
         );
     }
 
     default void localeTextAndCheck(final LocaleContext context,
                                     final Locale locale,
-                                    final Locale requestedLocale,
                                     final Optional<String> expected) {
         this.checkEquals(
             expected,
-            context.localeText(
-                locale,
-                requestedLocale
-            ),
-            () -> "localeText " + locale + " " + requestedLocale
+            context.localeText(locale),
+            () -> "localeText " + locale
         );
     }
 }

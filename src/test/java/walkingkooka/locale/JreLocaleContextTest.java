@@ -93,10 +93,7 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
             final JreLocaleContext context = JreLocaleContext.with(locale);
             this.checkNotEquals(
                 Optional.of(""),
-                context.localeText(
-                    locale,
-                    Locale.getDefault()
-                ),
+                context.localeText(locale),
                 locale::toLanguageTag
             );
         }
