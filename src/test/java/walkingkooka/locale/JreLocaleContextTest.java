@@ -55,6 +55,7 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
             "German",
             0,
             3,
+            LOCALE,
             Locale.forLanguageTag("de"),
             Locale.forLanguageTag("de-AT"),
             Locale.forLanguageTag("de-BE")
@@ -68,6 +69,7 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
             "German",
             1,
             3,
+            LOCALE,
             Locale.forLanguageTag("de-AT"),
             Locale.forLanguageTag("de-BE"),
             Locale.forLanguageTag("de-CH")
@@ -81,6 +83,7 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
             "GERman",
             1,
             3,
+            LOCALE,
             Locale.forLanguageTag("de-AT"),
             Locale.forLanguageTag("de-BE"),
             Locale.forLanguageTag("de-CH")

@@ -90,7 +90,8 @@ final class JreLocaleContext implements LocaleContext {
     @Override
     public Set<Locale> findByLocaleText(final String text,
                                         final int offset,
-                                        final int count) {
+                                        final int count,
+                                        final Locale locale) {
         Objects.requireNonNull(text, "text");
         if (offset < 0) {
             throw new IllegalArgumentException("Invalid offset < 0");
@@ -101,10 +102,10 @@ final class JreLocaleContext implements LocaleContext {
 
         return this.availableLocales()
             .stream()
-            .filter(locale -> {
+            .filter(l -> {
                 final String localeText = this.localeText(
-                        locale,
-                        this.locale // TODO https://github.com/mP1/walkingkooka-locale/issues/83
+                        l,
+                        locale
                     ).orElse(null);
                 return false == CharSequences.isNullOrEmpty(localeText) &&
                     LocaleContexts.CASE_SENSITIVITY.startsWith(
