@@ -58,8 +58,7 @@ public interface LocaleContext extends Context,
      */
     Set<Locale> findByLocaleText(final String text,
                                  final int offset,
-                                 final int count,
-                                 final Locale locale);
+                                 final int count);
 
     /**
      * Returns text to display for the given {@link Locale} if it exists.

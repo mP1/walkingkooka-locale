@@ -52,8 +52,7 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
                 .findByLocaleText(
                     "text",
                     -1,
-                    1,
-                    Locale.ENGLISH
+                    1
                 )
         );
     }
@@ -66,8 +65,7 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
                 .findByLocaleText(
                     "text",
                     0,
-                    -1,
-                    Locale.ENGLISH
+                    -1
                 )
         );
     }
@@ -80,22 +78,7 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
                 .findByLocaleText(
                     null,
                     0,
-                    1,
-                    Locale.ENGLISH
-                )
-        );
-    }
-
-    @Test
-    default void testFindByLocaleTextWithNullLocaleFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .findByLocaleText(
-                    "",
-                    0,
-                    1,
-                    null
+                    1
                 )
         );
     }
