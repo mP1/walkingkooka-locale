@@ -23,8 +23,7 @@ import java.util.Optional;
 class JreLocaleContextLocaleTextGwt {
 
     // Locale#GetDisplayName is not emulated
-    static Optional<String> localeText(final Locale locale,
-                                       final Locale requestedLocale) {
+    static Optional<String> localeText(final Locale locale) {
         return Optional.empty();
     }
 }
