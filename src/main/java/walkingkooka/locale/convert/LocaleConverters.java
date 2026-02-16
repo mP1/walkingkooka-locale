@@ -46,13 +46,6 @@ public final class LocaleConverters implements PublicStaticHelper {
         return LocaleConverterToLocale.instance();
     }
 
-    /**
-     * {@see LocaleConverterLocaleToString}
-     */
-    public static <C extends LocaleConverterContext> Converter<C> localeToText() {
-        return LocaleConverterLocaleToString.instance();
-    }
-
     private LocaleConverters() {
         throw new UnsupportedOperationException();
     }
