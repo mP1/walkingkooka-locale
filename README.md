@@ -18,4 +18,3 @@ with the later two often providing a source such as a `Locale`
 - [dateTimeSymbols](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterToDateTimeSymbols.java)
 - [decimalNumberSymbols](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterToDecimalNumberSymbols.java)
 - [locale](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterToLocale.java)
-- [localeToString](https://github.com/mP1/walkingkooka-locale/blob/master/src/main/java/walkingkooka/locale/convert/LocaleConverterLocaleToString.java)
