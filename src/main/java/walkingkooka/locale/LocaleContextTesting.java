@@ -18,9 +18,7 @@
 package walkingkooka.locale;
 
 import walkingkooka.collect.set.Sets;
-import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.text.CharSequences;
-import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Locale;
@@ -29,7 +27,7 @@ import java.util.Set;
 
 public interface LocaleContextTesting extends HasLocaleTesting,
     CanDateTimeSymbolsForLocaleTesting,
-    TreePrintableTesting {
+    CanDecimalNumberSymbolsForLocaleTesting {
 
     // availableLocales.................................................................................................
 
@@ -47,37 +45,6 @@ public interface LocaleContextTesting extends HasLocaleTesting,
             expected,
             context.availableLocales(),
             context::toString
-        );
-    }
-
-    // decimalNumberSymbolsForLocale....................................................................................
-
-    default void decimalNumberSymbolsForLocaleAndCheck(final LocaleContext context,
-                                                       final Locale locale) {
-        this.decimalNumberSymbolsForLocaleAndCheck(
-            context,
-            locale,
-            Optional.empty()
-        );
-    }
-
-    default void decimalNumberSymbolsForLocaleAndCheck(final LocaleContext context,
-                                                       final Locale locale,
-                                                       final DecimalNumberSymbols expected) {
-        this.decimalNumberSymbolsForLocaleAndCheck(
-            context,
-            locale,
-            Optional.of(expected)
-        );
-    }
-
-    default void decimalNumberSymbolsForLocaleAndCheck(final LocaleContext context,
-                                                       final Locale locale,
-                                                       final Optional<DecimalNumberSymbols> expected) {
-        this.checkEquals(
-            expected,
-            context.decimalNumberSymbolsForLocale(locale),
-            () -> "decimalNumberSymbolsForLocale " + locale
         );
     }
 
