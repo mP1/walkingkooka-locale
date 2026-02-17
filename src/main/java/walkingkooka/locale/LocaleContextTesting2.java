@@ -22,16 +22,9 @@ import walkingkooka.ContextTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleContextTesting, ContextTesting<C> {
-
-    @Test
-    default void testDateTimeSymbolsForLocaleWithNullFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .dateTimeSymbolsForLocale(null)
-        );
-    }
+public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleContextTesting,
+    ContextTesting<C>,
+    CanDateTimeSymbolsForLocaleTesting2<C> {
 
     @Test
     default void testDecimalNumberSymbolsForLocaleWithNullFails() {
@@ -97,6 +90,11 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
             () -> this.createContext()
                 .setLocale(null)
         );
+    }
+
+    @Override
+    default C createCanDateTimeSymbolsForLocale() {
+        return this.createContext();
     }
 
     @Override
