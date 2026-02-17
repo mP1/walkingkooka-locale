@@ -25,31 +25,31 @@ import java.util.Optional;
 
 public interface CanDateTimeSymbolsForLocaleTesting extends Testing {
 
-    default void dateTimeSymbolsForLocaleAndCheck(final CanDateTimeSymbolsForLocale context,
+    default void dateTimeSymbolsForLocaleAndCheck(final CanDateTimeSymbolsForLocale can,
                                                   final Locale locale) {
         this.dateTimeSymbolsForLocaleAndCheck(
-            context,
+            can,
             locale,
             Optional.empty()
         );
     }
 
-    default void dateTimeSymbolsForLocaleAndCheck(final CanDateTimeSymbolsForLocale context,
+    default void dateTimeSymbolsForLocaleAndCheck(final CanDateTimeSymbolsForLocale can,
                                                   final Locale locale,
                                                   final DateTimeSymbols expected) {
         this.dateTimeSymbolsForLocaleAndCheck(
-            context,
+            can,
             locale,
             Optional.of(expected)
         );
     }
 
-    default void dateTimeSymbolsForLocaleAndCheck(final CanDateTimeSymbolsForLocale context,
+    default void dateTimeSymbolsForLocaleAndCheck(final CanDateTimeSymbolsForLocale can,
                                                   final Locale locale,
                                                   final Optional<DateTimeSymbols> expected) {
         this.checkEquals(
             expected,
-            context.dateTimeSymbolsForLocale(locale),
+            can.dateTimeSymbolsForLocale(locale),
             () -> "dateTimeSymbolsForLocale " + locale
         );
     }
