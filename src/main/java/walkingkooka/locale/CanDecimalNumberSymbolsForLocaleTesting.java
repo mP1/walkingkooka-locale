@@ -23,35 +23,35 @@ import walkingkooka.text.printer.TreePrintableTesting;
 import java.util.Locale;
 import java.util.Optional;
 
-public interface CanDecimalNumberSymbolsForLocaleTesting<C extends CanDecimalNumberSymbolsForLocale> extends TreePrintableTesting {
+public interface CanDecimalNumberSymbolsForLocaleTesting extends TreePrintableTesting {
 
     // decimalNumberSymbolsForLocale....................................................................................
 
-    default void decimalNumberSymbolsForLocaleAndCheck(final LocaleContext context,
+    default void decimalNumberSymbolsForLocaleAndCheck(final CanDecimalNumberSymbolsForLocale can,
                                                        final Locale locale) {
         this.decimalNumberSymbolsForLocaleAndCheck(
-            context,
+            can,
             locale,
             Optional.empty()
         );
     }
 
-    default void decimalNumberSymbolsForLocaleAndCheck(final LocaleContext context,
+    default void decimalNumberSymbolsForLocaleAndCheck(final CanDecimalNumberSymbolsForLocale can,
                                                        final Locale locale,
                                                        final DecimalNumberSymbols expected) {
         this.decimalNumberSymbolsForLocaleAndCheck(
-            context,
+            can,
             locale,
             Optional.of(expected)
         );
     }
 
-    default void decimalNumberSymbolsForLocaleAndCheck(final LocaleContext context,
+    default void decimalNumberSymbolsForLocaleAndCheck(final CanDecimalNumberSymbolsForLocale can,
                                                        final Locale locale,
                                                        final Optional<DecimalNumberSymbols> expected) {
         this.checkEquals(
             expected,
-            context.decimalNumberSymbolsForLocale(locale),
+            can.decimalNumberSymbolsForLocale(locale),
             () -> "decimalNumberSymbolsForLocale " + locale
         );
     }
