@@ -24,16 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleContextTesting,
     ContextTesting<C>,
-    CanDateTimeSymbolsForLocaleTesting2<C> {
-
-    @Test
-    default void testDecimalNumberSymbolsForLocaleWithNullFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .decimalNumberSymbolsForLocale(null)
-        );
-    }
+    CanDateTimeSymbolsForLocaleTesting2<C>,
+    CanDecimalNumberSymbolsForLocaleTesting2<C> {
 
     @Test
     default void testFindByLocaleTextWithNegativeOffsetFails() {
@@ -94,6 +86,11 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
 
     @Override
     default C createCanDateTimeSymbolsForLocale() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanDecimalNumberSymbolsForLocale() {
         return this.createContext();
     }
 
