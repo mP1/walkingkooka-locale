@@ -72,7 +72,7 @@ public interface LocaleContextTesting extends HasLocaleTesting,
                                           final Optional<DateTimeSymbols> expected) {
         this.checkEquals(
             expected,
-            context.decimalNumberSymbolsForLocale(locale),
+            context.dateTimeSymbolsForLocale(locale),
             () -> "dateTimeSymbolsForLocale " + locale
         );
     }
