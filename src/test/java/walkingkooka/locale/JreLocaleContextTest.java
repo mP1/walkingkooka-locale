@@ -88,6 +88,16 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     }
 
     @Test
+    public void testLocaleForLanguageTag() {
+        final Locale locale = Locale.forLanguageTag("en-AU");
+        this.localeForLanguageTagAndCheck(
+            this.createContext(),
+            locale.toLanguageTag(),
+            locale
+        );
+    }
+
+    @Test
     public void testLocaleText() {
         for (final Locale locale : Locale.getAvailableLocales()) {
             final JreLocaleContext context = JreLocaleContext.with(locale);
