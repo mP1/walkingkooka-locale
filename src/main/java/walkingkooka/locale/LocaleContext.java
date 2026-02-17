@@ -18,7 +18,6 @@
 package walkingkooka.locale;
 
 import walkingkooka.Context;
-import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.util.HasLocale;
 
@@ -31,6 +30,7 @@ import java.util.Set;
  * This abstraction decouples Locale and locale related values from the JRE.
  */
 public interface LocaleContext extends Context,
+    CanDateTimeSymbolsForLocale,
     HasLocale {
 
     /**
@@ -42,11 +42,6 @@ public interface LocaleContext extends Context,
      * Returns all available {@link Locale}.
      */
     Set<Locale> availableLocales();
-
-    /**
-     * Returns the {@link DateTimeSymbols} if available for the given {@link Locale}.
-     */
-    Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale);
 
     /**
      * Returns the {@link DecimalNumberSymbols} if available for the given {@link Locale}.

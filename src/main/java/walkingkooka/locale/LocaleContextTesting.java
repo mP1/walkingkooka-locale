@@ -18,7 +18,6 @@
 package walkingkooka.locale;
 
 import walkingkooka.collect.set.Sets;
-import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -45,35 +44,6 @@ public interface LocaleContextTesting extends HasLocaleTesting,
             expected,
             context.availableLocales(),
             context::toString
-        );
-    }
-
-    default void dateTimeSymbolsForLocale(final LocaleContext context,
-                                          final Locale locale) {
-        this.dateTimeSymbolsForLocale(
-            context,
-            locale,
-            Optional.empty()
-        );
-    }
-
-    default void dateTimeSymbolsForLocale(final LocaleContext context,
-                                          final Locale locale,
-                                          final DateTimeSymbols expected) {
-        this.dateTimeSymbolsForLocale(
-            context,
-            locale,
-            Optional.of(expected)
-        );
-    }
-
-    default void dateTimeSymbolsForLocale(final LocaleContext context,
-                                          final Locale locale,
-                                          final Optional<DateTimeSymbols> expected) {
-        this.checkEquals(
-            expected,
-            context.dateTimeSymbolsForLocale(locale),
-            () -> "dateTimeSymbolsForLocale " + locale
         );
     }
 
