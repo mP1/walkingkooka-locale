@@ -18,7 +18,6 @@
 package walkingkooka.locale;
 
 import walkingkooka.Context;
-import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.util.HasLocale;
 
 import java.util.Locale;
@@ -31,6 +30,7 @@ import java.util.Set;
  */
 public interface LocaleContext extends Context,
     CanDateTimeSymbolsForLocale,
+    CanDecimalNumberSymbolsForLocale,
     HasLocale {
 
     /**
@@ -42,11 +42,6 @@ public interface LocaleContext extends Context,
      * Returns all available {@link Locale}.
      */
     Set<Locale> availableLocales();
-
-    /**
-     * Returns the {@link DecimalNumberSymbols} if available for the given {@link Locale}.
-     */
-    Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale);
 
     /**
      * Returns all {@link Locale} that have display or local text beginning with the given search text.
