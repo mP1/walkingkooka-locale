@@ -18,6 +18,7 @@
 package walkingkooka.locale;
 
 import walkingkooka.test.Testing;
+import walkingkooka.text.CharSequences;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -25,31 +26,31 @@ import java.util.Optional;
 public interface CanLocaleForLanguageTagTesting extends Testing {
 
     default void localeForLanguageTagAndCheck(final CanLocaleForLanguageTag can,
-                                              final Locale locale) {
+                                              final String languageTag) {
         this.localeForLanguageTagAndCheck(
             can,
-            locale,
+            languageTag,
             Optional.empty()
         );
     }
 
     default void localeForLanguageTagAndCheck(final CanLocaleForLanguageTag can,
-                                              final Locale locale,
+                                              final String languageTag,
                                               final Locale expected) {
         this.localeForLanguageTagAndCheck(
             can,
-            locale,
+            languageTag,
             Optional.of(expected)
         );
     }
 
     default void localeForLanguageTagAndCheck(final CanLocaleForLanguageTag can,
-                                              final Locale locale,
+                                              final String languageTag,
                                               final Optional<Locale> expected) {
         this.checkEquals(
             expected,
-            can.localeForLanguageTag(locale),
-            () -> "localeForLanguageTag " + locale
+            can.localeForLanguageTag(languageTag),
+            () -> "localeForLanguageTag " + CharSequences.quoteAndEscape(languageTag)
         );
     }
 }

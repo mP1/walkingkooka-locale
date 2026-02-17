@@ -25,5 +25,5 @@ public interface CanLocaleForLanguageTag {
     /**
      * Returns the {@link Locale} if available for the given {@link Locale#toLanguageTag()}.
      */
-    Optional<Locale> localeForLanguageTag(final Locale locale);
+    Optional<Locale> localeForLanguageTag(final String languageTag);
 }
