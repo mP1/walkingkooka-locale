@@ -28,6 +28,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface LocaleContextTesting extends HasLocaleTesting,
+    CanDateTimeSymbolsForLocaleTesting,
     TreePrintableTesting {
 
     default void availableLocalesAndCheck(final LocaleContext context,
