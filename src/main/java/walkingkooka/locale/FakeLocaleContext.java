@@ -53,6 +53,11 @@ public class FakeLocaleContext implements LocaleContext {
     }
 
     @Override
+    public Optional<Locale> localeForLanguageTag(final String locale) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public Optional<String> localeText(final Locale locale) {
         throw new UnsupportedOperationException();
     }

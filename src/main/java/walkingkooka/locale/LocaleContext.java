@@ -31,6 +31,7 @@ import java.util.Set;
 public interface LocaleContext extends Context,
     CanDateTimeSymbolsForLocale,
     CanDecimalNumberSymbolsForLocale,
+    CanLocaleForLanguageTag,
     HasLocale {
 
     /**

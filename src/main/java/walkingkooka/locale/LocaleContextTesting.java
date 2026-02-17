@@ -27,7 +27,8 @@ import java.util.Set;
 
 public interface LocaleContextTesting extends HasLocaleTesting,
     CanDateTimeSymbolsForLocaleTesting,
-    CanDecimalNumberSymbolsForLocaleTesting {
+    CanDecimalNumberSymbolsForLocaleTesting,
+    CanLocaleForLanguageTagTesting {
 
     // availableLocales.................................................................................................
 
