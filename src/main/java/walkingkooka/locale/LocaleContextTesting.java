@@ -31,6 +31,8 @@ public interface LocaleContextTesting extends HasLocaleTesting,
     CanDateTimeSymbolsForLocaleTesting,
     TreePrintableTesting {
 
+    // availableLocales.................................................................................................
+
     default void availableLocalesAndCheck(final LocaleContext context,
                                           final Locale... expected) {
         this.availableLocalesAndCheck(
@@ -47,6 +49,8 @@ public interface LocaleContextTesting extends HasLocaleTesting,
             context::toString
         );
     }
+
+    // decimalNumberSymbolsForLocale....................................................................................
 
     default void decimalNumberSymbolsForLocale(final LocaleContext context,
                                                final Locale locale) {
