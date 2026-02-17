@@ -52,28 +52,28 @@ public interface LocaleContextTesting extends HasLocaleTesting,
 
     // decimalNumberSymbolsForLocale....................................................................................
 
-    default void decimalNumberSymbolsForLocale(final LocaleContext context,
-                                               final Locale locale) {
-        this.decimalNumberSymbolsForLocale(
+    default void decimalNumberSymbolsForLocaleAndCheck(final LocaleContext context,
+                                                       final Locale locale) {
+        this.decimalNumberSymbolsForLocaleAndCheck(
             context,
             locale,
             Optional.empty()
         );
     }
 
-    default void decimalNumberSymbolsForLocale(final LocaleContext context,
-                                               final Locale locale,
-                                               final DecimalNumberSymbols expected) {
-        this.decimalNumberSymbolsForLocale(
+    default void decimalNumberSymbolsForLocaleAndCheck(final LocaleContext context,
+                                                       final Locale locale,
+                                                       final DecimalNumberSymbols expected) {
+        this.decimalNumberSymbolsForLocaleAndCheck(
             context,
             locale,
             Optional.of(expected)
         );
     }
 
-    default void decimalNumberSymbolsForLocale(final LocaleContext context,
-                                               final Locale locale,
-                                               final Optional<DecimalNumberSymbols> expected) {
+    default void decimalNumberSymbolsForLocaleAndCheck(final LocaleContext context,
+                                                       final Locale locale,
+                                                       final Optional<DecimalNumberSymbols> expected) {
         this.checkEquals(
             expected,
             context.decimalNumberSymbolsForLocale(locale),
