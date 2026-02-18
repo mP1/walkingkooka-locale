@@ -26,4 +26,9 @@ public interface CanLocaleForLanguageTag {
      * Returns the {@link Locale} if available for the given {@link Locale#toLanguageTag()}.
      */
     Optional<Locale> localeForLanguageTag(final String languageTag);
+
+    default Locale localeForLanguageTagOrFail(final String languageTag) {
+        return this.localeForLanguageTag(languageTag)
+            .orElseThrow(() -> new MissingLocaleException(languageTag));
+    }
 }
