@@ -21,7 +21,6 @@ import walkingkooka.Context;
 import walkingkooka.util.HasLocale;
 
 import java.util.Locale;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -32,6 +31,7 @@ public interface LocaleContext extends Context,
     CanDateTimeSymbolsForLocale,
     CanDecimalNumberSymbolsForLocale,
     CanLocaleForLanguageTag,
+    CanLocaleText,
     HasLocale {
 
     /**
@@ -50,18 +50,4 @@ public interface LocaleContext extends Context,
     Set<Locale> findByLocaleText(final String text,
                                  final int offset,
                                  final int count);
-
-    /**
-     * Returns text to display for the given {@link Locale} if it exists.
-     * This is necessary because {@link Locale#getDisplayName()} is not implemented in GWT.
-     */
-    Optional<String> localeText(final Locale locale);
-
-    /**
-     * Helper that throws a {@link IllegalArgumentException} if locale text was not found.
-     */
-    default String localeTextOrFail(final Locale locale) {
-        return this.localeText(locale)
-            .orElseThrow(() -> new IllegalArgumentException("Locale " + locale + ": missing locale text"));
-    }
 }

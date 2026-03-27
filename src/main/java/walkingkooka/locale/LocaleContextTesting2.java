@@ -26,7 +26,8 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
     ContextTesting<C>,
     CanDateTimeSymbolsForLocaleTesting2<C>,
     CanDecimalNumberSymbolsForLocaleTesting2<C>,
-    CanLocaleForLanguageTagTesting2<C> {
+    CanLocaleForLanguageTagTesting2<C>,
+    CanLocaleTextTesting2<C> {
 
     @Test
     default void testFindByLocaleTextWithNegativeOffsetFails() {
@@ -68,15 +69,6 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
     }
 
     @Test
-    default void testLocaleTextWithNullFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .localeText(null)
-        );
-    }
-
-    @Test
     default void testSetLocaleWithNullFails() {
         assertThrows(
             NullPointerException.class,
@@ -97,6 +89,11 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
 
     @Override
     default C createCanLocaleForLanguageTag() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanLocaleText() {
         return this.createContext();
     }
 

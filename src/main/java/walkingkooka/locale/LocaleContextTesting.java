@@ -22,13 +22,13 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Locale;
-import java.util.Optional;
 import java.util.Set;
 
 public interface LocaleContextTesting extends HasLocaleTesting,
     CanDateTimeSymbolsForLocaleTesting,
     CanDecimalNumberSymbolsForLocaleTesting,
-    CanLocaleForLanguageTagTesting {
+    CanLocaleForLanguageTagTesting,
+    CanLocaleTextTesting {
 
     // availableLocales.................................................................................................
 
@@ -90,37 +90,6 @@ public interface LocaleContextTesting extends HasLocaleTesting,
         this.localeAndCheck(
             context,
             locale
-        );
-    }
-
-    // localeText.......................................................................................................
-
-    default void localeTextAndCheck(final LocaleContext context,
-                                    final Locale locale) {
-        this.localeTextAndCheck(
-            context,
-            locale,
-            Optional.empty()
-        );
-    }
-
-    default void localeTextAndCheck(final LocaleContext context,
-                                    final Locale locale,
-                                    final String expected) {
-        this.localeTextAndCheck(
-            context,
-            locale,
-            Optional.of(expected)
-        );
-    }
-
-    default void localeTextAndCheck(final LocaleContext context,
-                                    final Locale locale,
-                                    final Optional<String> expected) {
-        this.checkEquals(
-            expected,
-            context.localeText(locale),
-            () -> "localeText " + locale
         );
     }
 }
