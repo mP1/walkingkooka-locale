@@ -37,7 +37,7 @@ public class MissingLocaleExceptionTest implements ThrowableTesting2<MissingLoca
 
     @Test
     public void testWith() {
-        final String languageTag = "AUD";
+        final LocaleLanguageTag languageTag = LocaleLanguageTag.parse("AUD");
 
         this.checkEquals(
             languageTag,
@@ -51,7 +51,9 @@ public class MissingLocaleExceptionTest implements ThrowableTesting2<MissingLoca
     @Test
     public void testGetMessage() {
         this.checkMessage(
-            new MissingLocaleException("AUD"),
+            new MissingLocaleException(
+                LocaleLanguageTag.parse("AUD")
+            ),
             "Missing Locale with language tag \"AUD\""
         );
     }
