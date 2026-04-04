@@ -28,21 +28,22 @@ public final class MissingLocaleException extends IllegalArgumentException {
 
     private static final long serialVersionUID = 1L;
 
-    public MissingLocaleException(final String languageTag) {
+    public MissingLocaleException(final LocaleLanguageTag languageTag) {
         super(
             "Missing Locale with language tag " +
                 CharSequences.quoteAndEscape(
                     Objects.requireNonNull(languageTag, "languageTag")
+                        .value()
                 )
         );
         this.languageTag = languageTag;
     }
 
-    public String languageTag() {
+    public LocaleLanguageTag languageTag() {
         return this.languageTag;
     }
 
-    private final String languageTag;
+    private final LocaleLanguageTag languageTag;
 
     // hashCode/equals..................................................................................................
 

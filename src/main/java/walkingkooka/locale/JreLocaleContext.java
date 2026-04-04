@@ -130,13 +130,15 @@ final class JreLocaleContext implements LocaleContext {
     private Locale locale;
 
     @Override
-    public Optional<Locale> localeForLanguageTag(final String languageTag) {
+    public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
         Objects.requireNonNull(languageTag, "languageTag");
 
         Locale locale;
 
         try {
-            locale = Locale.forLanguageTag(languageTag);
+            locale = Locale.forLanguageTag(
+                languageTag.value()
+            );
         } catch (final IllegalArgumentException cause) {
             locale = null;
         }

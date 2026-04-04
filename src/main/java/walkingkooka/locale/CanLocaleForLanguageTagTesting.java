@@ -26,7 +26,7 @@ import java.util.Optional;
 public interface CanLocaleForLanguageTagTesting extends Testing {
 
     default void localeForLanguageTagAndCheck(final CanLocaleForLanguageTag can,
-                                              final String languageTag) {
+                                              final LocaleLanguageTag languageTag) {
         this.localeForLanguageTagAndCheck(
             can,
             languageTag,
@@ -35,7 +35,7 @@ public interface CanLocaleForLanguageTagTesting extends Testing {
     }
 
     default void localeForLanguageTagAndCheck(final CanLocaleForLanguageTag can,
-                                              final String languageTag,
+                                              final LocaleLanguageTag languageTag,
                                               final Locale expected) {
         this.localeForLanguageTagAndCheck(
             can,
@@ -45,12 +45,12 @@ public interface CanLocaleForLanguageTagTesting extends Testing {
     }
 
     default void localeForLanguageTagAndCheck(final CanLocaleForLanguageTag can,
-                                              final String languageTag,
+                                              final LocaleLanguageTag languageTag,
                                               final Optional<Locale> expected) {
         this.checkEquals(
             expected,
             can.localeForLanguageTag(languageTag),
-            () -> "localeForLanguageTag " + CharSequences.quoteAndEscape(languageTag)
+            () -> "localeForLanguageTag " + CharSequences.quoteAndEscape(languageTag.value())
         );
     }
 }
