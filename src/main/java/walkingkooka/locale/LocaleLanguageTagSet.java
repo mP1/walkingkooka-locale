@@ -23,7 +23,7 @@ import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.text.CharacterConstant;
 import walkingkooka.text.Csv;
-import walkingkooka.text.HasText;
+import walkingkooka.text.HasTextWithSeparator;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 
@@ -42,7 +42,7 @@ import java.util.TreeSet;
  */
 public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
     implements ImmutableSortedSetDefaults<LocaleLanguageTagSet, LocaleLanguageTag>,
-    HasText,
+    HasTextWithSeparator,
     TreePrintable {
 
     /**
@@ -199,21 +199,22 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
 
         return withCopy(localeLanguageTags);
     }
-    
-    // HasText..........................................................................................................
+
+    // HasTextWithSeparator.............................................................................................
 
     @Override
-    public String text() {
-        if (null == this.text) {
-            this.text = SEPARATOR.toSeparatedString(
+    public char defaultTextSeparator() {
+        return SEPARATOR.character();
+    }
+
+    @Override
+    public String textWithSeparator(final char c) {
+        return CharacterConstant.with(c)
+            .toSeparatedString(
                 this,
                 LocaleLanguageTag::value
             );
-        }
-        return this.text;
     }
-
-    private String text;
 
     // TreePrintable....................................................................................................
 
