@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
+import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasTextTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
@@ -34,6 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting<LocaleLanguageTagSet, LocaleLanguageTag>,
     HasTextTesting,
+    ParseStringTesting<LocaleLanguageTagSet>,
     TreePrintableTesting {
 
     private final static LocaleLanguageTag EN_AU = LocaleLanguageTag.fromLocale(
@@ -213,6 +215,52 @@ public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting
         );
     }
 
+    // parse............................................................................................................
+
+    @Override
+    public void testParseStringEmptyFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Test
+    public void testParseEmpty() {
+        this.parseStringAndCheck(
+            "",
+            LocaleLanguageTagSet.EMPTY
+        );
+    }
+
+    @Test
+    public void testParse() {
+        this.parseStringAndCheck(
+            "en,en-AU,en-NZ",
+            this.createSet()
+        );
+    }
+
+    @Test
+    public void testParseWhitespaceIgnored() {
+        this.parseStringAndCheck(
+            " en, en-AU , en-NZ ",
+            this.createSet()
+        );
+    }
+
+    @Override
+    public LocaleLanguageTagSet parseString(final String text) {
+        return LocaleLanguageTagSet.parse(text);
+    }
+
+    @Override
+    public Class<? extends RuntimeException> parseStringFailedExpected(final Class<? extends RuntimeException> thrown) {
+        return thrown;
+    }
+
+    @Override
+    public RuntimeException parseStringFailedExpected(final RuntimeException thrown) {
+        return thrown;
+    }
+    
     // TreePrintable....................................................................................................
 
     @Test

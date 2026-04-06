@@ -22,6 +22,7 @@ import walkingkooka.collect.set.ImmutableSortedSetDefaults;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.text.CharacterConstant;
+import walkingkooka.text.Csv;
 import walkingkooka.text.HasText;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
@@ -182,6 +183,23 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
         Objects.requireNonNull(locale, "locale");
     }
 
+    // parse............................................................................................................
+
+    public static LocaleLanguageTagSet parse(final String text) {
+        final SortedSet<LocaleLanguageTag> localeLanguageTags = SortedSets.tree();
+
+        Csv.parse(
+            text,
+            (final String localeLanguageTag) -> localeLanguageTags.add(
+                LocaleLanguageTag.parse(
+                    localeLanguageTag.trim()
+                )
+            )
+        );
+
+        return withCopy(localeLanguageTags);
+    }
+    
     // HasText..........................................................................................................
 
     @Override
