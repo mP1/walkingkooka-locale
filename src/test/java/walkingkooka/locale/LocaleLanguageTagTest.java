@@ -22,6 +22,7 @@ import walkingkooka.compare.ComparableTesting2;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
+import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Locale;
 
@@ -29,7 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLanguageTag>,
     ClassTesting2<LocaleLanguageTag>,
-    ParseStringTesting<LocaleLanguageTag> {
+    ParseStringTesting<LocaleLanguageTag>,
+    TreePrintableTesting {
 
     private final static String LOCALE = "en-AU";
 
@@ -104,6 +106,16 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     @Override
     public LocaleLanguageTag createComparable() {
         return LocaleLanguageTag.parse(LOCALE);
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testPrintTree() {
+        this.treePrintAndCheck(
+            LocaleLanguageTag.parse("en-AU"),
+            "en-AU\n"
+        );
     }
 
     // class............................................................................................................

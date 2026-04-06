@@ -20,6 +20,8 @@ package walkingkooka.locale;
 import walkingkooka.Value;
 import walkingkooka.compare.Comparators;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.text.printer.IndentingPrinter;
+import walkingkooka.text.printer.TreePrintable;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -27,7 +29,8 @@ import java.util.Objects;
 /**
  * An id that uniquely identifies a {@link Locale} using its language-tag such as EN, EN-AU.
  */
-public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>, Value<String> {
+public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>, Value<String>,
+    TreePrintable {
 
     public final static CaseSensitivity CASE_SENSITIVITY = CaseSensitivity.INSENSITIVE;
 
@@ -93,5 +96,12 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>, V
                 this.languageTag,
                 other.languageTag
             );
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Override
+    public void printTree(final IndentingPrinter printer) {
+        printer.println(this.languageTag);
     }
 }
