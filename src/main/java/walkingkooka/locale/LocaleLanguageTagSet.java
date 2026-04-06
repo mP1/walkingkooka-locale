@@ -22,6 +22,7 @@ import walkingkooka.collect.set.ImmutableSortedSetDefaults;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.text.CharacterConstant;
+import walkingkooka.text.HasText;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 
@@ -40,6 +41,7 @@ import java.util.TreeSet;
  */
 public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
     implements ImmutableSortedSetDefaults<LocaleLanguageTagSet, LocaleLanguageTag>,
+    HasText,
     TreePrintable {
 
     /**
@@ -179,6 +181,21 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
     public void elementCheck(final LocaleLanguageTag locale) {
         Objects.requireNonNull(locale, "locale");
     }
+
+    // HasText..........................................................................................................
+
+    @Override
+    public String text() {
+        if (null == this.text) {
+            this.text = SEPARATOR.toSeparatedString(
+                this,
+                LocaleLanguageTag::value
+            );
+        }
+        return this.text;
+    }
+
+    private String text;
 
     // TreePrintable....................................................................................................
 

@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
+import walkingkooka.text.HasTextTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Locale;
@@ -32,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting<LocaleLanguageTagSet, LocaleLanguageTag>,
+    HasTextTesting,
     TreePrintableTesting {
 
     private final static LocaleLanguageTag EN_AU = LocaleLanguageTag.fromLocale(
@@ -190,6 +192,24 @@ public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting
                 startsWith,
                 context
             )
+        );
+    }
+
+    // HasText..........................................................................................................
+
+    @Test
+    public void testTextWhenEmpty() {
+        this.textAndCheck(
+            LocaleLanguageTagSet.EMPTY,
+            ""
+        );
+    }
+
+    @Test
+    public void testTextWhenNotEmpty() {
+        this.textAndCheck(
+            this.createSet(),
+            "en,en-AU,en-NZ"
         );
     }
 
