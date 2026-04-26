@@ -50,7 +50,7 @@ public class MissingLocaleExceptionTest implements ThrowableTesting2<MissingLoca
 
     @Test
     public void testGetMessage() {
-        this.checkMessage(
+        this.getMessageAndCheck(
             new MissingLocaleException(
                 LocaleLanguageTag.parse("AUD")
             ),
