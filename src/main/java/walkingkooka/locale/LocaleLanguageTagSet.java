@@ -202,7 +202,7 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
     // HasTextWithSeparator.............................................................................................
 
     @Override
-    public char defaultTextSeparator() {
+    public char separator() {
         return SEPARATOR.character();
     }
 
