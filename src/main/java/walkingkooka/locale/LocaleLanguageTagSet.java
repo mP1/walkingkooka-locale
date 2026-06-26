@@ -22,7 +22,6 @@ import walkingkooka.collect.set.ImmutableSortedSetDefaults;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.text.CharacterConstant;
-import walkingkooka.text.Csv;
 import walkingkooka.text.HasTextWithSeparator;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
@@ -188,7 +187,7 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
     public static LocaleLanguageTagSet parse(final String text) {
         final SortedSet<LocaleLanguageTag> localeLanguageTags = SortedSets.tree();
 
-        Csv.parse(
+        SEPARATOR.parse(
             text,
             (final String localeLanguageTag) -> localeLanguageTags.add(
                 LocaleLanguageTag.parse(
