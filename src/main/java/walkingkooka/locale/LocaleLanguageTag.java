@@ -42,9 +42,15 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>, H
     }
 
     public static LocaleLanguageTag parse(final String languageTag) {
-        return new LocaleLanguageTag(
-            Objects.requireNonNull(languageTag)
-        );
+        Objects.requireNonNull(languageTag);
+
+        final Locale locale = Locale.forLanguageTag(languageTag);
+
+        if(false == locale.toLanguageTag().equalsIgnoreCase(languageTag)) {
+            throw new IllegalArgumentException("Invalid language tag: " + languageTag);
+        }
+
+        return new LocaleLanguageTag(languageTag);
     }
 
     private LocaleLanguageTag(final String languageTag) {
