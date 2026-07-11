@@ -56,6 +56,28 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
         );
     }
 
+    // fromLocale.......................................................................................................
+
+    @Test
+    public void testFromLocaleNullLocaleFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> LocaleLanguageTag.fromLocale(null)
+        );
+    }
+
+    @Test
+    public void testFromLocale() {
+        final String languageTag = "en-AU";
+        final Locale locale = Locale.forLanguageTag(languageTag);
+
+        final LocaleLanguageTag localeLanguageTag = LocaleLanguageTag.fromLocale(locale);
+        this.valueAndCheck(
+            localeLanguageTag,
+            languageTag
+        );
+    }
+
     // parse............................................................................................................
 
     @Override
