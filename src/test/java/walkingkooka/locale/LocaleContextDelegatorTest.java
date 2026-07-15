@@ -44,9 +44,7 @@ public final class LocaleContextDelegatorTest implements LocaleContextTesting2<T
 
         @Override
         public LocaleContext localeContext() {
-            return LocaleContexts.jre(
-                Locale.forLanguageTag("EN-AU")
-            );
+            return LOCALE_CONTEXT;
         }
 
         @Override
