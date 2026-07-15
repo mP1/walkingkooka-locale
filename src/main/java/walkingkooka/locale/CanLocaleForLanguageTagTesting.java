@@ -17,13 +17,13 @@
 
 package walkingkooka.locale;
 
-import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Locale;
 import java.util.Optional;
 
-public interface CanLocaleForLanguageTagTesting extends Testing {
+public interface CanLocaleForLanguageTagTesting extends TreePrintableTesting {
 
     default void localeForLanguageTagAndCheck(final CanLocaleForLanguageTag can,
                                               final LocaleLanguageTag languageTag) {

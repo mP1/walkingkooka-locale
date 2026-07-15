@@ -18,12 +18,12 @@
 package walkingkooka.locale;
 
 import walkingkooka.datetime.DateTimeSymbols;
-import walkingkooka.test.Testing;
+import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Locale;
 import java.util.Optional;
 
-public interface CanDateTimeSymbolsForLocaleTesting extends Testing {
+public interface CanDateTimeSymbolsForLocaleTesting extends TreePrintableTesting {
 
     default void dateTimeSymbolsForLocaleAndCheck(final CanDateTimeSymbolsForLocale can,
                                                   final Locale locale) {
