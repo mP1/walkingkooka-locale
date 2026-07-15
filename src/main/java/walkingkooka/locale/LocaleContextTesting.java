@@ -30,6 +30,13 @@ public interface LocaleContextTesting extends HasLocaleTesting,
     CanLocaleForLanguageTagTesting,
     CanLocaleTextTesting {
 
+    /**
+     * A read only {@link LocaleContext} with locale set to {@link #LOCALE}.
+     */
+    LocaleContext LOCALE_CONTEXT = LocaleContexts.readOnly(
+        LocaleContexts.jre(LOCALE)
+    );
+
     // availableLocales.................................................................................................
 
     default void availableLocalesAndCheck(final LocaleContext context,
