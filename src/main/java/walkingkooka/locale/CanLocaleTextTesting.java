@@ -17,12 +17,12 @@
 
 package walkingkooka.locale;
 
-import walkingkooka.test.Testing;
+import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Locale;
 import java.util.Optional;
 
-public interface CanLocaleTextTesting extends Testing {
+public interface CanLocaleTextTesting extends TreePrintableTesting {
 
 
     // localeText.......................................................................................................
