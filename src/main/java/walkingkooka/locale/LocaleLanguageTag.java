@@ -47,7 +47,11 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
 
         final Locale locale = Locale.forLanguageTag(languageTag);
 
-        if(false == locale.toLanguageTag().equalsIgnoreCase(languageTag)) {
+        if (false == CASE_SENSITIVITY.equals(
+            locale.toLanguageTag(),
+            languageTag
+        )
+        ) {
             throw new IllegalArgumentException("Invalid language tag: " + languageTag);
         }
 
