@@ -29,7 +29,8 @@ import java.util.Objects;
 /**
  * An id that uniquely identifies a {@link Locale} using its language-tag such as EN, EN-AU.
  */
-public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>, HasValue<String>,
+public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
+    HasValue<String>,
     TreePrintable {
 
     public final static CaseSensitivity CASE_SENSITIVITY = CaseSensitivity.INSENSITIVE;
