@@ -22,6 +22,7 @@ import walkingkooka.compare.Comparators;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
+import walkingkooka.util.HasLocale;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -33,7 +34,7 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
     HasValue<String>,
     TreePrintable {
 
-    public final static CaseSensitivity CASE_SENSITIVITY = CaseSensitivity.INSENSITIVE;
+    public final static CaseSensitivity CASE_SENSITIVITY = HasLocale.LOCALE_CASE_SENSITIVITY;
 
     public static LocaleLanguageTag fromLocale(final Locale locale) {
         return new LocaleLanguageTag(
