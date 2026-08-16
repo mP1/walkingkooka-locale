@@ -22,7 +22,9 @@ import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.test.ParseStringTesting;
+import walkingkooka.text.HasTextWithLineBreaksTesting;
 import walkingkooka.text.HasTextWithSeparatorTesting;
+import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Locale;
@@ -35,6 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting<LocaleLanguageTagSet, LocaleLanguageTag>,
     HasTextWithSeparatorTesting,
+    HasTextWithLineBreaksTesting,
     ParseStringTesting<LocaleLanguageTagSet>,
     TreePrintableTesting {
 
@@ -268,6 +271,19 @@ public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting
     @Override
     public RuntimeException parseStringFailedExpected(final RuntimeException thrown) {
         return thrown;
+    }
+
+    // HasTextWithLineBreaks............................................................................................
+
+    @Test
+    public void testTextWithLineBreaks() {
+        this.textWithLineBreaksAndCheck(
+            this.createSet(),
+            LineEnding.NL,
+            "en\n" +
+                "en-AU\n" +
+                "en-NZ\n"
+        );
     }
     
     // TreePrintable....................................................................................................
