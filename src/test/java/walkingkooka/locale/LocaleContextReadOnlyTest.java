@@ -26,9 +26,9 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ReadOnlyLocaleContextTest implements LocaleContextTesting2<ReadOnlyLocaleContext>,
-    HashCodeEqualsDefinedTesting2<ReadOnlyLocaleContext>,
-    ToStringTesting<ReadOnlyLocaleContext> {
+public final class LocaleContextReadOnlyTest implements LocaleContextTesting2<LocaleContextReadOnly>,
+    HashCodeEqualsDefinedTesting2<LocaleContextReadOnly>,
+    ToStringTesting<LocaleContextReadOnly> {
 
     private final static Locale LOCALE = Locale.forLanguageTag("en-AU");
 
@@ -36,16 +36,16 @@ public final class ReadOnlyLocaleContextTest implements LocaleContextTesting2<Re
     public void testWithNullLocaleFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ReadOnlyLocaleContext.with(null)
+            () -> LocaleContextReadOnly.with(null)
         );
     }
 
     @Test
     public void testWithReadOnlyLocale() {
-        final ReadOnlyLocaleContext context = this.createContext();
+        final LocaleContextReadOnly context = this.createContext();
         assertSame(
             context,
-            ReadOnlyLocaleContext.with(context)
+            LocaleContextReadOnly.with(context)
         );
     }
 
@@ -71,8 +71,8 @@ public final class ReadOnlyLocaleContextTest implements LocaleContextTesting2<Re
     }
 
     @Override
-    public ReadOnlyLocaleContext createContext() {
-        return ReadOnlyLocaleContext.with(LocaleContexts.jre(LOCALE));
+    public LocaleContextReadOnly createContext() {
+        return LocaleContextReadOnly.with(LocaleContexts.jre(LOCALE));
     }
 
     // hashCode/equals..................................................................................................
@@ -87,14 +87,14 @@ public final class ReadOnlyLocaleContextTest implements LocaleContextTesting2<Re
         );
 
         this.checkNotEquals(
-            ReadOnlyLocaleContext.with(
+            LocaleContextReadOnly.with(
                 LocaleContextJre.with(locale)
             )
         );
     }
 
     @Override
-    public ReadOnlyLocaleContext createObject() {
+    public LocaleContextReadOnly createObject() {
         return this.createContext();
     }
 
@@ -111,7 +111,12 @@ public final class ReadOnlyLocaleContextTest implements LocaleContextTesting2<Re
     // class............................................................................................................
 
     @Override
-    public Class<ReadOnlyLocaleContext> type() {
-        return ReadOnlyLocaleContext.class;
+    public Class<LocaleContextReadOnly> type() {
+        return LocaleContextReadOnly.class;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }

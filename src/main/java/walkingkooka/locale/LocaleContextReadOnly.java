@@ -23,24 +23,24 @@ import java.util.Objects;
 /**
  * Wraps another {@link LocaleContext} and blocks attempts to set the {@link Locale}.
  */
-final class ReadOnlyLocaleContext implements LocaleContext,
+final class LocaleContextReadOnly implements LocaleContext,
     LocaleContextDelegator {
 
-    static ReadOnlyLocaleContext with(final LocaleContext context) {
-        final ReadOnlyLocaleContext readOnlyLocaleContext;
+    static LocaleContextReadOnly with(final LocaleContext context) {
+        final LocaleContextReadOnly localeContextReadOnly;
 
-        if(context instanceof ReadOnlyLocaleContext) {
-            readOnlyLocaleContext = (ReadOnlyLocaleContext) context;
+        if(context instanceof LocaleContextReadOnly) {
+            localeContextReadOnly = (LocaleContextReadOnly) context;
         } else {
-            readOnlyLocaleContext = new ReadOnlyLocaleContext(
+            localeContextReadOnly = new LocaleContextReadOnly(
                 Objects.requireNonNull(context, "context")
             );
         }
 
-        return readOnlyLocaleContext;
+        return localeContextReadOnly;
     }
 
-    private ReadOnlyLocaleContext(final LocaleContext context) {
+    private LocaleContextReadOnly(final LocaleContext context) {
         super();
         this.context = context;
     }
@@ -73,11 +73,11 @@ final class ReadOnlyLocaleContext implements LocaleContext,
     @Override
     public boolean equals(final Object other) {
         return this == other ||
-            (other instanceof ReadOnlyLocaleContext &&
-                this.equals0((ReadOnlyLocaleContext) other));
+            (other instanceof LocaleContextReadOnly &&
+                this.equals0((LocaleContextReadOnly) other));
     }
 
-    private boolean equals0(final ReadOnlyLocaleContext other) {
+    private boolean equals0(final LocaleContextReadOnly other) {
         return this.context.equals(other.context);
     }
 
