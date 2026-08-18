@@ -88,7 +88,7 @@ public final class ReadOnlyLocaleContextTest implements LocaleContextTesting2<Re
 
         this.checkNotEquals(
             ReadOnlyLocaleContext.with(
-                JreLocaleContext.with(locale)
+                LocaleContextJre.with(locale)
             )
         );
     }

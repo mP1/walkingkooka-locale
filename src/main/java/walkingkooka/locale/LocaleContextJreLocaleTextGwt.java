@@ -20,7 +20,7 @@ package walkingkooka.locale;
 import java.util.Locale;
 import java.util.Optional;
 
-class JreLocaleContextLocaleTextGwt {
+class LocaleContextJreLocaleTextGwt {
 
     // Locale#GetDisplayName is not emulated
     static Optional<String> localeText(final Locale locale) {
