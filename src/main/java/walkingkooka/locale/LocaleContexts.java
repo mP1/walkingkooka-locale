@@ -51,10 +51,10 @@ public final class LocaleContexts implements PublicStaticHelper {
     }
 
     /**
-     * {@see ReadOnlyLocaleContext}
+     * {@see LocaleContextReadOnly}
      */
     public static LocaleContext readOnly(final LocaleContext context) {
-        return ReadOnlyLocaleContext.with(context);
+        return LocaleContextReadOnly.with(context);
     }
 
     /**
