@@ -17,22 +17,18 @@
 
 package walkingkooka.locale;
 
-import javaemul.internal.annotations.GwtIncompatible;
-import walkingkooka.text.CharSequences;
+import walkingkooka.reflect.ClassTesting;
+import walkingkooka.reflect.JavaVisibility;
 
-import java.util.Locale;
-import java.util.Optional;
+public final class LocaleContextJreLocaleTextTest implements ClassTesting<LocaleContextJreLocaleText> {
 
-class JreLocaleContextLocaleText extends JreLocaleContextLocaleTextGwt {
+    @Override
+    public Class<LocaleContextJreLocaleText> type() {
+        return LocaleContextJreLocaleText.class;
+    }
 
-    @GwtIncompatible
-    static Optional<String> localeText(final Locale locale) {
-        final String displayName = locale.getDisplayName();
-
-        return Optional.ofNullable(
-            CharSequences.isNullOrEmpty(displayName) ?
-                null :
-                displayName
-        );
+    @Override
+    public JavaVisibility typeVisibility() {
+        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }

@@ -26,8 +26,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JreLocaleContextTest implements LocaleContextTesting2<JreLocaleContext>,
-    HashCodeEqualsDefinedTesting2<JreLocaleContext> {
+public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleContextJre>,
+    HashCodeEqualsDefinedTesting2<LocaleContextJre> {
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
 
@@ -35,7 +35,7 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     public void testWithNullLocaleFails() {
         assertThrows(
             NullPointerException.class,
-            () -> JreLocaleContext.with(null)
+            () -> LocaleContextJre.with(null)
         );
     }
 
@@ -101,7 +101,7 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     @Test
     public void testLocaleText() {
         for (final Locale locale : Locale.getAvailableLocales()) {
-            final JreLocaleContext context = JreLocaleContext.with(locale);
+            final LocaleContextJre context = LocaleContextJre.with(locale);
             this.checkNotEquals(
                 Optional.of(""),
                 context.localeText(locale),
@@ -111,8 +111,8 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     }
 
     @Override
-    public JreLocaleContext createContext() {
-        return JreLocaleContext.with(LOCALE);
+    public LocaleContextJre createContext() {
+        return LocaleContextJre.with(LOCALE);
     }
 
     // hashCode/equals..................................................................................................
@@ -120,12 +120,12 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     @Test
     public void testEqualsDifferentLocale() {
         this.checkNotEquals(
-            JreLocaleContext.with(Locale.FRANCE)
+            LocaleContextJre.with(Locale.FRANCE)
         );
     }
 
     @Override
-    public JreLocaleContext createObject() {
+    public LocaleContextJre createObject() {
         return this.createContext();
     }
 
@@ -134,7 +134,7 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     @Test
     public void testToString() {
         this.toStringAndCheck(
-            JreLocaleContext.with(LOCALE),
+            LocaleContextJre.with(LOCALE),
             "JRE en-AU"
         );
     }
@@ -142,7 +142,12 @@ public final class JreLocaleContextTest implements LocaleContextTesting2<JreLoca
     // class............................................................................................................
 
     @Override
-    public Class<JreLocaleContext> type() {
-        return JreLocaleContext.class;
+    public Class<LocaleContextJre> type() {
+        return LocaleContextJre.class;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }

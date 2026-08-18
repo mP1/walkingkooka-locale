@@ -44,10 +44,10 @@ public final class LocaleContexts implements PublicStaticHelper {
     }
 
     /**
-     * {@see JreLocaleContext}
+     * {@see LocaleContextJre}
      */
     public static LocaleContext jre(final Locale locale) {
-        return JreLocaleContext.with(locale);
+        return LocaleContextJre.with(locale);
     }
 
     /**

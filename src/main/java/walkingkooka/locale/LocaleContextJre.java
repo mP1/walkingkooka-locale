@@ -35,18 +35,18 @@ import java.util.SortedSet;
 /**
  * A {@link LocaleContext} that sources its data from the running JRE querying various {@link Locale} methods.
  */
-final class JreLocaleContext implements LocaleContext {
+final class LocaleContextJre implements LocaleContext {
 
     /**
-     * Factory that creates a {@link JreLocaleContext}.
+     * Factory that creates a {@link LocaleContextJre}.
      */
-    static JreLocaleContext with(final Locale locale) {
-        return new JreLocaleContext(
+    static LocaleContextJre with(final Locale locale) {
+        return new LocaleContextJre(
             Objects.requireNonNull(locale, "locale")
         );
     }
 
-    private JreLocaleContext(final Locale locale) {
+    private LocaleContextJre(final Locale locale) {
         super();
         this.locale = locale;
     }
@@ -150,7 +150,7 @@ final class JreLocaleContext implements LocaleContext {
     public Optional<String> localeText(final Locale locale) {
         Objects.requireNonNull(locale, "locale");
 
-        return JreLocaleContextLocaleText.localeText(locale);
+        return LocaleContextJreLocaleText.localeText(locale);
     }
 
     // Object...........................................................................................................
@@ -163,11 +163,11 @@ final class JreLocaleContext implements LocaleContext {
     @Override
     public boolean equals(final Object other) {
         return this == other ||
-            (other instanceof JreLocaleContext &&
-                this.equals0((JreLocaleContext) other));
+            (other instanceof LocaleContextJre &&
+                this.equals0((LocaleContextJre) other));
     }
 
-    private boolean equals0(final JreLocaleContext other) {
+    private boolean equals0(final LocaleContextJre other) {
         return this.locale.equals(other.locale);
     }
 

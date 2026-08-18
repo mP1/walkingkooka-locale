@@ -20,7 +20,7 @@ package walkingkooka.locale;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
-public final class JreLocaleContextLocaleTextTestGwt implements ClassTesting<JreLocaleContextLocaleTextGwt> {
+public final class JreLocaleContextLocaleTextTestGwt implements ClassTesting<LocaleContextJreLocaleTextGwt> {
 
     @Override
     public void testTestNaming() {
@@ -28,8 +28,8 @@ public final class JreLocaleContextLocaleTextTestGwt implements ClassTesting<Jre
     }
 
     @Override
-    public Class<JreLocaleContextLocaleTextGwt> type() {
-        return JreLocaleContextLocaleTextGwt.class;
+    public Class<LocaleContextJreLocaleTextGwt> type() {
+        return LocaleContextJreLocaleTextGwt.class;
     }
 
     @Override
