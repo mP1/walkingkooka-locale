@@ -22,8 +22,8 @@ import walkingkooka.collect.set.ImmutableSortedSetTesting;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.test.ParseStringTesting;
+import walkingkooka.text.HasMultiLineTextTesting;
 import walkingkooka.text.HasTextWithSeparatorTesting;
-import walkingkooka.text.HasTextWithTextContextTesting;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.TreePrintableTesting;
 
@@ -37,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting<LocaleLanguageTagSet, LocaleLanguageTag>,
     HasTextWithSeparatorTesting,
-    HasTextWithTextContextTesting,
+    HasMultiLineTextTesting,
     ParseStringTesting<LocaleLanguageTagSet>,
     TreePrintableTesting {
 
@@ -273,11 +273,11 @@ public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting
         return thrown;
     }
 
-    // HasTextWithTextContext...........................................................................................
+    // HasMultiLineText.................................................................................................
 
     @Test
-    public void testTextWithTextContext() {
-        this.textWithTextContextAndCheck(
+    public void testMultiLineText() {
+        this.multiLineTextAndCheck(
             this.createSet(),
             LineEnding.NL,
             "en\n" +
