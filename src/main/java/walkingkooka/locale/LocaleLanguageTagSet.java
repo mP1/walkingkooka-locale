@@ -22,9 +22,10 @@ import walkingkooka.collect.set.ImmutableSortedSetDefaults;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.text.CharacterConstant;
-import walkingkooka.text.HasTextWithLineBreaks;
 import walkingkooka.text.HasTextWithSeparator;
+import walkingkooka.text.HasTextWithTextContext;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextContext;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 
@@ -44,8 +45,8 @@ import java.util.stream.Collectors;
  */
 public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
     implements ImmutableSortedSetDefaults<LocaleLanguageTagSet, LocaleLanguageTag>,
-    HasTextWithLineBreaks,
     HasTextWithSeparator,
+    HasTextWithTextContext,
     TreePrintable {
 
     /**
@@ -219,10 +220,14 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
             );
     }
 
-    // HasTextWithLineBreaks............................................................................................
+    // HasTextWithTextContext...........................................................................................
 
     @Override
-    public String textWithLineBreaks(final LineEnding lineEnding) {
+    public String textWithTextContext(final TextContext context) {
+        Objects.requireNonNull(context, "context");
+
+        final LineEnding lineEnding = context.lineEnding();
+
         return this.stream()
             .map(LocaleLanguageTag::value)
             .collect(
