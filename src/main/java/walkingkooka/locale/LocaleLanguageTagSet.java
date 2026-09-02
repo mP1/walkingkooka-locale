@@ -25,6 +25,7 @@ import walkingkooka.text.CharacterConstant;
 import walkingkooka.text.HasMultiLineText;
 import walkingkooka.text.HasTextWithSeparator;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.MultiLineText;
 import walkingkooka.text.TextContext;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
@@ -223,12 +224,13 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
     // HasMultiLineText.................................................................................................
 
     @Override
-    public String multiLineText(final TextContext context) {
+    public MultiLineText multiLineText(final TextContext context) {
         Objects.requireNonNull(context, "context");
 
         final LineEnding lineEnding = context.lineEnding();
 
-        return this.stream()
+        return MultiLineText.with(
+            this.stream()
             .map(LocaleLanguageTag::value)
             .collect(
                 Collectors.joining(
@@ -236,7 +238,8 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
                     "",
                     lineEnding // suffix (last line)
                 )
-            );
+            )
+        );
     }
 
     // TreePrintable....................................................................................................
