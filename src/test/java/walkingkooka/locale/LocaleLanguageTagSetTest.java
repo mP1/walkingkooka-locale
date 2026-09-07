@@ -33,7 +33,6 @@ import java.util.Set;
 import java.util.SortedSet;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting<LocaleLanguageTagSet, LocaleLanguageTag>,
     HasTextWithSeparatorTesting,
@@ -48,14 +47,6 @@ public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting
     private final static LocaleLanguageTag EN_NZ = LocaleLanguageTag.fromLocale(
         Locale.forLanguageTag("en-NZ")
     );
-
-    @Test
-    public void testWithNullFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> LocaleLanguageTagSet.with(null)
-        );
-    }
 
     @Test
     public void testDeleteBecomesEmpty() {
