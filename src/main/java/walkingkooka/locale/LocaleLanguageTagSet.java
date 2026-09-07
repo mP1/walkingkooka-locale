@@ -86,14 +86,8 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
         return matched;
     }
 
-    /**
-     * Factory that creates {@link LocaleLanguageTagSet} with the given languageTag.
-     */
-    public static LocaleLanguageTagSet with(final Collection<LocaleLanguageTag> languageTag) {
-        return EMPTY.setElements(languageTag);
-    }
-
-    private static LocaleLanguageTagSet withCopy(final SortedSet<LocaleLanguageTag> languageTag) {
+    // @VisibleForTesting
+    static LocaleLanguageTagSet with(final SortedSet<LocaleLanguageTag> languageTag) {
         return languageTag.isEmpty() ?
             EMPTY :
             new LocaleLanguageTagSet(languageTag);
@@ -126,7 +120,7 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
     @Override
     public LocaleLanguageTagSet subSet(final LocaleLanguageTag from,
                                        final LocaleLanguageTag to) {
-        return withCopy(
+        return with(
             this.languageTags.subSet(
                 from,
                 to
@@ -136,14 +130,14 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
 
     @Override
     public LocaleLanguageTagSet headSet(final LocaleLanguageTag locale) {
-        return withCopy(
+        return with(
             this.languageTags.headSet(locale)
         );
     }
 
     @Override
     public LocaleLanguageTagSet tailSet(final LocaleLanguageTag locale) {
-        return withCopy(
+        return with(
             this.languageTags.tailSet(locale)
         );
     }
@@ -175,7 +169,7 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
             );
             languageTagset = this.languageTags.equals(copy) ?
                 this :
-                withCopy(copy);
+                with(copy);
         }
 
         return languageTagset;
@@ -202,7 +196,7 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
             )
         );
 
-        return withCopy(localeLanguageTags);
+        return with(localeLanguageTags);
     }
 
     // HasTextWithSeparator.............................................................................................
