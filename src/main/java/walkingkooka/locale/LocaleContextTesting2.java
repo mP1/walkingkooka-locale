@@ -30,11 +30,11 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
     CanLocaleTextTesting2<C> {
 
     @Test
-    default void testFindByLocaleTextWithNegativeOffsetFails() {
+    default void testFindLocaleByTextWithNegativeOffsetFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.createContext()
-                .findByLocaleText(
+                .findLocaleByText(
                     "text",
                     -1,
                     1
@@ -43,11 +43,11 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
     }
 
     @Test
-    default void testFindByLocaleTextWithInvalidCountFails() {
+    default void testFindLocaleByTextWithInvalidCountFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.createContext()
-                .findByLocaleText(
+                .findLocaleByText(
                     "text",
                     0,
                     -1
@@ -56,11 +56,11 @@ public interface LocaleContextTesting2<C extends LocaleContext> extends LocaleCo
     }
 
     @Test
-    default void testFindByLocaleTextWithNullTextFails() {
+    default void testFindLocaleByTextWithNullTextFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createContext()
-                .findByLocaleText(
+                .findLocaleByText(
                     null,
                     0,
                     1

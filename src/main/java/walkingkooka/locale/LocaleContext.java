@@ -47,7 +47,7 @@ public interface LocaleContext extends Context,
     /**
      * Returns all {@link Locale} that have display or local text beginning with the given search text.
      */
-    Set<Locale> findByLocaleText(final String text,
+    Set<Locale> findLocaleByText(final String text,
                                  final int offset,
                                  final int count);
 }

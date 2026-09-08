@@ -56,14 +56,14 @@ public interface LocaleContextTesting extends HasLocaleTesting,
         );
     }
 
-    // findByLocaleTextAndCheck.........................................................................................
+    // findLocaleByTextAndCheck.........................................................................................
 
-    default void findByLocaleTextAndCheck(final LocaleContext context,
+    default void findLocaleByTextAndCheck(final LocaleContext context,
                                           final String text,
                                           final int offset,
                                           final int count,
                                           final Locale... expected) {
-        this.findByLocaleTextAndCheck(
+        this.findLocaleByTextAndCheck(
             context,
             text,
             offset,
@@ -72,19 +72,19 @@ public interface LocaleContextTesting extends HasLocaleTesting,
         );
     }
 
-    default void findByLocaleTextAndCheck(final LocaleContext context,
+    default void findLocaleByTextAndCheck(final LocaleContext context,
                                           final String text,
                                           final int offset,
                                           final int count,
                                           final Set<Locale> expected) {
         this.checkEquals(
             expected,
-            context.findByLocaleText(
+            context.findLocaleByText(
                 text,
                 offset,
                 count
             ),
-            () -> "findByLocaleText " + CharSequences.quoteAndEscape(text) + " offset=" + offset + " count=" + count
+            () -> "findLocaleByText " + CharSequences.quoteAndEscape(text) + " offset=" + offset + " count=" + count
         );
     }
 
