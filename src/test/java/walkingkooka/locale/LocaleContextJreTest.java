@@ -49,8 +49,8 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
     }
 
     @Test
-    public void testFindByLocaleText() {
-        this.findByLocaleTextAndCheck(
+    public void testFindLocaleByText() {
+        this.findLocaleByTextAndCheck(
             this.createContext(),
             "German",
             0,
@@ -62,8 +62,8 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
     }
 
     @Test
-    public void testFindByLocaleText2() {
-        this.findByLocaleTextAndCheck(
+    public void testFindLocaleByText2() {
+        this.findLocaleByTextAndCheck(
             this.createContext(),
             "German",
             1,
@@ -75,8 +75,8 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
     }
 
     @Test
-    public void testFindByLocaleTextDifferentCase() {
-        this.findByLocaleTextAndCheck(
+    public void testFindLocaleByTextDifferentCase() {
+        this.findLocaleByTextAndCheck(
             this.createContext(),
             "GERman",
             1,

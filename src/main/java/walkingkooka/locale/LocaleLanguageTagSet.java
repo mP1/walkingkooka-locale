@@ -68,7 +68,7 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
 
         final Set<LocaleLanguageTag> matched = Sets.ordered();
 
-        for (final Locale locale : context.findByLocaleText(
+        for (final Locale locale : context.findLocaleByText(
             startsWith,
             0,
             Integer.MAX_VALUE

@@ -45,11 +45,11 @@ public interface LocaleContextDelegator extends LocaleContext {
     }
 
     @Override
-    default Set<Locale> findByLocaleText(final String text,
+    default Set<Locale> findLocaleByText(final String text,
                                          final int offset,
                                          final int count) {
         return this.localeContext()
-            .findByLocaleText(
+            .findLocaleByText(
                 text,
                 offset,
                 count
