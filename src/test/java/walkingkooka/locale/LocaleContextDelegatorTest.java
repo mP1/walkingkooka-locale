@@ -34,6 +34,16 @@ public final class LocaleContextDelegatorTest implements LocaleContextTesting2<T
         return TestLocaleContext.class;
     }
 
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
+    }
+
     static class TestLocaleContext implements LocaleContextDelegator {
 
         @Override
