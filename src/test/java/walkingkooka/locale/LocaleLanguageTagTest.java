@@ -77,7 +77,7 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
         this.parseStringFails(
             Locale.forLanguageTag("en-AU")
                 .toString(),
-            new IllegalArgumentException("Invalid language tag: en_AU")
+            new IllegalArgumentException("Invalid language tag: \"en_AU\"")
         );
     }
 
