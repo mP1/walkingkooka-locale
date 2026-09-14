@@ -17,6 +17,7 @@
 
 package walkingkooka.locale;
 
+import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.collect.set.ImmutableSortedSet;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -174,5 +175,16 @@ final class LocaleContextJre implements LocaleContext {
     @Override
     public String toString() {
         return "JRE " + this.locale.toLanguageTag();
+    }
+
+    // main.............................................................................................................
+
+    @GwtIncompatible
+    public static void main(final String[] args) {
+        final LocaleContextJre context = new LocaleContextJre(Locale.forLanguageTag("en-AU"));
+
+        System.out.println("availableLocales");
+        context.availableLocales()
+            .forEach((Locale locale) -> System.out.println("  " + locale));
     }
 }
