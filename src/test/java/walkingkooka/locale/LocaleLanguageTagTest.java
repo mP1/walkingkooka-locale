@@ -23,6 +23,7 @@ import walkingkooka.compare.ComparableTesting2;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
+import walkingkooka.text.HasLineEndingTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Locale;
@@ -31,6 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLanguageTag>,
     ClassTesting2<LocaleLanguageTag>,
+    HasLineEndingTesting,
     ParseStringTesting<LocaleLanguageTag>,
     TreePrintableTesting,
     HasValueTesting {
@@ -97,6 +99,27 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
         this.parseStringAndCheck(
             "en-AU",
             LocaleLanguageTag.parse(LOCALE)
+        );
+    }
+
+    @Test
+    public void testParseAllLocales() {
+        final StringBuilder invalid = new StringBuilder();
+
+        for (final Locale locale : Locale.getAvailableLocales()) {
+            final String languageTag = locale.toLanguageTag();
+
+            try {
+
+                LocaleLanguageTag.parse(languageTag);
+            } catch (final IllegalArgumentException cause) {
+                invalid.append(languageTag + LINE_ENDING);
+            }
+        }
+
+        this.checkEquals(
+            "",
+            invalid.toString()
         );
     }
 
