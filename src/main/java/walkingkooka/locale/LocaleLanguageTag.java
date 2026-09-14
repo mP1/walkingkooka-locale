@@ -20,6 +20,7 @@ package walkingkooka.locale;
 import walkingkooka.HasValue;
 import walkingkooka.compare.Comparators;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 import walkingkooka.util.HasLocale;
@@ -53,7 +54,7 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
             languageTag
         )
         ) {
-            throw new IllegalArgumentException("Invalid language tag: " + languageTag);
+            throw new IllegalArgumentException("Invalid language tag: " + CharSequences.quoteAndEscape(languageTag));
         }
 
         return new LocaleLanguageTag(languageTag);
