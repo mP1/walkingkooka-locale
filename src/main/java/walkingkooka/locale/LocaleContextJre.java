@@ -26,7 +26,6 @@ import walkingkooka.text.CharSequences;
 
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -56,11 +55,15 @@ final class LocaleContextJre implements LocaleContext {
     public Set<Locale> availableLocales() {
         if (null == this.availableLocales) {
             final SortedSet<Locale> locales = SortedSets.tree(LocaleContexts.LANGUAGE_TAG_COMPARATOR);
-            locales.addAll(
-                Arrays.asList(
-                    Locale.getAvailableLocales()
-                )
-            );
+            for(final Locale locale : Locale.getAvailableLocales()) {
+                // skip locales such as "ja-JP-u-ca-japanese-x-lvariant-JP".
+                //
+                // such locales are also skipped by WalkingkookaLanguageTag which provides Locales for
+                // LocaleProviderTool & LocaleProviderAnnotationProcessor
+                if(locale.getExtensionKeys().isEmpty()) {
+                    locales.add(locale);
+                }
+            }
             this.availableLocales = SortedSets.immutable(locales);
         }
 
