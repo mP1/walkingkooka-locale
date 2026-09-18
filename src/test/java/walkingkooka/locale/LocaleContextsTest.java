@@ -20,7 +20,6 @@ package walkingkooka.locale;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.set.SortedSets;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -67,10 +66,5 @@ public final class LocaleContextsTest implements PublicStaticHelperTesting<Local
     @Override
     public Class<LocaleContexts> type() {
         return LocaleContexts.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }
