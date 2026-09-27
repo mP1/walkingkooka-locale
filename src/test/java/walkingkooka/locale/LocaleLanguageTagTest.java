@@ -87,6 +87,19 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
 
     // parse............................................................................................................
 
+    @Test
+    public void testParseEmptyString() {
+        final String languageTag = "";
+
+        Locale.forLanguageTag(languageTag);
+
+        final LocaleLanguageTag localeLanguageTag = LocaleLanguageTag.parse(languageTag);
+        this.valueAndCheck(
+            localeLanguageTag,
+            languageTag
+        );
+    }
+
     @Override
     public void testParseStringEmptyFails() {
         throw new UnsupportedOperationException();
