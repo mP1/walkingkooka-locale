@@ -62,6 +62,19 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     }
 
     @Test
+    public void testFromLocaleAllLocales() {
+        for(final Locale locale : Locale.getAvailableLocales()) {
+            final String languageTag = locale.toLanguageTag();
+
+            final LocaleLanguageTag localeLanguageTag = LocaleLanguageTag.parse(languageTag);
+            this.valueAndCheck(
+                localeLanguageTag,
+                languageTag
+            );
+        }
+    }
+
+    @Test
     public void testFromLocaleAndParse() {
         final String languageTag = "en-AU";
         final Locale locale = Locale.forLanguageTag(languageTag);
