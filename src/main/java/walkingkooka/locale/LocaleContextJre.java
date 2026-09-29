@@ -74,10 +74,12 @@ final class LocaleContextJre implements LocaleContext {
 
     @Override
     public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-        return Optional.of(
-            DateTimeSymbols.fromDateFormatSymbols(
-                new DateFormatSymbols(locale)
-            )
+        return Optional.ofNullable(
+            isValidLocale(locale) ?
+                DateTimeSymbols.fromDateFormatSymbols(
+                    new DateFormatSymbols(locale)
+                ) :
+                null
         );
     }
 
@@ -152,9 +154,15 @@ final class LocaleContextJre implements LocaleContext {
 
     @Override
     public Optional<String> localeText(final Locale locale) {
+        return LocaleContextJreLocaleText.localeText(locale);
+    }
+
+    static boolean isValidLocale(final Locale locale) {
         Objects.requireNonNull(locale, "locale");
 
-        return LocaleContextJreLocaleText.localeText(locale);
+        final String localeToString = locale.toString();
+        return false == localeToString.isEmpty() &&
+            false == "und".equals(localeToString);
     }
 
     // Object...........................................................................................................
