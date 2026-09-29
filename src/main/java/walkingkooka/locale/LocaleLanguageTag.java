@@ -41,7 +41,7 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
      * Performs a null check, throwing {@link NullPointerException} if it is null and returns true if the locale
      * is not empty or undefined
      */
-    static boolean isValidLocale(final Locale locale) {
+    public static boolean isValidLocale(final Locale locale) {
         Objects.requireNonNull(locale, "locale");
 
         final String localeToString = locale.toString();
