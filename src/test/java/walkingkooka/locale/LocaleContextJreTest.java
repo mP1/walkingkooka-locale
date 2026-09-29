@@ -49,6 +49,22 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
     }
 
     @Test
+    public void testDateTimeSymbolsForLocaleWithEmpty() {
+        this.dateTimeSymbolsForLocaleAndCheck(
+            this.createContext(),
+            Locale.forLanguageTag("")
+        );
+    }
+
+    @Test
+    public void testDateTimeSymbolsForLocaleWithUnd() {
+        this.dateTimeSymbolsForLocaleAndCheck(
+            this.createContext(),
+            Locale.forLanguageTag("UND")
+        );
+    }
+
+    @Test
     public void testFindLocaleByText() {
         this.findLocaleByTextAndCheck(
             this.createContext(),
