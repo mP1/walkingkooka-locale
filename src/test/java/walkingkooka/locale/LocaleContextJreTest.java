@@ -20,7 +20,9 @@ package walkingkooka.locale;
 import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.math.DecimalNumberSymbols;
 
+import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -61,6 +63,34 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
         this.dateTimeSymbolsForLocaleAndCheck(
             this.createContext(),
             Locale.forLanguageTag("UND")
+        );
+    }
+
+    @Test
+    public void testDecimalNumberSymbolsForLocaleWithEmpty() {
+        this.decimalNumberSymbolsForLocaleAndCheck(
+            this.createContext(),
+            Locale.forLanguageTag("")
+        );
+    }
+
+    @Test
+    public void testDecimalNumberSymbolsForLocaleWithUnd() {
+        this.decimalNumberSymbolsForLocaleAndCheck(
+            this.createContext(),
+            Locale.forLanguageTag("UND")
+        );
+    }
+
+    @Test
+    public void testDecimalNumberSymbolsForLocale() {
+        this.decimalNumberSymbolsForLocaleAndCheck(
+            this.createContext(),
+            LOCALE,
+            DecimalNumberSymbols.fromDecimalFormatSymbols(
+                '+',
+                new DecimalFormatSymbols(LOCALE)
+            )
         );
     }
 

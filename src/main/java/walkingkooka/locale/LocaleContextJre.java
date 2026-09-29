@@ -85,11 +85,13 @@ final class LocaleContextJre implements LocaleContext {
 
     @Override
     public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
-        return Optional.of(
-            DecimalNumberSymbols.fromDecimalFormatSymbols(
-                '+',
-                new DecimalFormatSymbols(locale)
-            )
+        return Optional.ofNullable(
+            isValidLocale(locale) ?
+                DecimalNumberSymbols.fromDecimalFormatSymbols(
+                    '+',
+                    new DecimalFormatSymbols(locale)
+                ) :
+                null
         );
     }
 
