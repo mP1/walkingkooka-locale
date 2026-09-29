@@ -34,11 +34,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLanguageTag>,
     ClassTesting2<LocaleLanguageTag>,
     HasLineEndingTesting,
+    HasLocaleTesting,
     ParseStringTesting<LocaleLanguageTag>,
     TreePrintableTesting,
     HasValueTesting {
-
-    private final static String LOCALE = "en-AU";
 
     // isValidLocale....................................................................................................
 
@@ -103,13 +102,10 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
 
     @Test
     public void testFromLocale() {
-        final String languageTag = "en-AU";
-        final Locale locale = Locale.forLanguageTag(languageTag);
-
-        final LocaleLanguageTag localeLanguageTag = LocaleLanguageTag.fromLocale(locale);
+        final LocaleLanguageTag localeLanguageTag = LocaleLanguageTag.fromLocale(LOCALE);
         this.valueAndCheck(
             localeLanguageTag,
-            languageTag
+            LOCALE.toLanguageTag()
         );
     }
 
@@ -128,12 +124,9 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
 
     @Test
     public void testFromLocaleAndParse() {
-        final String languageTag = "en-AU";
-        final Locale locale = Locale.forLanguageTag(languageTag);
-
         this.checkEquals(
-            LocaleLanguageTag.fromLocale(locale),
-            LocaleLanguageTag.parse(languageTag)
+            LocaleLanguageTag.fromLocale(LOCALE),
+            LocaleLanguageTag.parse(LOCALE.toLanguageTag())
         );
     }
 
@@ -171,8 +164,8 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     @Test
     public void testParse() {
         this.parseStringAndCheck(
-            "en-AU",
-            LocaleLanguageTag.parse(LOCALE)
+            LOCALE.toLanguageTag(),
+            LocaleLanguageTag.fromLocale(LOCALE)
         );
     }
 
@@ -233,7 +226,7 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
 
     @Override
     public LocaleLanguageTag createComparable() {
-        return LocaleLanguageTag.parse(LOCALE);
+        return LocaleLanguageTag.fromLocale(LOCALE);
     }
 
     // TreePrintable....................................................................................................
