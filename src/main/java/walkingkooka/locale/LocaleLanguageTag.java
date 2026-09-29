@@ -20,6 +20,7 @@ package walkingkooka.locale;
 import walkingkooka.HasValue;
 import walkingkooka.compare.Comparators;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
 import walkingkooka.util.HasLocale;
@@ -48,15 +49,26 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
             false == "und".equals(localeToString);
     }
 
+    static void requireValidLocale(final Locale locale) {
+        if (false == isValidLocale(locale)) {
+            throw new IllegalArgumentException(
+                "Invalid locale " + CharSequences.quoteIfChars(locale.toString())
+            );
+        }
+    }
+
     public static LocaleLanguageTag fromLocale(final Locale locale) {
+        requireValidLocale(locale);
+
         return new LocaleLanguageTag(
-            Objects.requireNonNull(locale, "locale")
-                .toLanguageTag()
+            locale.toLanguageTag()
         );
     }
 
     public static LocaleLanguageTag parse(final String languageTag) {
-        Locale.forLanguageTag(languageTag);
+        requireValidLocale(
+            Locale.forLanguageTag(languageTag)
+        );
 
         return new LocaleLanguageTag(languageTag);
     }
