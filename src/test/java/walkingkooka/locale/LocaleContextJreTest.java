@@ -22,6 +22,7 @@ import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.datetime.HasDateTimeSymbolsTesting;
 import walkingkooka.math.HasDecimalNumberSymbolsTesting;
+import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Locale;
@@ -33,7 +34,8 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
     HashCodeEqualsDefinedTesting2<LocaleContextJre>,
     HasDateTimeSymbolsTesting,
     HasDecimalNumberSymbolsTesting,
-    HasLocaleTesting {
+    HasLocaleTesting,
+    ThrowableTesting {
 
     @Test
     public void testWithNullLocaleFails() {
@@ -160,6 +162,38 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
                 locale::toLanguageTag
             );
         }
+    }
+
+    @Test
+    public void testSetLocaleWithEmptyLocaleFails() {
+        final IllegalArgumentException thrown = assertThrows(
+            IllegalArgumentException.class,
+            () -> this.createContext()
+                .setLocale(
+                    new Locale("")
+                )
+        );
+
+        this.getMessageAndCheck(
+            thrown,
+            "Invalid or undefined locale \"\""
+        );
+    }
+
+    @Test
+    public void testSetLocaleWithUndefinedLocaleFails() {
+        final IllegalArgumentException thrown = assertThrows(
+            IllegalArgumentException.class,
+            () -> this.createContext()
+                .setLocale(
+                    new Locale("UND")
+                )
+        );
+
+        this.getMessageAndCheck(
+            thrown,
+            "Invalid or undefined locale \"und\""
+        );
     }
 
     @Override
