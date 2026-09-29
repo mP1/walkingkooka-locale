@@ -22,6 +22,7 @@ import walkingkooka.HasValueTesting;
 import walkingkooka.compare.ComparableTesting2;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasLineEndingTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -36,6 +37,7 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     HasLineEndingTesting,
     HasLocaleTesting,
     ParseStringTesting<LocaleLanguageTag>,
+    ThrowableTesting,
     TreePrintableTesting,
     HasValueTesting {
 
@@ -101,6 +103,51 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     }
 
     @Test
+    public void testFromLocaleWithEmptyLocaleFails() {
+        final IllegalArgumentException thrown = assertThrows(
+            IllegalArgumentException.class,
+            () -> LocaleLanguageTag.fromLocale(
+                new Locale("")
+            )
+        );
+
+        this.getMessageAndCheck(
+            thrown,
+            "Invalid locale \"\""
+        );
+    }
+
+    @Test
+    public void testFromLocaleWitUndFails() {
+        final IllegalArgumentException thrown = assertThrows(
+            IllegalArgumentException.class,
+            () -> LocaleLanguageTag.fromLocale(
+                new Locale("und")
+            )
+        );
+
+        this.getMessageAndCheck(
+            thrown,
+            "Invalid locale \"und\""
+        );
+    }
+
+    @Test
+    public void testFromLocaleWitUNDFails() {
+        final IllegalArgumentException thrown = assertThrows(
+            IllegalArgumentException.class,
+            () -> LocaleLanguageTag.fromLocale(
+                new Locale("UND")
+            )
+        );
+
+        this.getMessageAndCheck(
+            thrown,
+            "Invalid locale \"und\""
+        );
+    }
+
+    @Test
     public void testFromLocale() {
         final LocaleLanguageTag localeLanguageTag = LocaleLanguageTag.fromLocale(LOCALE);
         this.valueAndCheck(
@@ -113,6 +160,9 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     public void testFromLocaleAllLocales() {
         for(final Locale locale : Locale.getAvailableLocales()) {
             final String languageTag = locale.toLanguageTag();
+            if(languageTag.isEmpty() || languageTag.equals("und")) {
+                continue;
+            }
 
             final LocaleLanguageTag localeLanguageTag = LocaleLanguageTag.parse(languageTag);
             this.valueAndCheck(
@@ -131,24 +181,6 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     }
 
     // parse............................................................................................................
-
-    @Test
-    public void testParseEmptyString() {
-        final String languageTag = "";
-
-        Locale.forLanguageTag(languageTag);
-
-        final LocaleLanguageTag localeLanguageTag = LocaleLanguageTag.parse(languageTag);
-        this.valueAndCheck(
-            localeLanguageTag,
-            languageTag
-        );
-    }
-
-    @Override
-    public void testParseStringEmptyFails() {
-        throw new UnsupportedOperationException();
-    }
 
     @Test
     public void testParseLocaleLanguageTag() {
@@ -175,9 +207,11 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
 
         for (final Locale locale : Locale.getAvailableLocales()) {
             final String languageTag = locale.toLanguageTag();
+            if(languageTag.isEmpty() || languageTag.equals("und")) {
+                continue;
+            }
 
             try {
-
                 LocaleLanguageTag.parse(languageTag);
             } catch (final IllegalArgumentException cause) {
                 invalid.append(languageTag + LINE_ENDING);
