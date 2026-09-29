@@ -56,6 +56,11 @@ final class LocaleContextJre implements LocaleContext {
         if (null == this.availableLocales) {
             final SortedSet<Locale> locales = SortedSets.tree(LocaleContexts.LANGUAGE_TAG_COMPARATOR);
             for(final Locale locale : Locale.getAvailableLocales()) {
+                // skip empty and undefined
+                if (false == LocaleLanguageTag.isValidLocale(locale)) {
+                    continue;
+                }
+
                 // skip locales such as "ja-JP-u-ca-japanese-x-lvariant-JP".
                 //
                 // such locales are also skipped by WalkingkookaLanguageTag which provides Locales for
