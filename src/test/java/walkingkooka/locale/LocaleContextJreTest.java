@@ -152,8 +152,43 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
         );
     }
 
+    // localeText.......................................................................................................
+
     @Test
-    public void testLocaleText() {
+    public void testLocaleTextWithEmptyLocale() {
+        this.localeTextAndCheck(
+            this.createContext(),
+            new Locale("")
+        );
+    }
+
+    @Test
+    public void testLocaleTextWithUndefinedLocale() {
+        this.localeTextAndCheck(
+            this.createContext(),
+            new Locale("und")
+        );
+    }
+
+    @Test
+    public void testLocaleTextWithUndefinedLocale2() {
+        this.localeTextAndCheck(
+            this.createContext(),
+            new Locale("UND")
+        );
+    }
+
+    @Test
+    public void testLocaleTextWithLocale() {
+        this.localeTextAndCheck(
+            this.createContext(),
+            LOCALE,
+            "English (Australia)"
+        );
+    }
+
+    @Test
+    public void testLocaleTextForAllAvailableLocales() {
         for (final Locale locale : Locale.getAvailableLocales()) {
             final LocaleContextJre context = LocaleContextJre.with(locale);
             this.checkNotEquals(
@@ -163,6 +198,8 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
             );
         }
     }
+
+    // setLocale........................................................................................................
 
     @Test
     public void testSetLocaleWithEmptyLocaleFails() {
