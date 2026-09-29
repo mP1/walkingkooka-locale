@@ -132,7 +132,13 @@ final class LocaleContextJre implements LocaleContext {
 
     @Override
     public void setLocale(final Locale locale) {
-        this.locale = Objects.requireNonNull(locale, "locale");
+        if(false == isValidLocale(locale)) {
+            // Invalid or undefined locale ""
+            // Invalid or undefined locale "und"
+            throw new IllegalArgumentException("Invalid or undefined locale " + CharSequences.quoteIfChars(locale.toString()));
+        }
+
+        this.locale = locale;
     }
 
     private Locale locale;
