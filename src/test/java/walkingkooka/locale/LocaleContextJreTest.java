@@ -21,9 +21,9 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.datetime.HasDateTimeSymbolsTesting;
-import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.math.HasDecimalNumberSymbolsTesting;
+import walkingkooka.util.HasLocaleTesting;
 
-import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -31,9 +31,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleContextJre>,
     HashCodeEqualsDefinedTesting2<LocaleContextJre>,
-    HasDateTimeSymbolsTesting {
-
-    private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
+    HasDateTimeSymbolsTesting,
+    HasDecimalNumberSymbolsTesting,
+    HasLocaleTesting {
 
     @Test
     public void testWithNullLocaleFails() {
@@ -98,10 +98,7 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
         this.decimalNumberSymbolsForLocaleAndCheck(
             this.createContext(),
             LOCALE,
-            DecimalNumberSymbols.fromDecimalFormatSymbols(
-                '+',
-                new DecimalFormatSymbols(LOCALE)
-            )
+            DECIMAL_NUMBER_SYMBOLS
         );
     }
 
@@ -146,12 +143,10 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
 
     @Test
     public void testLocaleForLanguageTag() {
-        final Locale locale = Locale.forLanguageTag("en-AU");
-
         this.localeForLanguageTagAndCheck(
             this.createContext(),
-            LocaleLanguageTag.fromLocale(locale),
-            locale
+            LocaleLanguageTag.fromLocale(LOCALE),
+            LOCALE
         );
     }
 
@@ -177,7 +172,7 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
     @Test
     public void testEqualsDifferentLocale() {
         this.checkNotEquals(
-            LocaleContextJre.with(Locale.FRANCE)
+            LocaleContextJre.with(DIFFERENT_LOCALE)
         );
     }
 
