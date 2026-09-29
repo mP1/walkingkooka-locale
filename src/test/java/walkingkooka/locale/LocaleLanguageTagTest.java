@@ -25,6 +25,7 @@ import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasLineEndingTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
+import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Locale;
 
@@ -38,6 +39,57 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     HasValueTesting {
 
     private final static String LOCALE = "en-AU";
+
+    // isValidLocale....................................................................................................
+
+    @Test
+    public void testIsValidLocaleWithNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> LocaleLanguageTag.isValidLocale(null)
+        );
+    }
+
+    @Test
+    public void testIsValidWithEmptyLocale() {
+        this.isValidLocaleAndCheck(
+            new Locale(""),
+            false
+        );
+    }
+
+    @Test
+    public void testIsValidWithUndLocale() {
+        this.isValidLocaleAndCheck(
+            new Locale("und"),
+            false
+        );
+    }
+
+    @Test
+    public void testIsValidWithUNDLocale() {
+        this.isValidLocaleAndCheck(
+            new Locale("UND"),
+            false
+        );
+    }
+
+    @Test
+    public void testIsValidWithLocale() {
+        this.isValidLocaleAndCheck(
+            HasLocaleTesting.LOCALE,
+            true
+        );
+    }
+
+    private void isValidLocaleAndCheck(final Locale locale,
+                                       final boolean expected) {
+        this.checkEquals(
+            expected,
+            LocaleLanguageTag.isValidLocale(locale),
+            locale::toString
+        );
+    }
 
     // fromLocale.......................................................................................................
 

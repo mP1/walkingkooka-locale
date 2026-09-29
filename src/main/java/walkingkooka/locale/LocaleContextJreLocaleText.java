@@ -29,7 +29,7 @@ class LocaleContextJreLocaleText extends LocaleContextJreLocaleTextGwt {
     static Optional<String> localeText(final Locale locale) {
         String text = null;
 
-        if (LocaleContextJre.isValidLocale(locale)) {
+        if (LocaleLanguageTag.isValidLocale(locale)) {
             final String displayName = locale.getDisplayName();
 
             text = CharSequences.isNullOrEmpty(displayName) ?

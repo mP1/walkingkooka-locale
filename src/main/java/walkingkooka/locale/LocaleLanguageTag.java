@@ -36,6 +36,18 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
 
     public final static CaseSensitivity CASE_SENSITIVITY = HasLocale.LOCALE_CASE_SENSITIVITY;
 
+    /**
+     * Performs a null check, throwing {@link NullPointerException} if it is null and returns true if the locale
+     * is not empty or undefined
+     */
+    static boolean isValidLocale(final Locale locale) {
+        Objects.requireNonNull(locale, "locale");
+
+        final String localeToString = locale.toString();
+        return false == localeToString.isEmpty() &&
+            false == "und".equals(localeToString);
+    }
+
     public static LocaleLanguageTag fromLocale(final Locale locale) {
         return new LocaleLanguageTag(
             Objects.requireNonNull(locale, "locale")
