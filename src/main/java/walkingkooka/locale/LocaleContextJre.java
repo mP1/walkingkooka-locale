@@ -75,7 +75,7 @@ final class LocaleContextJre implements LocaleContext {
     @Override
     public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
         return Optional.ofNullable(
-            isValidLocale(locale) ?
+            LocaleLanguageTag.isValidLocale(locale) ?
                 DateTimeSymbols.fromDateFormatSymbols(
                     new DateFormatSymbols(locale)
                 ) :
@@ -86,7 +86,7 @@ final class LocaleContextJre implements LocaleContext {
     @Override
     public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
         return Optional.ofNullable(
-            isValidLocale(locale) ?
+            LocaleLanguageTag.isValidLocale(locale) ?
                 DecimalNumberSymbols.fromDecimalFormatSymbols(
                     '+',
                     new DecimalFormatSymbols(locale)
@@ -132,7 +132,7 @@ final class LocaleContextJre implements LocaleContext {
 
     @Override
     public void setLocale(final Locale locale) {
-        if(false == isValidLocale(locale)) {
+        if(false == LocaleLanguageTag.isValidLocale(locale)) {
             // Invalid or undefined locale ""
             // Invalid or undefined locale "und"
             throw new IllegalArgumentException("Invalid or undefined locale " + CharSequences.quoteIfChars(locale.toString()));
@@ -163,14 +163,6 @@ final class LocaleContextJre implements LocaleContext {
     @Override
     public Optional<String> localeText(final Locale locale) {
         return LocaleContextJreLocaleText.localeText(locale);
-    }
-
-    static boolean isValidLocale(final Locale locale) {
-        Objects.requireNonNull(locale, "locale");
-
-        final String localeToString = locale.toString();
-        return false == localeToString.isEmpty() &&
-            false == "und".equals(localeToString);
     }
 
     // Object...........................................................................................................
