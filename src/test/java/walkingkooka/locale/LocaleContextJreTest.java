@@ -20,6 +20,7 @@ package walkingkooka.locale;
 import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.datetime.HasDateTimeSymbolsTesting;
 import walkingkooka.math.DecimalNumberSymbols;
 
 import java.text.DecimalFormatSymbols;
@@ -29,7 +30,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleContextJre>,
-    HashCodeEqualsDefinedTesting2<LocaleContextJre> {
+    HashCodeEqualsDefinedTesting2<LocaleContextJre>,
+    HasDateTimeSymbolsTesting {
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
 
@@ -63,6 +65,15 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
         this.dateTimeSymbolsForLocaleAndCheck(
             this.createContext(),
             Locale.forLanguageTag("UND")
+        );
+    }
+
+    @Test
+    public void testDateTimeSymbols() {
+        this.dateTimeSymbolsForLocaleAndCheck(
+            this.createContext(),
+            LOCALE,
+            DATE_TIME_SYMBOLS
         );
     }
 
