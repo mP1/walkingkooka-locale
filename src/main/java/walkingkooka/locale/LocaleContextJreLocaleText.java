@@ -27,12 +27,16 @@ class LocaleContextJreLocaleText extends LocaleContextJreLocaleTextGwt {
 
     @GwtIncompatible
     static Optional<String> localeText(final Locale locale) {
-        final String displayName = locale.getDisplayName();
+        String text = null;
 
-        return Optional.ofNullable(
-            CharSequences.isNullOrEmpty(displayName) ?
+        if (LocaleContextJre.isValidLocale(locale)) {
+            final String displayName = locale.getDisplayName();
+
+            text = CharSequences.isNullOrEmpty(displayName) ?
                 null :
-                displayName
-        );
+                displayName;
+        }
+
+        return Optional.ofNullable(text);
     }
 }
