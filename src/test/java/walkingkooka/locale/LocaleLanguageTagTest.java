@@ -92,6 +92,51 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
         );
     }
 
+    // requireValidLocale...............................................................................................
+
+    @Test
+    public void testRequireValidLocaleWithNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> LocaleLanguageTag.requireValidLocale(null)
+        );
+    }
+
+    @Test
+    public void testRequireValidLocaleWithEmptyFails() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> LocaleLanguageTag.requireValidLocale(
+                new Locale("")
+            )
+        );
+    }
+
+    @Test
+    public void testRequireValidLocaleWithUndFails() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> LocaleLanguageTag.requireValidLocale(
+                new Locale("und")
+            )
+        );
+    }
+
+    @Test
+    public void testRequireValidLocaleWithUNDFails() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> LocaleLanguageTag.requireValidLocale(
+                new Locale("UND")
+            )
+        );
+    }
+
+    @Test
+    public void testRequireValidLocale() {
+        LocaleLanguageTag.requireValidLocale(LOCALE);
+    }
+
     // fromLocale.......................................................................................................
 
     @Test

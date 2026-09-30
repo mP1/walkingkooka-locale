@@ -233,6 +233,13 @@ public final class LocaleContextJreTest implements LocaleContextTesting2<LocaleC
         );
     }
 
+    @Test
+    public void testRequireValidLocaleAllLocales() {
+        for(Locale locale : this.createContext().availableLocales()) {
+            LocaleLanguageTag.requireValidLocale(LOCALE);
+        }
+    }
+
     @Override
     public LocaleContextJre createContext() {
         return LocaleContextJre.with(LOCALE);

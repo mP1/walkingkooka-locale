@@ -49,7 +49,7 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
             false == "und".equals(localeToString);
     }
 
-    static void requireValidLocale(final Locale locale) {
+    public static void requireValidLocale(final Locale locale) {
         if (false == isValidLocale(locale)) {
             throw new IllegalArgumentException(
                 "Invalid locale " + CharSequences.quoteIfChars(locale.toString())
