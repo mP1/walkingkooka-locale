@@ -17,18 +17,12 @@
 
 package walkingkooka.locale;
 
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 
-public final class LocaleContextJreLocaleTextTest implements ClassTesting<LocaleContextJreLocaleText> {
+public final class LocaleContextJreLocaleTextTest implements PackagePrivateClassTesting<LocaleContextJreLocaleText> {
 
     @Override
     public Class<LocaleContextJreLocaleText> type() {
         return LocaleContextJreLocaleText.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }
