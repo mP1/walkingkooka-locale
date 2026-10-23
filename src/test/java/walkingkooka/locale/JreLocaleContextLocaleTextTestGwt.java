@@ -17,10 +17,9 @@
 
 package walkingkooka.locale;
 
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 
-public final class JreLocaleContextLocaleTextTestGwt implements ClassTesting<LocaleContextJreLocaleTextGwt> {
+public final class JreLocaleContextLocaleTextTestGwt implements PackagePrivateClassTesting<LocaleContextJreLocaleTextGwt> {
 
     @Override
     public void testTestNaming() {
@@ -30,10 +29,5 @@ public final class JreLocaleContextLocaleTextTestGwt implements ClassTesting<Loc
     @Override
     public Class<LocaleContextJreLocaleTextGwt> type() {
         return LocaleContextJreLocaleTextGwt.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }
