@@ -18,12 +18,13 @@
 package walkingkooka.locale;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.reflect.ThrowableTesting2;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MissingLocaleExceptionTest implements ThrowableTesting2<MissingLocaleException> {
+public class MissingLocaleExceptionTest implements ThrowableTesting2<MissingLocaleException>,
+    PublicClassTesting<MissingLocaleException> {
 
     // with.............................................................................................................
 
@@ -68,10 +69,5 @@ public class MissingLocaleExceptionTest implements ThrowableTesting2<MissingLoca
     @Override
     public Class<MissingLocaleException> type() {
         return MissingLocaleException.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }
