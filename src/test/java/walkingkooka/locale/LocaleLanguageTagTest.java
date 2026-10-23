@@ -20,8 +20,7 @@ package walkingkooka.locale;
 import org.junit.jupiter.api.Test;
 import walkingkooka.HasValueTesting;
 import walkingkooka.compare.ComparableTesting2;
-import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasLineEndingTesting;
@@ -33,7 +32,7 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLanguageTag>,
-    ClassTesting2<LocaleLanguageTag>,
+    PublicClassTesting<LocaleLanguageTag>,
     HasLineEndingTesting,
     HasLocaleTesting,
     ParseStringTesting<LocaleLanguageTag>,
@@ -323,10 +322,5 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     @Override
     public Class<LocaleLanguageTag> type() {
         return LocaleLanguageTag.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }
