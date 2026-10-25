@@ -18,8 +18,10 @@
 package walkingkooka.locale;
 
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.text.CharSequences;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 
 public interface CanDateTimeSymbolsForLocale {
@@ -28,4 +30,18 @@ public interface CanDateTimeSymbolsForLocale {
      * Returns the {@link DateTimeSymbols} if available for the given {@link Locale}.
      */
     Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale);
+
+    /**
+     * Attempts to fetch the {@link DateTimeSymbols} for the given {@link Locale}, throwing a {@link IllegalArgumentException}
+     * when missing.
+     */
+    default DateTimeSymbols dateTimeSymbolsForLocaleOrFail(final Locale locale) {
+        Objects.requireNonNull(locale, "locale");
+
+        // Missing DateTimeSymbols for "en-AU"
+        return this.dateTimeSymbolsForLocale(locale)
+            .orElseThrow(() -> new IllegalArgumentException(
+                "Missing " + DateTimeSymbols.class.getSimpleName() + " for " + CharSequences.quoteAndEscape(locale.toLanguageTag()))
+            );
+    }
 }

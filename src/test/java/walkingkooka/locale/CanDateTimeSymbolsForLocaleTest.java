@@ -17,9 +17,35 @@
 
 package walkingkooka.locale;
 
+import org.junit.jupiter.api.Test;
+import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.reflect.PublicClassTesting;
+import walkingkooka.reflect.ThrowableTesting;
 
-public final class CanDateTimeSymbolsForLocaleTest implements PublicClassTesting<CanDateTimeSymbolsForLocale> {
+import java.util.Locale;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public final class CanDateTimeSymbolsForLocaleTest implements PublicClassTesting<CanDateTimeSymbolsForLocale>,
+    LocaleContextTesting,
+    ThrowableTesting {
+
+    @Test
+    public void testDateTimeSymbolsForLocaleOrFail() {
+        this.getMessageAndCheck(
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new CanDateTimeSymbolsForLocale() {
+                    @Override
+                    public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(Locale locale) {
+                        return Optional.empty();
+                    }
+                }.dateTimeSymbolsForLocaleOrFail(LOCALE)
+            ),
+            "Missing DateTimeSymbols for \"en-AU\""
+        );
+    }
 
     // class............................................................................................................
 
