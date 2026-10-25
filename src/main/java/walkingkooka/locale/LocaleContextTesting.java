@@ -37,6 +37,10 @@ public interface LocaleContextTesting extends HasLocaleTesting,
         LocaleContexts.jre(LOCALE)
     );
 
+    LocaleContext DIFFERENT_LOCALE_CONTEXT = LocaleContexts.readOnly(
+        LocaleContexts.jre(DIFFERENT_LOCALE)
+    );
+
     // availableLocales.................................................................................................
 
     default void availableLocalesAndCheck(final LocaleContext context,
