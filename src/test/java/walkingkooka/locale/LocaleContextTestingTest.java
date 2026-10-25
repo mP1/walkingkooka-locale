@@ -17,9 +17,19 @@
 
 package walkingkooka.locale;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.PublicClassTesting;
 
-public final class LocaleContextTestingTest implements PublicClassTesting<LocaleContextTesting> {
+public final class LocaleContextTestingTest implements LocaleContextTesting,
+    PublicClassTesting<LocaleContextTesting> {
+
+    @Test
+    public void testConstants() {
+        this.checkNotEquals(
+            LOCALE_CONTEXT,
+            DIFFERENT_LOCALE_CONTEXT
+        );
+    }
 
     // class............................................................................................................
 
