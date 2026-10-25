@@ -18,8 +18,10 @@
 package walkingkooka.locale;
 
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.text.CharSequences;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 
 public interface CanDecimalNumberSymbolsForLocale {
@@ -28,4 +30,18 @@ public interface CanDecimalNumberSymbolsForLocale {
      * Returns the {@link DecimalNumberSymbols} if available for the given {@link Locale}.
      */
     Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale);
+
+    /**
+     * Attempts to fetch the {@link DecimalNumberSymbols} for the given {@link Locale}, throwing a {@link IllegalArgumentException}
+     * when missing.
+     */
+    default DecimalNumberSymbols decimalNumberSymbolsForLocaleOrFail(final Locale locale) {
+        Objects.requireNonNull(locale, "locale");
+
+        // Missing DecimalNumberSymbols for "en-AU"
+        return this.decimalNumberSymbolsForLocale(locale)
+            .orElseThrow(() -> new IllegalArgumentException(
+                "Missing " + DecimalNumberSymbols.class.getSimpleName() + " for " + CharSequences.quoteAndEscape(locale.toLanguageTag()))
+            );
+    }
 }

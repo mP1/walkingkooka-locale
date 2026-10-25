@@ -17,9 +17,36 @@
 
 package walkingkooka.locale;
 
+import org.junit.jupiter.api.Test;
+import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.PublicClassTesting;
+import walkingkooka.reflect.ThrowableTesting;
 
-public final class CanDecimalNumberSymbolsForLocaleTest implements PublicClassTesting<CanDecimalNumberSymbolsForLocale> {
+import java.util.Locale;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public final class CanDecimalNumberSymbolsForLocaleTest implements PublicClassTesting<CanDecimalNumberSymbolsForLocale>,
+    LocaleContextTesting,
+    ThrowableTesting {
+
+    @Test
+    public void testDecimalNumberSymbolsForLocaleOrFail() {
+        this.getMessageAndCheck(
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> new CanDecimalNumberSymbolsForLocale() {
+
+                    @Override
+                    public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                        return Optional.empty();
+                    }
+                }.decimalNumberSymbolsForLocaleOrFail(LOCALE)
+            ),
+            "Missing DecimalNumberSymbols for \"en-AU\""
+        );
+    }
 
     // class............................................................................................................
 
