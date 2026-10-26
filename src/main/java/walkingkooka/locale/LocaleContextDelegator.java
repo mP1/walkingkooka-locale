@@ -24,7 +24,8 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
-public interface LocaleContextDelegator extends LocaleContext {
+public interface LocaleContextDelegator extends LocaleContext,
+    CanLocaleForLanguageTagDelegator {
 
     @Override
     default Set<Locale> availableLocales() {
@@ -63,12 +64,6 @@ public interface LocaleContextDelegator extends LocaleContext {
     }
 
     @Override
-    default Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
-        return this.localeContext()
-            .localeForLanguageTag(languageTag);
-    }
-
-    @Override
     default Optional<String> localeText(final Locale locale) {
         return this.localeContext()
             .localeText(locale);
@@ -81,4 +76,11 @@ public interface LocaleContextDelegator extends LocaleContext {
     }
 
     LocaleContext localeContext();
+
+    // CanLocaleForLanguageTagDelegator.................................................................................
+
+    @Override
+    default CanLocaleForLanguageTag canLocaleForLanguageTag() {
+        return this.localeContext();
+    }
 }
