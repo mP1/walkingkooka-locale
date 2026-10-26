@@ -20,8 +20,9 @@ package walkingkooka.locale;
 import java.util.Locale;
 import java.util.Optional;
 
-public interface CanLocaleForLanguageTagDelegator {
+public interface CanLocaleForLanguageTagDelegator extends CanLocaleForLanguageTag {
 
+    @Override
     default Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
         return this.canLocaleForLanguageTag()
             .localeForLanguageTag(languageTag);
