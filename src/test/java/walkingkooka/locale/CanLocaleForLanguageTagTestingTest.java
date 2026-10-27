@@ -17,10 +17,37 @@
 
 package walkingkooka.locale;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.PublicClassTesting;
 
 public final class CanLocaleForLanguageTagTestingTest implements CanLocaleForLanguageTagTesting,
     PublicClassTesting<CanLocaleForLanguageTagTesting> {
+
+    @Test
+    public void testCanLocaleForLanguageTagConstantToString() {
+        this.checkEquals(
+            "CAN_LOCALE_FOR_LANGUAGE_TAG",
+            CAN_LOCALE_FOR_LANGUAGE_TAG.toString()
+        );
+    }
+
+    @Test
+    public void testDifferentCanLocaleForLanguageTagConstantToString() {
+        this.checkEquals(
+            "DIFFERENT_CAN_LOCALE_FOR_LANGUAGE_TAG",
+            DIFFERENT_CAN_LOCALE_FOR_LANGUAGE_TAG.toString()
+        );
+    }
+
+    @Test
+    public void testConstantsDifferent() {
+        this.checkNotEquals(
+            CAN_LOCALE_FOR_LANGUAGE_TAG,
+            DIFFERENT_CAN_LOCALE_FOR_LANGUAGE_TAG
+        );
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<CanLocaleForLanguageTagTesting> type() {
