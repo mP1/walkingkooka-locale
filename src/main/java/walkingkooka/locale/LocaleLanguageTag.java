@@ -50,9 +50,17 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
     }
 
     public static void requireValidLocale(final Locale locale) {
+        requireValidLocale0(
+            locale,
+            locale
+        );
+    }
+
+    private static void requireValidLocale0(final Locale locale,
+                                            final Object text) {
         if (false == isValidLocale(locale)) {
             throw new IllegalArgumentException(
-                "Invalid locale " + CharSequences.quoteIfChars(locale.toString())
+                "Invalid locale " + CharSequences.quoteIfChars(text.toString())
             );
         }
     }
@@ -66,8 +74,9 @@ public final class LocaleLanguageTag implements Comparable<LocaleLanguageTag>,
     }
 
     public static LocaleLanguageTag parse(final String languageTag) {
-        requireValidLocale(
-            Locale.forLanguageTag(languageTag)
+        requireValidLocale0(
+            Locale.forLanguageTag(languageTag),
+            languageTag
         );
 
         return new LocaleLanguageTag(languageTag);
