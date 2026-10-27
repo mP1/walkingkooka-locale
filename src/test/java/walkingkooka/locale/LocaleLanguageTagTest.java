@@ -227,6 +227,14 @@ public final class LocaleLanguageTagTest implements ComparableTesting2<LocaleLan
     // parse............................................................................................................
 
     @Test
+    public void testParseInvalidFails() {
+        this.parseStringFails(
+            "A",
+            new IllegalArgumentException("Invalid locale \"A\"")
+        );
+    }
+
+    @Test
     public void testParseLocaleLanguageTag() {
         final String languageTag = "en-AU";
 
