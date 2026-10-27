@@ -21,9 +21,38 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 
 public interface CanLocaleForLanguageTagTesting extends TreePrintableTesting {
+
+    CanLocaleForLanguageTag CAN_LOCALE_FOR_LANGUAGE_TAG = new CanLocaleForLanguageTag() {
+
+        @Override
+        public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
+            Objects.requireNonNull(languageTag, "languageTag");
+            return LocaleContextTesting.LOCALE_CONTEXT.localeForLanguageTag(languageTag); // avoid cycles
+        }
+
+        @Override
+        public String toString() {
+            return "CAN_LOCALE_FOR_LANGUAGE_TAG";
+        }
+    };
+
+    CanLocaleForLanguageTag DIFFERENT_CAN_LOCALE_FOR_LANGUAGE_TAG = new CanLocaleForLanguageTag() {
+
+        @Override
+        public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
+            Objects.requireNonNull(languageTag, "languageTag");
+            return LocaleContextTesting.DIFFERENT_LOCALE_CONTEXT.localeForLanguageTag(languageTag); // avoid cycles
+        }
+
+        @Override
+        public String toString() {
+            return "DIFFERENT_CAN_LOCALE_FOR_LANGUAGE_TAG";
+        }
+    };
 
     default void localeForLanguageTagAndCheck(final CanLocaleForLanguageTag can,
                                               final LocaleLanguageTag languageTag) {
