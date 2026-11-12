@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleContextReadOnlyTest implements LocaleContextTesting2<LocaleContextReadOnly>,
     HashCodeEqualsDefinedTesting2<LocaleContextReadOnly>,
-    ToStringTesting<LocaleContextReadOnly> {
+    ToStringTesting {
 
     private final static Locale LOCALE = Locale.forLanguageTag("en-AU");
 
