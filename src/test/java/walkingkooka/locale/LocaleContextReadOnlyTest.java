@@ -30,8 +30,6 @@ public final class LocaleContextReadOnlyTest implements LocaleContextTesting2<Lo
     HashCodeEqualsDefinedTesting2<LocaleContextReadOnly>,
     ToStringTesting {
 
-    private final static Locale LOCALE = Locale.forLanguageTag("en-AU");
-
     @Test
     public void testWithNullLocaleFails() {
         assertThrows(
