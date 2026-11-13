@@ -223,7 +223,7 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
 
         final LineEnding lineEnding = context.lineEnding();
 
-        return MultiLineText.with(
+        return MultiLineText.EMPTY.setText(
             this.stream()
             .map(LocaleLanguageTag::value)
             .collect(
