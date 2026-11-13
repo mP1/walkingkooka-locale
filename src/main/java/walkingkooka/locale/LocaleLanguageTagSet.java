@@ -202,17 +202,25 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
     // HasTextWithSeparator.............................................................................................
 
     @Override
-    public char separator() {
-        return SEPARATOR.character();
+    public CharSequence defaultTextSeparator() {
+        return SEPARATOR;
     }
 
     @Override
-    public String textWithSeparator(final char c) {
-        return CharacterConstant.with(c)
-            .toSeparatedString(
-                this,
-                LocaleLanguageTag::value
-            );
+    public CharSequence textSeparator(final int index) {
+        return SEPARATOR;
+    }
+
+    @Override
+    public String textWithSeparator(final CharSequence separator) {
+        final String stringSeparator = String.valueOf(separator);
+
+        return SEPARATOR.toDelimiteredString(
+            this.stream()
+                .map(LocaleLanguageTag::value)
+                .collect(Collectors.toList()),
+            (int position) -> stringSeparator
+        );
     }
 
     // HasMultiLineText.................................................................................................
