@@ -213,7 +213,7 @@ public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting
     public void testTextWithSeparatorWhenNotEmptyAndNotCommaSeparator() {
         this.textWithSeparatorAndCheck(
             this.createSet(),
-            ';',
+            ";",
             "en;en-AU;en-NZ"
         );
     }
