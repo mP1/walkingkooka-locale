@@ -17,6 +17,7 @@
 
 package walkingkooka.locale;
 
+import walkingkooka.collect.iterable.Iterables;
 import walkingkooka.collect.iterator.Iterators;
 import walkingkooka.collect.set.ImmutableSortedSetDefaults;
 import walkingkooka.collect.set.Sets;
@@ -216,9 +217,10 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
         final String stringSeparator = String.valueOf(separator);
 
         return SEPARATOR.toDelimiteredString(
-            this.stream()
-                .map(LocaleLanguageTag::value)
-                .collect(Collectors.toList()),
+            Iterables.mapping(
+                this,
+                LocaleLanguageTag::value
+            ),
             (int position) -> stringSeparator
         );
     }
