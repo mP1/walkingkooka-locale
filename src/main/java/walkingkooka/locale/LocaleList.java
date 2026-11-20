@@ -18,12 +18,10 @@
 package walkingkooka.locale;
 
 import walkingkooka.collect.list.CsvStringList;
-import walkingkooka.collect.list.HasCsvStringList;
-import walkingkooka.collect.list.HasTsvStringList;
+import walkingkooka.collect.list.HasCsvStringListTsvStringList;
 import walkingkooka.collect.list.ImmutableListDefaults;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.list.StringLikeList;
-import walkingkooka.collect.list.TsvStringList;
 import walkingkooka.text.CharSequences;
 
 import java.util.AbstractList;
@@ -38,8 +36,7 @@ import java.util.stream.Collectors;
  */
 public final class LocaleList extends AbstractList<Locale>
     implements ImmutableListDefaults<LocaleList, Locale>,
-    HasCsvStringList,
-    HasTsvStringList {
+    HasCsvStringListTsvStringList {
 
     public final static LocaleList EMPTY = new LocaleList(Lists.empty());
 
@@ -114,15 +111,6 @@ public final class LocaleList extends AbstractList<Locale>
             (Locale locale) -> null == locale ?
                 "" :
                 locale.toLanguageTag()
-        );
-    }
-
-    // HasTsvStringList.................................................................................................
-
-    @Override
-    public TsvStringList tsvStringList() {
-        return TsvStringList.EMPTY.setElements(
-            this.csvStringList()
         );
     }
 }
