@@ -18,8 +18,7 @@
 package walkingkooka.locale;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.collect.list.HasCsvStringListTesting;
-import walkingkooka.collect.list.HasTsvStringListTesting;
+import walkingkooka.collect.list.HasCsvStringListTsvStringListTesting2;
 import walkingkooka.collect.list.ImmutableListTesting;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.list.StringLikeList;
@@ -32,8 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleListTest implements ImmutableListTesting<LocaleList, Locale>,
     HasLocaleTesting,
-    HasCsvStringListTesting,
-    HasTsvStringListTesting {
+    HasCsvStringListTsvStringListTesting2<LocaleList> {
 
     @Test
     public void testFromStringLikeListWithNullFails() {
@@ -123,6 +121,11 @@ public final class LocaleListTest implements ImmutableListTesting<LocaleList, Lo
     @Override
     public LocaleList createList() {
         return LocaleList.EMPTY;
+    }
+
+    @Override
+    public LocaleList createHasCsvStringListTsvStringList() {
+        return this.createList();
     }
 
     // HasCsvStringList.................................................................................................
