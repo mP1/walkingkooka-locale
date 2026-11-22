@@ -25,7 +25,6 @@ import walkingkooka.collect.set.SortedSets;
 import walkingkooka.text.CharacterConstant;
 import walkingkooka.text.HasMultiLineText;
 import walkingkooka.text.HasTextWithSeparator;
-import walkingkooka.text.LineEnding;
 import walkingkooka.text.MultiLineText;
 import walkingkooka.text.TextContext;
 import walkingkooka.text.printer.IndentingPrinter;
@@ -40,7 +39,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 /**
  * An immutable {@link Set} containing unique {@link LocaleLanguageTag languageTag}.
@@ -229,20 +227,10 @@ public final class LocaleLanguageTagSet extends AbstractSet<LocaleLanguageTag>
 
     @Override
     public MultiLineText multiLineText(final TextContext context) {
-        Objects.requireNonNull(context, "context");
-
-        final LineEnding lineEnding = context.lineEnding();
-
-        return MultiLineText.EMPTY.setText(
-            this.stream()
-            .map(LocaleLanguageTag::value)
-            .collect(
-                Collectors.joining(
-                    lineEnding,
-                    "",
-                    lineEnding // suffix (last line)
-                )
-            )
+        return MultiLineText.fromCollection(
+            this,
+            LocaleLanguageTag::value,
+            context
         );
     }
 
