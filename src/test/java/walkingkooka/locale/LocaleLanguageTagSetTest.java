@@ -273,7 +273,7 @@ public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting
             LineEnding.NL,
             "en\n" +
                 "en-AU\n" +
-                "en-NZ\n"
+                "en-NZ"
         );
     }
     
