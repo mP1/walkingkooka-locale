@@ -254,16 +254,6 @@ public final class LocaleLanguageTagSetTest implements ImmutableSortedSetTesting
         return LocaleLanguageTagSet.parse(text);
     }
 
-    @Override
-    public Class<? extends RuntimeException> parseStringFailedExpected(final Class<? extends RuntimeException> thrown) {
-        return thrown;
-    }
-
-    @Override
-    public RuntimeException parseStringFailedExpected(final RuntimeException thrown) {
-        return thrown;
-    }
-
     // HasMultiLineText.................................................................................................
 
     @Test
