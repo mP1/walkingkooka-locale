@@ -33,7 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class LocaleListTest implements ImmutableListTesting<LocaleList, Locale>,
     HasLocaleTesting,
     HasCsvStringListTsvStringListTesting2<LocaleList>,
-    HashCodeEqualsDefinedTesting2<LocaleList> {
+    HashCodeEqualsDefinedTesting2<LocaleList>,
+    LocaleContextTesting {
 
     @Test
     public void testFromStringLikeListWithNullFails() {
@@ -181,6 +182,22 @@ public final class LocaleListTest implements ImmutableListTesting<LocaleList, Lo
             LocaleList.EMPTY.concat(LOCALE),
             LocaleList.EMPTY.concat(DIFFERENT_LOCALE)
         );
+    }
+
+    @Test
+    public void testEqualsAllLocaleContextAvailableLocale() {
+        for(final Locale locale : LOCALE_CONTEXT.availableLocales()) {
+            if(locale.toString().equalsIgnoreCase("no_NO_NY")) {
+                continue;
+            }
+
+            this.checkEquals(
+                LocaleList.EMPTY.concat(locale),
+                LocaleList.EMPTY.concat(
+                    Locale.forLanguageTag(locale.toLanguageTag())
+                )
+            );
+        }
     }
 
     @Override
