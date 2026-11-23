@@ -18,6 +18,7 @@
 package walkingkooka.locale;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.list.HasCsvStringListTsvStringListTesting2;
 import walkingkooka.collect.list.ImmutableListTesting;
 import walkingkooka.collect.list.Lists;
@@ -31,7 +32,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class LocaleListTest implements ImmutableListTesting<LocaleList, Locale>,
     HasLocaleTesting,
-    HasCsvStringListTsvStringListTesting2<LocaleList> {
+    HasCsvStringListTsvStringListTesting2<LocaleList>,
+    HashCodeEqualsDefinedTesting2<LocaleList> {
 
     @Test
     public void testFromStringLikeListWithNullFails() {
@@ -161,6 +163,31 @@ public final class LocaleListTest implements ImmutableListTesting<LocaleList, Lo
         );
     }
 
+    // hashCode/equals..................................................................................................
+
+    @Test
+    public void testEqualsNotEmpty() {
+        this.checkEquals(
+            LocaleList.EMPTY.concat(LOCALE)
+                .concat(DIFFERENT_LOCALE),
+            LocaleList.EMPTY.concat(LOCALE)
+                .concat(DIFFERENT_LOCALE)
+        );
+    }
+
+    @Test
+    public void testEqualsNotEmptyDifferent() {
+        this.checkNotEquals(
+            LocaleList.EMPTY.concat(LOCALE),
+            LocaleList.EMPTY.concat(DIFFERENT_LOCALE)
+        );
+    }
+
+    @Override
+    public LocaleList createObject() {
+        return this.createList();
+    }
+    
     // class............................................................................................................
 
     @Override
