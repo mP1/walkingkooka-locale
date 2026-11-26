@@ -75,7 +75,7 @@ public final class LocaleList extends AbstractList<Locale>
 
     @Override
     public LocaleList setElements(final Collection<Locale> collection) {
-        LocaleList localeList;
+        final LocaleList localeList;
 
         if (collection instanceof LocaleList) {
             localeList = (LocaleList) collection;
@@ -83,16 +83,31 @@ public final class LocaleList extends AbstractList<Locale>
             final List<Locale> copy = Lists.array();
             copy.addAll(collection);
 
-            if (copy.equals(this)) {
-                localeList = this;
-            } else {
-                localeList = copy.isEmpty() ?
-                    EMPTY :
-                    new LocaleList(copy);
-            }
+            localeList = this.equals(copy) ?
+                this :
+                this.replaceLocale(copy);
         }
 
         return localeList;
+    }
+
+    @Override
+    public LocaleList subList(final int from,
+                              final int to) {
+        return 0 == from && this.size() == to ?
+            this :
+            this.replaceLocale(
+                this.list.subList(
+                    from,
+                    to
+                )
+            );
+    }
+
+    private LocaleList replaceLocale(final List<Locale> locales) {
+        return locales.isEmpty() ?
+            EMPTY :
+            new LocaleList(locales);
     }
 
     @Override

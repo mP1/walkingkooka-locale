@@ -26,6 +26,7 @@ import walkingkooka.collect.list.StringLikeList;
 import walkingkooka.collect.list.StringList;
 import walkingkooka.util.HasLocaleTesting;
 
+import java.util.List;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -118,6 +119,71 @@ public final class LocaleListTest implements ImmutableListTesting<LocaleList, Lo
             ),
             Lists.empty(),
             LocaleList.EMPTY
+        );
+    }
+
+    // subList..........................................................................................................
+
+    private final static Locale LOCALE1 = LOCALE;
+    private final static Locale LOCALE2 = DIFFERENT_LOCALE;
+    private final static Locale LOCALE3 = Locale.forLanguageTag("en-CA");
+    private final static Locale LOCALE4 = Locale.forLanguageTag("en-UK");
+    private final static Locale LOCALE5 = Locale.forLanguageTag("en-US");
+
+    private final static List<Locale> ELEMENTS = Lists.of(
+        LOCALE1,
+        LOCALE2,
+        LOCALE3,
+        LOCALE4,
+        LOCALE5
+    );
+
+    @Test
+    public void testSubList() {
+        this.subListAndCheck(
+            new LocaleList(ELEMENTS),
+            0,
+            2,
+            new LocaleList(
+                Lists.of(
+                    LOCALE1,
+                    LOCALE2
+                )
+            )
+        );
+    }
+
+    @Test
+    public void testSubList2() {
+        this.subListAndCheck(
+            new LocaleList(ELEMENTS),
+            2,
+            4,
+            new LocaleList(
+                Lists.of(
+                    LOCALE3,
+                    LOCALE4
+                )
+            )
+        );
+    }
+
+    @Test
+    public void testSubListSubList() {
+        this.subListAndCheck(
+            new LocaleList(ELEMENTS)
+                .subList(
+                    1,
+                    4
+                ), // 2, 3, 4
+            1,
+            3,
+            new LocaleList(
+                Lists.of(
+                    LOCALE3,
+                    LOCALE4
+                )
+            )
         );
     }
 
