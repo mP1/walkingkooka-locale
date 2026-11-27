@@ -99,6 +99,22 @@ public final class LocaleListTest implements ImmutableListTesting<LocaleList, Lo
     // setElements......................................................................................................
 
     @Test
+    public void testSetElementsWithListIncludingNull() {
+        final List<Locale> list = Lists.of(
+            DIFFERENT_LOCALE,
+            null
+        );
+
+        this.setElementsAndCheck(
+            new LocaleList(
+                Lists.of(LOCALE)
+            ),
+            list,
+            new LocaleList(list)
+        );
+    }
+
+    @Test
     public void testSetElementsWithDifferent() {
         this.setElementsAndCheck(
             new LocaleList(
