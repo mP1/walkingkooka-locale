@@ -230,6 +230,16 @@ public final class LocaleListTest implements ImmutableListTesting<LocaleList, Lo
         );
     }
 
+    @Test
+    public void testTsvStringListIncludesNull() {
+        this.tsvStringListAndCheck(
+            LocaleList.EMPTY.concat(LOCALE)
+                .concat(null)
+                .concat(DIFFERENT_LOCALE),
+            "en-AU\t\ten-NZ"
+        );
+    }
+
     // hashCode/equals..................................................................................................
 
     @Test
